@@ -10,7 +10,7 @@ set(Source_srcs
   ${wxroot}/src/expat/lib/xmlrole.c
   ${wxroot}/src/expat/lib/xmltok.c
   )
-source_group("Source Files" FILES ${Source_srcs}) 
+source_group("Source Files" FILES ${Source_srcs})
 list(APPEND ${lib_name}_libsrcs ${Source_srcs})
 #######################################
 # library

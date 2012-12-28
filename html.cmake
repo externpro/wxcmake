@@ -68,7 +68,7 @@ set(wxHTML_hdrs
   ${wxroot}/include/wx/html/m_templ.h
   ${wxroot}/include/wx/html/winpars.h
   )
-source_group("wxHTML Headers" FILES ${wxHTML_hdrs})   
+source_group("wxHTML Headers" FILES ${wxHTML_hdrs})
 list(APPEND ${lib_name}_libsrcs ${wxHTML_hdrs})
 ########################
 # wxHTML Sources

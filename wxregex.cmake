@@ -10,7 +10,7 @@ set(Header_srcs
   ${wxroot}/include/wx/msw/setup.h
   ${wxroot}/include/wx/univ/setup.h
   )
-source_group("Header Files" FILES ${Header_srcs}) 
+source_group("Header Files" FILES ${Header_srcs})
 list(APPEND ${lib_name}_libsrcs ${Header_srcs})
 ########################
 # Source Files
@@ -20,7 +20,7 @@ set(Source_srcs
   ${wxroot}/src/regex/regexec.c
   ${wxroot}/src/regex/regfree.c
   )
-source_group("Source Files" FILES ${Source_srcs}) 
+source_group("Source Files" FILES ${Source_srcs})
 list(APPEND ${lib_name}_libsrcs ${Source_srcs})
 #######################################
 # library

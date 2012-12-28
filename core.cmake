@@ -266,7 +266,7 @@ set(Common_hdrs
   ${wxroot}/include/wx/xpmdecod.h
   ${wxroot}/include/wx/xpmhand.h
 )
-source_group("Common Headers" FILES ${Common_hdrs})    
+source_group("Common Headers" FILES ${Common_hdrs})
 list(APPEND ${lib_name}_libsrcs ${Common_hdrs})
 ########################
 # Common Sources
@@ -424,7 +424,7 @@ set(Generic_hdrs
   ${wxroot}/include/wx/generic/treectlg.h
   ${wxroot}/include/wx/generic/wizard.h
   )
-source_group("Generic Headers" FILES ${Generic_hdrs})   
+source_group("Generic Headers" FILES ${Generic_hdrs})
 list(APPEND ${lib_name}_libsrcs ${Generic_hdrs})
 ########################
 # Generic Sources
@@ -758,7 +758,7 @@ set(wxUniv_hdrs
   ${wxroot}/include/wx/univ/theme.h
   ${wxroot}/include/wx/univ/toolbar.h
   ${wxroot}/include/wx/univ/toplevel.h
-  ${wxroot}/include/wx/univ/window.h 
+  ${wxroot}/include/wx/univ/window.h
 )
 source_group("wxUniv Headers" FILES ${wxUniv_hdrs})
 list(APPEND ${lib_name}_libsrcs ${wxUniv_hdrs})

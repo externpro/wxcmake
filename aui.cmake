@@ -12,9 +12,9 @@ set(Common_hdrs
   ${wxroot}/include/wx/aui/dockart.h
   ${wxroot}/include/wx/aui/floatpane.h
   ${wxroot}/include/wx/aui/framemanager.h
-  ${wxroot}/include/wx/aui/tabmdi.h   
+  ${wxroot}/include/wx/aui/tabmdi.h
   )
-source_group("Common Headers" FILES ${Common_hdrs})    
+source_group("Common Headers" FILES ${Common_hdrs})
 list(APPEND ${lib_name}_libsrcs ${Common_hdrs})
 ########################
 # Common Sources
@@ -43,7 +43,7 @@ set(Setup_hdrs
   ${wxroot}/include/wx/msw/setup.h
   ${wxroot}/include/wx/univ/setup.h
   )
-source_group("Setup Headers" FILES ${Setup_hdrs}) 
+source_group("Setup Headers" FILES ${Setup_hdrs})
 list(APPEND ${lib_name}_libsrcs ${Setup_hdrs})
 ########################
 # Source Files
@@ -53,7 +53,7 @@ set(Source_srcs
   ${wxroot}/src/aui/dockart.cpp
   ${wxroot}/src/aui/floatpane.cpp
   ${wxroot}/src/aui/framemanager.cpp
-  ${wxroot}/src/aui/tabmdi.cpp    
+  ${wxroot}/src/aui/tabmdi.cpp
   )
 source_group("Source Files" FILES ${Source_srcs})
 list(APPEND ${lib_name}_libsrcs ${Source_srcs})

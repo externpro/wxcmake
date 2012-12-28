@@ -42,7 +42,7 @@ set(Source_srcs
   ${wxroot}/src/tiff/tif_write.c
   ${wxroot}/src/tiff/tif_zip.c
   )
-source_group("Source Files" FILES ${Source_srcs}) 
+source_group("Source Files" FILES ${Source_srcs})
 list(APPEND ${lib_name}_libsrcs ${Source_srcs})
 #######################################
 # library

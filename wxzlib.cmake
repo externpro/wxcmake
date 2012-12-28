@@ -19,7 +19,7 @@ set(Source_srcs
   ${wxroot}/src/zlib/uncompr.c
   ${wxroot}/src/zlib/zutil.c
   )
-source_group("Source Files" FILES ${Source_srcs}) 
+source_group("Source Files" FILES ${Source_srcs})
 list(APPEND ${lib_name}_libsrcs ${Source_srcs})
 #######################################
 # library

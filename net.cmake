@@ -18,7 +18,7 @@ set(Common_hdrs
   ${wxroot}/include/wx/socket.h
   ${wxroot}/include/wx/url.h
   )
-source_group("Common Headers" FILES ${Common_hdrs})    
+source_group("Common Headers" FILES ${Common_hdrs})
 list(APPEND ${lib_name}_libsrcs ${Common_hdrs})
 ########################
 # Common Sources
@@ -60,7 +60,7 @@ set(Setup_hdrs
   ${wxroot}/include/wx/msw/setup.h
   ${wxroot}/include/wx/univ/setup.h
   )
-source_group("Setup Headers" FILES ${Setup_hdrs}) 
+source_group("Setup Headers" FILES ${Setup_hdrs})
 list(APPEND ${lib_name}_libsrcs ${Setup_hdrs})
 #######################################
 # library
