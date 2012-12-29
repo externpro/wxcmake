@@ -265,6 +265,4 @@ list(APPEND ${lib_name}_libsrcs ${wxHTML_hdrs})
 #######################################
 # library
 add_library(${lib_name} STATIC ${${lib_name}_libsrcs})
-set_target_properties(${lib_name}
-  PROPERTIES OUTPUT_NAME ${wxbasename}${wxversion}_${libname}
-  )
+set_wxtarget_properties(${lib_name})

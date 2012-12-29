@@ -25,6 +25,7 @@ list(APPEND ${lib_name}_libsrcs ${Source_srcs})
 #######################################
 # library
 add_library(${lib_name} STATIC ${${lib_name}_libsrcs})
-set_target_properties(${lib_name}
-  PROPERTIES OUTPUT_NAME ${wxbasename}${wxversion}_${lib_name}
+set_property(TARGET ${lib_name} PROPERTY
+  COMPILE_DEFINITIONS __WXMSW__
   )
+set_wxtarget_properties(${lib_name})

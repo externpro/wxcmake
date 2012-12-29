@@ -15,6 +15,11 @@ list(APPEND ${lib_name}_libsrcs ${Source_srcs})
 #######################################
 # library
 add_library(${lib_name} STATIC ${${lib_name}_libsrcs})
-set_target_properties(${lib_name}
-  PROPERTIES OUTPUT_NAME ${wxbasename}${wxversion}_${lib_name}
+get_directory_property(global_includes INCLUDE_DIRECTORIES)
+set_property(TARGET ${lib_name} PROPERTY
+  INCLUDE_DIRECTORIES ${global_includes} ${wxroot}/src/expat
   )
+set_property(TARGET ${lib_name} PROPERTY
+  COMPILE_DEFINITIONS COMPILED_FROM_DSP
+  )
+set_wxtarget_properties(${lib_name})
