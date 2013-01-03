@@ -142,6 +142,7 @@ endforeach()
 #######################################
 # wx headers
 file(GLOB wxhdrs ${wxroot}/include/wx/*.h)
+file(GLOB wxcpps ${wxroot}/include/wx/*.cpp)
 install(DIRECTORY
   ${wxroot}/include/wx/generic
   ${wxroot}/include/wx/html
@@ -154,4 +155,4 @@ install(DIRECTORY
   DESTINATION include/wx
   PATTERN ".cvsignore" EXCLUDE
   )
-install(FILES ${wxhdrs} DESTINATION include/wx)
+install(FILES ${wxhdrs} ${wxcpps} DESTINATION include/wx)
