@@ -1,8 +1,9 @@
 set(lib_name wxpng)
 #######################################
 # library sources
-source_group("" FILES ${lib_name}.cmake)
-list(APPEND ${lib_name}_libsrcs ${lib_name}.cmake)
+set(thisfile ${wxroot}/build/cmake/${lib_name}.cmake)
+source_group("" FILES ${thisfile})
+list(APPEND ${lib_name}_libsrcs ${thisfile})
 ########################
 # Source Files
 set(Source_srcs

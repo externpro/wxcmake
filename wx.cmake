@@ -1,3 +1,28 @@
+set(wxroot ${CMAKE_SOURCE_DIR})
+set(CMAKE_MODULE_PATH ${wxroot}/build/cmake ${CMAKE_MODULE_PATH})
+include(flags OPTIONAL)
+add_definitions(-D_LIB)
+set(CMAKE_DEBUG_POSTFIX)
+set(CMAKE_RELEASEMT_POSTFIX)
+set(CMAKE_RELEASE_POSTFIX)
+set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib${NUMBITS})
+include_directories(${wxroot}/include ${LIBRARY_OUTPUT_PATH})
+set_property(GLOBAL PROPERTY USE_FOLDERS ON) # enables MSVC Solution Folders
+
+#######################################
+# setup.h
+# NOTE: include_directories above will find setup.h from ${LIBRARY_OUTPUT_PATH}
+set(wxsetup ${wxroot}/include/wx/msw/setup.h)
+if(NOT EXISTS ${LIBRARY_OUTPUT_PATH}/wx)
+  execute_process(COMMAND ${CMAKE_COMMAND} -E make_directory
+    ${LIBRARY_OUTPUT_PATH}/wx)
+endif()
+execute_process(COMMAND ${CMAKE_COMMAND} -E copy_if_different
+  ${wxsetup} ${LIBRARY_OUTPUT_PATH}/wx)
+
+#######################################
+# set_wx_target_properties function
+# @param[in] target : cmake target
 function(set_wxtarget_properties target)
   set(wxversion 28)
   if(MSVC)
@@ -36,6 +61,7 @@ function(set_wxtarget_properties target)
       RELEASE_OUTPUT_NAME wxbase${wxversion}${toolset}
       COMPILE_FLAGS /W4
       )
+    install(FILES ${wxsetup} DESTINATION lib${NUMBITS}/msw/wx)
   elseif(${target} MATCHES "net" OR ${target} MATCHES "odbc" OR ${target} MATCHES "xml")
     set_property(TARGET ${target} PROPERTY
       COMPILE_DEFINITIONS __WXMSW__ WXBUILDING wxUSE_GUI=0)
@@ -83,7 +109,49 @@ function(set_wxtarget_properties target)
   install(TARGETS ${lib_name} DESTINATION lib${NUMBITS})
 endfunction()
 
-add_definitions(-D_LIB)
-set(CMAKE_DEBUG_POSTFIX)
-set(CMAKE_RELEASEMT_POSTFIX)
-set(CMAKE_RELEASE_POSTFIX)
+#######################################
+# wx libraries
+# NOTE: ordered by library dependencies
+# see http://docs.wxwidgets.org/trunk/page_libs.html
+set(wxlibs
+  wxexpat
+  wxjpeg
+  wxpng
+  wxregex
+  wxtiff
+  wxzlib
+  base
+  net
+  odbc
+  xml
+  core
+  adv
+  gl
+  html
+  media
+  dbgrid
+  aui
+  xrc
+  richtext
+  qa
+  )
+foreach(lib ${wxlibs})
+  include(${lib})
+endforeach()
+
+#######################################
+# wx headers
+file(GLOB wxhdrs ${wxroot}/include/wx/*.h)
+install(DIRECTORY
+  ${wxroot}/include/wx/generic
+  ${wxroot}/include/wx/html
+  ${wxroot}/include/wx/msvc # NOTE: SDL-specific
+  ${wxroot}/include/wx/msw
+  ${wxroot}/include/wx/protocol
+  ${wxroot}/include/wx/richtext
+  ${wxroot}/include/wx/xml
+  ${wxroot}/include/wx/xrc
+  DESTINATION include/wx
+  PATTERN ".cvsignore" EXCLUDE
+  )
+install(FILES ${wxhdrs} DESTINATION include/wx)

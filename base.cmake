@@ -2,8 +2,10 @@ set(lib_name base)
 #######################################
 # library sources
 ########################
-source_group("" FILES ${lib_name}.cmake)
-list(APPEND ${lib_name}_libsrcs ${lib_name}.cmake)
+set(thisfile ${wxroot}/build/cmake/${lib_name}.cmake)
+set(wxfile ${wxroot}/build/cmake/wx.cmake)
+source_group("" FILES ${thisfile} ${wxfile})
+list(APPEND ${lib_name}_libsrcs ${thisfile} ${wxfile})
 ########################
 # Common Headers
 set(Common_hdrs
