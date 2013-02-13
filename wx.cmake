@@ -144,6 +144,7 @@ endforeach()
 file(GLOB wxhdrs ${wxroot}/include/wx/*.h)
 file(GLOB wxcpps ${wxroot}/include/wx/*.cpp)
 install(DIRECTORY
+  ${wxroot}/include/wx/aui
   ${wxroot}/include/wx/generic
   ${wxroot}/include/wx/html
   ${wxroot}/include/wx/msvc # NOTE: SDL-specific
