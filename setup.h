@@ -12,18 +12,18 @@
 #include <wx/version.h>
 #if wxCHECK_VERSION(2,9,0)
 # ifdef WIN64
-#  include "../../../../lib64/mswu/wx/setup.h"
+#  include "../../../../../lib64/msw/wx-2.9/wx/setup.h"
 # else // WIN32
-#  include "../../../../lib32/mswu/wx/setup.h"
+#  include "../../../../../lib32/msw/wx-2.9/wx/setup.h"
 # endif
 #else
 #  ifdef _UNICODE
 #   error "Unicode support missing in externpro/include/wx/msvc/wx/setup.h"
 #  endif
 #  ifdef WIN64
-#   include "../../../../lib64/msw/wx/setup.h"
+#   include "../../../../../lib64/msw/wx-2.8/wx/setup.h"
 #  else // WIN32
-#   include "../../../../lib32/msw/wx/setup.h"
+#   include "../../../../../lib32/msw/wx-2.8/wx/setup.h"
 #  endif
 # endif // wxCHECK_VERSION
 #else

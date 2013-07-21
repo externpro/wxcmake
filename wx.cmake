@@ -7,23 +7,22 @@ set(CMAKE_DEBUG_POSTFIX)
 set(CMAKE_RELEASEMT_POSTFIX)
 set(CMAKE_RELEASE_POSTFIX)
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib${NUMBITS})
+include_directories(${wxroot}/include ${LIBRARY_OUTPUT_PATH})
 if(NOT DEFINED WX_VERSION)
   set(WX_VERSION 00)
 endif()
 string(REGEX REPLACE "^([0-9])\([0-9]*)$" "wx-\\1.\\2" wxver ${WX_VERSION})
-include_directories(${wxroot}/include ${LIBRARY_OUTPUT_PATH}/${wxver})
 
 #######################################
 # setup.h
-# NOTE: include_directories above will find setup.h from
-#       ${LIBRARY_OUTPUT_PATH}/${wxver}
+# NOTE: include_directories above will find setup.h from ${LIBRARY_OUTPUT_PATH}
 set(wxsetup ${wxroot}/include/wx/msw/setup.h)
-if(NOT EXISTS ${LIBRARY_OUTPUT_PATH}/${wxver}/wx)
+if(NOT EXISTS ${LIBRARY_OUTPUT_PATH}/wx)
   execute_process(COMMAND ${CMAKE_COMMAND} -E make_directory
-    ${LIBRARY_OUTPUT_PATH}/${wxver}/wx)
+    ${LIBRARY_OUTPUT_PATH}/wx)
 endif()
 execute_process(COMMAND ${CMAKE_COMMAND} -E copy_if_different
-  ${wxsetup} ${LIBRARY_OUTPUT_PATH}/${wxver}/wx)
+  ${wxsetup} ${LIBRARY_OUTPUT_PATH}/wx)
 
 #######################################
 # set_wx_target_properties function
@@ -68,7 +67,7 @@ function(set_wxtarget_properties target)
       RELEASE_OUTPUT_NAME wxbase${WX_VERSION}${toolset}
       COMPILE_FLAGS /W4
       )
-    install(FILES ${wxsetup} DESTINATION lib${NUMBITS}/msw/wx)
+    install(FILES ${wxsetup} DESTINATION lib${NUMBITS}/msw/${wxver}/wx)
   elseif(${target} MATCHES "net" OR ${target} MATCHES "odbc" OR ${target} MATCHES "xml")
     set_property(TARGET ${target} PROPERTY
       COMPILE_DEFINITIONS __WXMSW__ WXBUILDING wxUSE_GUI=0)
@@ -150,7 +149,6 @@ endforeach()
 # wx headers
 file(GLOB wxhdrs ${wxroot}/include/wx/*.h)
 file(GLOB wxcpps ${wxroot}/include/wx/*.cpp)
-set(wxsetuph ${wxroot}/build/cmake/setup.h) # custom setup.h
 install(DIRECTORY
   ${wxroot}/include/wx/aui
   ${wxroot}/include/wx/generic
@@ -163,4 +161,6 @@ install(DIRECTORY
   DESTINATION include/${wxver}/wx
   PATTERN ".cvsignore" EXCLUDE
   )
-install(FILES ${wxhdrs} ${wxcpps} ${wxsetuph} DESTINATION include/${wxver}/wx)
+install(FILES ${wxhdrs} ${wxcpps} DESTINATION include/${wxver}/wx)
+set(customsetuph ${wxroot}/build/cmake/setup.h)
+install(FILES ${customsetuph} DESTINATION include/${wxver}/wx/msvc/wx)
