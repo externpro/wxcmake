@@ -1,13 +1,17 @@
 set(wxroot ${CMAKE_SOURCE_DIR})
 set(CMAKE_MODULE_PATH ${wxroot}/build/cmake ${CMAKE_MODULE_PATH})
 include(flags OPTIONAL)
+set_property(GLOBAL PROPERTY USE_FOLDERS ON) # enables MSVC Solution Folders
 add_definitions(-D_LIB)
 set(CMAKE_DEBUG_POSTFIX)
 set(CMAKE_RELEASEMT_POSTFIX)
 set(CMAKE_RELEASE_POSTFIX)
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib${NUMBITS})
 include_directories(${wxroot}/include ${LIBRARY_OUTPUT_PATH})
-set_property(GLOBAL PROPERTY USE_FOLDERS ON) # enables MSVC Solution Folders
+if(NOT DEFINED WX_VERSION)
+  set(WX_VERSION 00)
+endif()
+string(REGEX REPLACE "^([0-9])\([0-9]*)$" "wx-\\1.\\2" wxver ${WX_VERSION})
 
 #######################################
 # setup.h
@@ -24,7 +28,6 @@ execute_process(COMMAND ${CMAKE_COMMAND} -E copy_if_different
 # set_wx_target_properties function
 # @param[in] target : cmake target
 function(set_wxtarget_properties target)
-  set(wxversion 28)
   if(MSVC)
     # toolset
     if(MSVC11)
@@ -58,22 +61,22 @@ function(set_wxtarget_properties target)
       COMPILE_DEFINITIONS __WXMSW__ WXBUILDING wxUSE_GUI=0 wxUSE_BASE=1)
     set_property(TARGET ${target} PROPERTY FOLDER wxbase_libs)
     set_target_properties(${target} PROPERTIES
-      OUTPUT_NAME wxbase${wxversion}${toolset}x
-      DEBUG_OUTPUT_NAME wxbase${wxversion}${toolset}d
-      RELEASEMT_OUTPUT_NAME wxbase${wxversion}${toolset}s
-      RELEASE_OUTPUT_NAME wxbase${wxversion}${toolset}
+      OUTPUT_NAME wxbase${WX_VERSION}${toolset}x
+      DEBUG_OUTPUT_NAME wxbase${WX_VERSION}${toolset}d
+      RELEASEMT_OUTPUT_NAME wxbase${WX_VERSION}${toolset}s
+      RELEASE_OUTPUT_NAME wxbase${WX_VERSION}${toolset}
       COMPILE_FLAGS /W4
       )
-    install(FILES ${wxsetup} DESTINATION lib${NUMBITS}/msw/wx)
+    install(FILES ${wxsetup} DESTINATION lib${NUMBITS}/msw/${wxver}/wx)
   elseif(${target} MATCHES "net" OR ${target} MATCHES "odbc" OR ${target} MATCHES "xml")
     set_property(TARGET ${target} PROPERTY
       COMPILE_DEFINITIONS __WXMSW__ WXBUILDING wxUSE_GUI=0)
     set_property(TARGET ${target} PROPERTY FOLDER wxbase_libs)
     set_target_properties(${target} PROPERTIES
-      OUTPUT_NAME wxbase${wxversion}${toolset}x_${target}
-      DEBUG_OUTPUT_NAME wxbase${wxversion}${toolset}d_${target}
-      RELEASEMT_OUTPUT_NAME wxbase${wxversion}${toolset}s_${target}
-      RELEASE_OUTPUT_NAME wxbase${wxversion}${toolset}_${target}
+      OUTPUT_NAME wxbase${WX_VERSION}${toolset}x_${target}
+      DEBUG_OUTPUT_NAME wxbase${WX_VERSION}${toolset}d_${target}
+      RELEASEMT_OUTPUT_NAME wxbase${WX_VERSION}${toolset}s_${target}
+      RELEASE_OUTPUT_NAME wxbase${WX_VERSION}${toolset}_${target}
       COMPILE_FLAGS /W4
       )
   elseif(${target} MATCHES "^wx") # any target that starts with "wx"
@@ -94,10 +97,10 @@ function(set_wxtarget_properties target)
       COMPILE_DEFINITIONS __WXMSW__ WXBUILDING ${target_defs})
     set_property(TARGET ${target} PROPERTY FOLDER ${wxbasename}_libs)
     set_target_properties(${target} PROPERTIES
-      OUTPUT_NAME ${wxbasename}${wxversion}${toolset}x_${target}
-      DEBUG_OUTPUT_NAME ${wxbasename}${wxversion}${toolset}d_${target}
-      RELEASEMT_OUTPUT_NAME ${wxbasename}${wxversion}${toolset}s_${target}
-      RELEASE_OUTPUT_NAME ${wxbasename}${wxversion}${toolset}_${target}
+      OUTPUT_NAME ${wxbasename}${WX_VERSION}${toolset}x_${target}
+      DEBUG_OUTPUT_NAME ${wxbasename}${WX_VERSION}${toolset}d_${target}
+      RELEASEMT_OUTPUT_NAME ${wxbasename}${WX_VERSION}${toolset}s_${target}
+      RELEASE_OUTPUT_NAME ${wxbasename}${WX_VERSION}${toolset}_${target}
       COMPILE_FLAGS /W4
       )
   endif()
@@ -150,13 +153,14 @@ install(DIRECTORY
   ${wxroot}/include/wx/aui
   ${wxroot}/include/wx/generic
   ${wxroot}/include/wx/html
-  ${wxroot}/include/wx/msvc # NOTE: SDL-specific
   ${wxroot}/include/wx/msw
   ${wxroot}/include/wx/protocol
   ${wxroot}/include/wx/richtext
   ${wxroot}/include/wx/xml
   ${wxroot}/include/wx/xrc
-  DESTINATION include/wx
+  DESTINATION include/${wxver}/wx
   PATTERN ".cvsignore" EXCLUDE
   )
-install(FILES ${wxhdrs} ${wxcpps} DESTINATION include/wx)
+install(FILES ${wxhdrs} ${wxcpps} DESTINATION include/${wxver}/wx)
+set(customsetuph ${wxroot}/build/cmake/setup.h)
+install(FILES ${customsetuph} DESTINATION include/${wxver}/wx/msvc/wx)
