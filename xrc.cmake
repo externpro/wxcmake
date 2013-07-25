@@ -9,6 +9,7 @@ list(APPEND ${lib_name}_libsrcs ${thisfile})
 set(Common_hdrs
   ${wxroot}/include/wx/xrc/xh_all.h
   ${wxroot}/include/wx/xrc/xh_animatctrl.h
+  ${wxroot}/include/wx/xrc/xh_bannerwindow.h
   ${wxroot}/include/wx/xrc/xh_bmp.h
   ${wxroot}/include/wx/xrc/xh_bmpbt.h
   ${wxroot}/include/wx/xrc/xh_bmpcbox.h
@@ -19,11 +20,15 @@ set(Common_hdrs
   ${wxroot}/include/wx/xrc/xh_choic.h
   ${wxroot}/include/wx/xrc/xh_choicbk.h
   ${wxroot}/include/wx/xrc/xh_clrpicker.h
+  ${wxroot}/include/wx/xrc/xh_cmdlinkbn.h
   ${wxroot}/include/wx/xrc/xh_collpane.h
   ${wxroot}/include/wx/xrc/xh_combo.h
+  ${wxroot}/include/wx/xrc/xh_comboctrl.h
   ${wxroot}/include/wx/xrc/xh_datectrl.h
   ${wxroot}/include/wx/xrc/xh_dirpicker.h
   ${wxroot}/include/wx/xrc/xh_dlg.h
+  ${wxroot}/include/wx/xrc/xh_editlbox.h
+  ${wxroot}/include/wx/xrc/xh_filectrl.h
   ${wxroot}/include/wx/xrc/xh_filepicker.h
   ${wxroot}/include/wx/xrc/xh_fontpicker.h
   ${wxroot}/include/wx/xrc/xh_frame.h
@@ -50,6 +55,7 @@ set(Common_hdrs
   ${wxroot}/include/wx/xrc/xh_slidr.h
   ${wxroot}/include/wx/xrc/xh_spin.h
   ${wxroot}/include/wx/xrc/xh_split.h
+  ${wxroot}/include/wx/xrc/xh_srchctrl.h
   ${wxroot}/include/wx/xrc/xh_statbar.h
   ${wxroot}/include/wx/xrc/xh_stbmp.h
   ${wxroot}/include/wx/xrc/xh_stbox.h
@@ -57,7 +63,9 @@ set(Common_hdrs
   ${wxroot}/include/wx/xrc/xh_sttxt.h
   ${wxroot}/include/wx/xrc/xh_text.h
   ${wxroot}/include/wx/xrc/xh_tglbtn.h
+  ${wxroot}/include/wx/xrc/xh_timectrl.h
   ${wxroot}/include/wx/xrc/xh_toolb.h
+  ${wxroot}/include/wx/xrc/xh_toolbk.h
   ${wxroot}/include/wx/xrc/xh_tree.h
   ${wxroot}/include/wx/xrc/xh_treebk.h
   ${wxroot}/include/wx/xrc/xh_unkwn.h
@@ -99,6 +107,7 @@ list(APPEND ${lib_name}_libsrcs ${Setup_hdrs})
 # Source Files
 set(Source_srcs
   ${wxroot}/src/xrc/xh_animatctrl.cpp
+  ${wxroot}/src/xrc/xh_bannerwindow.cpp
   ${wxroot}/src/xrc/xh_bmp.cpp
   ${wxroot}/src/xrc/xh_bmpbt.cpp
   ${wxroot}/src/xrc/xh_bmpcbox.cpp
@@ -109,11 +118,15 @@ set(Source_srcs
   ${wxroot}/src/xrc/xh_choic.cpp
   ${wxroot}/src/xrc/xh_choicbk.cpp
   ${wxroot}/src/xrc/xh_clrpicker.cpp
+  ${wxroot}/src/xrc/xh_cmdlinkbn.cpp
   ${wxroot}/src/xrc/xh_collpane.cpp
   ${wxroot}/src/xrc/xh_combo.cpp
+  ${wxroot}/src/xrc/xh_comboctrl.cpp
   ${wxroot}/src/xrc/xh_datectrl.cpp
   ${wxroot}/src/xrc/xh_dirpicker.cpp
   ${wxroot}/src/xrc/xh_dlg.cpp
+  ${wxroot}/src/xrc/xh_editlbox.cpp
+  ${wxroot}/src/xrc/xh_filectrl.cpp
   ${wxroot}/src/xrc/xh_filepicker.cpp
   ${wxroot}/src/xrc/xh_fontpicker.cpp
   ${wxroot}/src/xrc/xh_frame.cpp
@@ -140,6 +153,7 @@ set(Source_srcs
   ${wxroot}/src/xrc/xh_slidr.cpp
   ${wxroot}/src/xrc/xh_spin.cpp
   ${wxroot}/src/xrc/xh_split.cpp
+  ${wxroot}/src/xrc/xh_srchctrl.cpp
   ${wxroot}/src/xrc/xh_statbar.cpp
   ${wxroot}/src/xrc/xh_stbmp.cpp
   ${wxroot}/src/xrc/xh_stbox.cpp
@@ -147,11 +161,14 @@ set(Source_srcs
   ${wxroot}/src/xrc/xh_sttxt.cpp
   ${wxroot}/src/xrc/xh_text.cpp
   ${wxroot}/src/xrc/xh_tglbtn.cpp
+  ${wxroot}/src/xrc/xh_timectrl.cpp
   ${wxroot}/src/xrc/xh_toolb.cpp
+  ${wxroot}/src/xrc/xh_toolbk.cpp
   ${wxroot}/src/xrc/xh_tree.cpp
   ${wxroot}/src/xrc/xh_treebk.cpp
   ${wxroot}/src/xrc/xh_unkwn.cpp
   ${wxroot}/src/xrc/xh_wizrd.cpp
+  ${wxroot}/src/xrc/xmladv.cpp
   ${wxroot}/src/xrc/xmlres.cpp
   ${wxroot}/src/xrc/xmlrsall.cpp
   )
