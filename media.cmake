@@ -22,7 +22,6 @@ list(APPEND ${lib_name}_libsrcs ${Common_srcs})
 ########################
 # MSW Headers
 set(MSW_hdrs
-  ${wxroot}/include/wx/msw/ole/activex.h
   ${wxroot}/include/wx/msw/genrcdefs.h
   )
 source_group("MSW Headers" FILES ${MSW_hdrs})
@@ -30,7 +29,6 @@ list(APPEND ${lib_name}_libsrcs ${MSW_hdrs})
 ########################
 # MSW Sources
 set(MSW_srcs
-  ${wxroot}/src/msw/ole/activex.cpp
   ${wxroot}/src/msw/mediactrl_am.cpp
   ${wxroot}/src/msw/mediactrl_qt.cpp
   ${wxroot}/src/msw/mediactrl_wmp10.cpp

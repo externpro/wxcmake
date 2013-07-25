@@ -67,6 +67,7 @@ set(wxHTML_hdrs
   ${wxroot}/include/wx/html/htmlwin.h
   ${wxroot}/include/wx/html/htmprint.h
   ${wxroot}/include/wx/html/m_templ.h
+  ${wxroot}/include/wx/html/styleparams.h
   ${wxroot}/include/wx/html/winpars.h
   )
 source_group("wxHTML Headers" FILES ${wxHTML_hdrs})
@@ -93,8 +94,10 @@ set(wxHTML_srcs
   ${wxroot}/src/html/m_links.cpp
   ${wxroot}/src/html/m_list.cpp
   ${wxroot}/src/html/m_pre.cpp
+  ${wxroot}/src/html/m_span.cpp
   ${wxroot}/src/html/m_style.cpp
   ${wxroot}/src/html/m_tables.cpp
+  ${wxroot}/src/html/styleparams.cpp
   ${wxroot}/src/html/winpars.cpp
   )
 source_group("wxHTML Sources" FILES ${wxHTML_srcs})

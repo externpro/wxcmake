@@ -10,8 +10,8 @@ set(Common_hdrs
   ${wxroot}/include/wx/protocol/file.h
   ${wxroot}/include/wx/fs_inet.h
   ${wxroot}/include/wx/protocol/ftp.h
-  ${wxroot}/include/wx/gsocket.h
   ${wxroot}/include/wx/protocol/http.h
+  ${wxroot}/include/wx/protocol/log.h
   ${wxroot}/include/wx/protocol/protocol.h
   ${wxroot}/include/wx/sckaddr.h
   ${wxroot}/include/wx/sckipc.h
@@ -42,14 +42,13 @@ list(APPEND ${lib_name}_libsrcs ${Common_srcs})
 # MSW Headers
 set(MSW_hdrs
   ${wxroot}/include/wx/msw/genrcdefs.h
-  ${wxroot}/include/wx/msw/gsockmsw.h
   )
 source_group("MSW Headers" FILES ${MSW_hdrs})
 list(APPEND ${lib_name}_libsrcs ${MSW_hdrs})
 ########################
 # MSW Sources
 set(MSW_srcs
-  ${wxroot}/src/msw/gsocket.cpp
+  ${wxroot}/src/msw/sockmsw.cpp
   ${wxroot}/src/msw/urlmsw.cpp
   ${wxroot}/src/msw/version.rc
   )
