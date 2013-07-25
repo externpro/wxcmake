@@ -7,14 +7,26 @@ list(APPEND ${lib_name}_libsrcs ${thisfile})
 ########################
 # Common Headers
 set(Common_hdrs
+  ${wxroot}/include/wx/richtext/richtextbackgroundpage.h
+  ${wxroot}/include/wx/richtext/richtextborderspage.h
   ${wxroot}/include/wx/richtext/richtextbuffer.h
+  ${wxroot}/include/wx/richtext/richtextbulletspage.h
   ${wxroot}/include/wx/richtext/richtextctrl.h
+  ${wxroot}/include/wx/richtext/richtextdialogpage.h
+  ${wxroot}/include/wx/richtext/richtextfontpage.h
   ${wxroot}/include/wx/richtext/richtextformatdlg.h
   ${wxroot}/include/wx/richtext/richtexthtml.h
+  ${wxroot}/include/wx/richtext/richtextimagedlg.h
+  ${wxroot}/include/wx/richtext/richtextindentspage.h
+  ${wxroot}/include/wx/richtext/richtextliststylepage.h
+  ${wxroot}/include/wx/richtext/richtextmarginpage.h
   ${wxroot}/include/wx/richtext/richtextprint.h
+  ${wxroot}/include/wx/richtext/richtextsizepage.h
   ${wxroot}/include/wx/richtext/richtextstyledlg.h
+  ${wxroot}/include/wx/richtext/richtextstylepage.h
   ${wxroot}/include/wx/richtext/richtextstyles.h
   ${wxroot}/include/wx/richtext/richtextsymboldlg.h
+  ${wxroot}/include/wx/richtext/richtextuicustomization.h
   ${wxroot}/include/wx/richtext/richtextxml.h
   )
 source_group("Common Headers" FILES ${Common_hdrs})
@@ -55,6 +67,7 @@ set(Source_srcs
   ${wxroot}/src/richtext/richtextctrl.cpp
   ${wxroot}/src/richtext/richtextformatdlg.cpp
   ${wxroot}/src/richtext/richtexthtml.cpp
+  ${wxroot}/src/richtext/richtextimagedlg.cpp
   ${wxroot}/src/richtext/richtextprint.cpp
   ${wxroot}/src/richtext/richtextstyledlg.cpp
   ${wxroot}/src/richtext/richtextstyles.cpp
