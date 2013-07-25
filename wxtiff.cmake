@@ -27,6 +27,7 @@ set(Source_srcs
   ${wxroot}/src/tiff/tif_luv.c
   ${wxroot}/src/tiff/tif_lzw.c
   ${wxroot}/src/tiff/tif_next.c
+  ${wxroot}/src/tiff/tif_ojpeg.c
   ${wxroot}/src/tiff/tif_open.c
   ${wxroot}/src/tiff/tif_packbits.c
   ${wxroot}/src/tiff/tif_pixarlog.c

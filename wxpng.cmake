@@ -9,7 +9,6 @@ list(APPEND ${lib_name}_libsrcs ${thisfile})
 set(Source_srcs
   ${wxroot}/src/png/png.c
   ${wxroot}/src/png/pngerror.c
-  ${wxroot}/src/png/pnggccrd.c
   ${wxroot}/src/png/pngget.c
   ${wxroot}/src/png/pngmem.c
   ${wxroot}/src/png/pngpread.c
@@ -19,7 +18,6 @@ set(Source_srcs
   ${wxroot}/src/png/pngrutil.c
   ${wxroot}/src/png/pngset.c
   ${wxroot}/src/png/pngtrans.c
-  ${wxroot}/src/png/pngvcrd.c
   ${wxroot}/src/png/pngwio.c
   ${wxroot}/src/png/pngwrite.c
   ${wxroot}/src/png/pngwtran.c
