@@ -563,7 +563,7 @@ list(APPEND ${lib_name}_libsrcs ${Generic_hdrs})
 ########################
 # Generic Sources
 set(Generic_srcs
-  ${wxroot}/src/generic/accel.cpp
+  #${wxroot}/src/generic/accel.cpp
   ${wxroot}/src/generic/busyinfo.cpp
   ${wxroot}/src/generic/buttonbar.cpp
   ${wxroot}/src/generic/choicbkg.cpp
@@ -576,7 +576,7 @@ set(Generic_srcs
   ${wxroot}/src/generic/dirctrlg.cpp
   ${wxroot}/src/generic/dirdlgg.cpp
   ${wxroot}/src/generic/dragimgg.cpp
-  ${wxroot}/src/generic/fdrepdlg.cpp
+  #${wxroot}/src/generic/fdrepdlg.cpp
   ${wxroot}/src/generic/filectrlg.cpp
   ${wxroot}/src/generic/filedlgg.cpp
   ${wxroot}/src/generic/filepickerg.cpp
@@ -586,7 +586,7 @@ set(Generic_srcs
   ${wxroot}/src/generic/headerctrlg.cpp
   ${wxroot}/src/generic/infobar.cpp
   ${wxroot}/src/generic/listbkg.cpp
-  ${wxroot}/src/generic/listctrl.cpp
+  #${wxroot}/src/generic/listctrl.cpp
   ${wxroot}/src/generic/logg.cpp
   ${wxroot}/src/generic/markuptext.cpp
   ${wxroot}/src/generic/mdig.cpp
@@ -939,46 +939,46 @@ list(APPEND ${lib_name}_libsrcs ${wxUniv_hdrs})
 ########################
 # wxUniv Sources
 set(wxUniv_srcs
-  ${wxroot}/src/univ/bmpbuttn.cpp
-  ${wxroot}/src/univ/button.cpp
-  ${wxroot}/src/univ/checkbox.cpp
-  ${wxroot}/src/univ/checklst.cpp
-  ${wxroot}/src/univ/choice.cpp
-  ${wxroot}/src/univ/combobox.cpp
-  ${wxroot}/src/univ/control.cpp
-  ${wxroot}/src/univ/ctrlrend.cpp
-  ${wxroot}/src/univ/dialog.cpp
-  ${wxroot}/src/univ/framuniv.cpp
-  ${wxroot}/src/univ/gauge.cpp
-  ${wxroot}/src/univ/themes/gtk.cpp
-  ${wxroot}/src/univ/inpcons.cpp
-  ${wxroot}/src/univ/inphand.cpp
-  ${wxroot}/src/univ/listbox.cpp
-  ${wxroot}/src/univ/menu.cpp
-  ${wxroot}/src/univ/themes/metal.cpp
-  ${wxroot}/src/univ/themes/mono.cpp
-  ${wxroot}/src/univ/notebook.cpp
-  ${wxroot}/src/univ/radiobox.cpp
-  ${wxroot}/src/univ/radiobut.cpp
-  ${wxroot}/src/univ/scrarrow.cpp
-  ${wxroot}/src/univ/scrolbar.cpp
-  ${wxroot}/src/univ/scrthumb.cpp
-  ${wxroot}/src/univ/settingsuniv.cpp
-  ${wxroot}/src/univ/slider.cpp
-  ${wxroot}/src/univ/spinbutt.cpp
-  ${wxroot}/src/univ/statbmp.cpp
-  ${wxroot}/src/univ/statbox.cpp
-  ${wxroot}/src/univ/statline.cpp
-  ${wxroot}/src/univ/stattext.cpp
-  ${wxroot}/src/univ/statusbr.cpp
-  ${wxroot}/src/univ/stdrend.cpp
-  ${wxroot}/src/univ/textctrl.cpp
-  ${wxroot}/src/univ/tglbtn.cpp
-  ${wxroot}/src/univ/theme.cpp
-  ${wxroot}/src/univ/toolbar.cpp
-  ${wxroot}/src/univ/topluniv.cpp
-  ${wxroot}/src/univ/themes/win32.cpp
-  ${wxroot}/src/univ/winuniv.cpp
+  #${wxroot}/src/univ/bmpbuttn.cpp
+  #${wxroot}/src/univ/button.cpp
+  #${wxroot}/src/univ/checkbox.cpp
+  #${wxroot}/src/univ/checklst.cpp
+  #${wxroot}/src/univ/choice.cpp
+  #${wxroot}/src/univ/combobox.cpp
+  #${wxroot}/src/univ/control.cpp
+  #${wxroot}/src/univ/ctrlrend.cpp
+  #${wxroot}/src/univ/dialog.cpp
+  #${wxroot}/src/univ/framuniv.cpp
+  #${wxroot}/src/univ/gauge.cpp
+  #${wxroot}/src/univ/themes/gtk.cpp
+  #${wxroot}/src/univ/inpcons.cpp
+  #${wxroot}/src/univ/inphand.cpp
+  #${wxroot}/src/univ/listbox.cpp
+  #${wxroot}/src/univ/menu.cpp
+  #${wxroot}/src/univ/themes/metal.cpp
+  #${wxroot}/src/univ/themes/mono.cpp
+  #${wxroot}/src/univ/notebook.cpp
+  #${wxroot}/src/univ/radiobox.cpp
+  #${wxroot}/src/univ/radiobut.cpp
+  #${wxroot}/src/univ/scrarrow.cpp
+  #${wxroot}/src/univ/scrolbar.cpp
+  #${wxroot}/src/univ/scrthumb.cpp
+  #${wxroot}/src/univ/settingsuniv.cpp
+  #${wxroot}/src/univ/slider.cpp
+  #${wxroot}/src/univ/spinbutt.cpp
+  #${wxroot}/src/univ/statbmp.cpp
+  #${wxroot}/src/univ/statbox.cpp
+  #${wxroot}/src/univ/statline.cpp
+  #${wxroot}/src/univ/stattext.cpp
+  #${wxroot}/src/univ/statusbr.cpp
+  #${wxroot}/src/univ/stdrend.cpp
+  #${wxroot}/src/univ/textctrl.cpp
+  #${wxroot}/src/univ/tglbtn.cpp
+  #${wxroot}/src/univ/theme.cpp
+  #${wxroot}/src/univ/toolbar.cpp
+  #${wxroot}/src/univ/topluniv.cpp
+  #${wxroot}/src/univ/themes/win32.cpp
+  #${wxroot}/src/univ/winuniv.cpp
   )
 source_group("wxUniv Sources" FILES ${wxUniv_srcs})
 list(APPEND ${lib_name}_libsrcs ${wxUniv_srcs})
@@ -987,8 +987,11 @@ list(APPEND ${lib_name}_libsrcs ${wxUniv_srcs})
 add_library(${lib_name} STATIC ${${lib_name}_libsrcs})
 get_directory_property(global_includes INCLUDE_DIRECTORIES)
 set_property(TARGET ${lib_name} PROPERTY
-  INCLUDE_DIRECTORIES ${global_includes} ${wxroot}/src/jpeg ${wxroot}/src/tiff
-    ${wxroot}/src/png ${wxroot}/src/zlib
+  INCLUDE_DIRECTORIES ${global_includes}
+    ${wxroot}/src/jpeg
+    ${wxroot}/src/tiff/libtiff
+    ${wxroot}/src/png
+    ${wxroot}/src/zlib
   )
 set_property(TARGET ${lib_name} PROPERTY
   COMPILE_DEFINITIONS wxUSE_BASE=0
