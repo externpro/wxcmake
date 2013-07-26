@@ -123,8 +123,10 @@
 # pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_media")
 # pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_propgrid")
 # pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_qa")
+# pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_ribbon")
 # pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_richtext")
 # pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_stc")
+# pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_webview")
 # pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_xrc")
 #else
 # pragma comment(lib, "wxbase" wxVersion wxCompiler wxUnicode wxRuntime)

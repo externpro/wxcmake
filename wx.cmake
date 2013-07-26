@@ -61,10 +61,10 @@ function(set_wxtarget_properties target)
       COMPILE_DEFINITIONS __WXMSW__ WXBUILDING wxUSE_GUI=0 wxUSE_BASE=1 UNICODE _UNICODE)
     set_property(TARGET ${target} PROPERTY FOLDER wxbase_libs)
     set_target_properties(${target} PROPERTIES
-      OUTPUT_NAME wxbase${WX_VERSION}${toolset}x
-      DEBUG_OUTPUT_NAME wxbase${WX_VERSION}${toolset}d
-      RELEASEMT_OUTPUT_NAME wxbase${WX_VERSION}${toolset}s
-      RELEASE_OUTPUT_NAME wxbase${WX_VERSION}${toolset}
+      OUTPUT_NAME wxbase${WX_VERSION}${toolset}ux
+      DEBUG_OUTPUT_NAME wxbase${WX_VERSION}${toolset}ud
+      RELEASEMT_OUTPUT_NAME wxbase${WX_VERSION}${toolset}us
+      RELEASE_OUTPUT_NAME wxbase${WX_VERSION}${toolset}u
       COMPILE_FLAGS /W4
       )
     install(FILES ${wxsetup} DESTINATION lib${NUMBITS}/msw/${wxver}/wx)
@@ -73,19 +73,26 @@ function(set_wxtarget_properties target)
       COMPILE_DEFINITIONS __WXMSW__ WXBUILDING wxUSE_GUI=0 UNICODE _UNICODE)
     set_property(TARGET ${target} PROPERTY FOLDER wxbase_libs)
     set_target_properties(${target} PROPERTIES
-      OUTPUT_NAME wxbase${WX_VERSION}${toolset}x_${target}
-      DEBUG_OUTPUT_NAME wxbase${WX_VERSION}${toolset}d_${target}
-      RELEASEMT_OUTPUT_NAME wxbase${WX_VERSION}${toolset}s_${target}
-      RELEASE_OUTPUT_NAME wxbase${WX_VERSION}${toolset}_${target}
+      OUTPUT_NAME wxbase${WX_VERSION}${toolset}ux_${target}
+      DEBUG_OUTPUT_NAME wxbase${WX_VERSION}${toolset}ud_${target}
+      RELEASEMT_OUTPUT_NAME wxbase${WX_VERSION}${toolset}us_${target}
+      RELEASE_OUTPUT_NAME wxbase${WX_VERSION}${toolset}u_${target}
       COMPILE_FLAGS /W4
       )
   elseif(${target} MATCHES "^wx") # any target that starts with "wx"
     set_property(TARGET ${target} PROPERTY FOLDER wxthirdparty_libs)
+    get_property(_defs TARGET ${target} PROPERTY COMPILE_DEFINITIONS)
+    list(FIND _defs UNICODE isUnicode)
+    if(NOT isUnicode EQUAL -1)
+      set(unicode u)
+    else()
+      set(unicode "")
+    endif()
     set_target_properties(${target} PROPERTIES
-      OUTPUT_NAME ${target}_${toolset}x
-      DEBUG_OUTPUT_NAME ${target}_${toolset}d
-      RELEASEMT_OUTPUT_NAME ${target}_${toolset}s
-      RELEASE_OUTPUT_NAME ${target}_${toolset}
+      OUTPUT_NAME ${target}_${toolset}${unicode}x
+      DEBUG_OUTPUT_NAME ${target}_${toolset}${unicode}d
+      RELEASEMT_OUTPUT_NAME ${target}_${toolset}${unicode}s
+      RELEASE_OUTPUT_NAME ${target}_${toolset}${unicode}
       COMPILE_FLAGS /W1
       )
   else()
@@ -97,10 +104,10 @@ function(set_wxtarget_properties target)
       COMPILE_DEFINITIONS __WXMSW__ WXBUILDING UNICODE _UNICODE ${target_defs})
     set_property(TARGET ${target} PROPERTY FOLDER ${wxbasename}_libs)
     set_target_properties(${target} PROPERTIES
-      OUTPUT_NAME ${wxbasename}${WX_VERSION}${toolset}x_${target}
-      DEBUG_OUTPUT_NAME ${wxbasename}${WX_VERSION}${toolset}d_${target}
-      RELEASEMT_OUTPUT_NAME ${wxbasename}${WX_VERSION}${toolset}s_${target}
-      RELEASE_OUTPUT_NAME ${wxbasename}${WX_VERSION}${toolset}_${target}
+      OUTPUT_NAME ${wxbasename}${WX_VERSION}${toolset}ux_${target}
+      DEBUG_OUTPUT_NAME ${wxbasename}${WX_VERSION}${toolset}ud_${target}
+      RELEASEMT_OUTPUT_NAME ${wxbasename}${WX_VERSION}${toolset}us_${target}
+      RELEASE_OUTPUT_NAME ${wxbasename}${WX_VERSION}${toolset}u_${target}
       COMPILE_FLAGS /W4
       )
   endif()
