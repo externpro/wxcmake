@@ -851,7 +851,7 @@ set(MSW_srcs
   ${wxroot}/src/msw/utilswin.cpp
   ${wxroot}/src/msw/ole/uuid.cpp
   ${wxroot}/src/msw/uxtheme.cpp
-  ${wxroot}/src/msw/version.rc
+  #${wxroot}/src/msw/version.rc
   ${wxroot}/src/msw/volume.cpp
   ${wxroot}/src/msw/window.cpp
   )

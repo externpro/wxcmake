@@ -332,7 +332,7 @@ set(MSW_srcs
   ${wxroot}/src/msw/timer.cpp
   ${wxroot}/src/msw/utils.cpp
   ${wxroot}/src/msw/utilsexc.cpp
-  ${wxroot}/src/msw/version.rc
+  #${wxroot}/src/msw/version.rc
   ${wxroot}/src/msw/volume.cpp
   )
 source_group("MSW Sources" FILES ${MSW_srcs})

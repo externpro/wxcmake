@@ -33,7 +33,7 @@ list(APPEND ${lib_name}_libsrcs ${MSW_hdrs})
 ########################
 # MSW Sources
 set(MSW_srcs
-  ${wxroot}/src/msw/version.rc
+  #${wxroot}/src/msw/version.rc
   ${wxroot}/src/msw/webview_ie.cpp
   )
 source_group("MSW Sources" FILES ${MSW_srcs})
