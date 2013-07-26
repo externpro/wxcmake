@@ -68,7 +68,7 @@ function(set_wxtarget_properties target)
       COMPILE_FLAGS /W4
       )
     install(FILES ${wxsetup} DESTINATION lib${NUMBITS}/msw/${wxver}/wx)
-  elseif(${target} MATCHES "net" OR ${target} MATCHES "odbc" OR ${target} MATCHES "xml")
+  elseif(${target} MATCHES "net" OR ${target} MATCHES "xml")
     set_property(TARGET ${target} PROPERTY
       COMPILE_DEFINITIONS __WXMSW__ WXBUILDING wxUSE_GUI=0)
     set_property(TARGET ${target} PROPERTY FOLDER wxbase_libs)
@@ -124,22 +124,29 @@ set(wxlibs
   wxjpeg
   wxpng
   wxregex
+  wxscintilla
   wxtiff
   wxzlib
+  ####
   base
+  ####
   net
-  odbc
   xml
   core
+  ####
   adv
   gl
   html
   media
-  dbgrid
+  ribbon
+  stc
+  webview
+  ####
   aui
-  xrc
-  richtext
+  propgrid
   qa
+  richtext
+  xrc
   )
 foreach(lib ${wxlibs})
   include(${lib})
@@ -154,8 +161,12 @@ install(DIRECTORY
   ${wxroot}/include/wx/generic
   ${wxroot}/include/wx/html
   ${wxroot}/include/wx/msw
+  ${wxroot}/include/wx/persist
+  ${wxroot}/include/wx/propgrid
   ${wxroot}/include/wx/protocol
+  ${wxroot}/include/wx/ribbon
   ${wxroot}/include/wx/richtext
+  ${wxroot}/include/wx/stc
   ${wxroot}/include/wx/xml
   ${wxroot}/include/wx/xrc
   DESTINATION include/${wxver}/wx
