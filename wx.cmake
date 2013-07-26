@@ -58,7 +58,7 @@ function(set_wxtarget_properties target)
     set_property(TARGET ${target} PROPERTY
       INCLUDE_DIRECTORIES ${global_includes} ${wxroot}/src/regex ${wxroot}/src/zlib)
     set_property(TARGET ${target} PROPERTY
-      COMPILE_DEFINITIONS __WXMSW__ WXBUILDING wxUSE_GUI=0 wxUSE_BASE=1)
+      COMPILE_DEFINITIONS __WXMSW__ WXBUILDING wxUSE_GUI=0 wxUSE_BASE=1 UNICODE _UNICODE)
     set_property(TARGET ${target} PROPERTY FOLDER wxbase_libs)
     set_target_properties(${target} PROPERTIES
       OUTPUT_NAME wxbase${WX_VERSION}${toolset}x
@@ -70,7 +70,7 @@ function(set_wxtarget_properties target)
     install(FILES ${wxsetup} DESTINATION lib${NUMBITS}/msw/${wxver}/wx)
   elseif(${target} MATCHES "net" OR ${target} MATCHES "xml")
     set_property(TARGET ${target} PROPERTY
-      COMPILE_DEFINITIONS __WXMSW__ WXBUILDING wxUSE_GUI=0)
+      COMPILE_DEFINITIONS __WXMSW__ WXBUILDING wxUSE_GUI=0 UNICODE _UNICODE)
     set_property(TARGET ${target} PROPERTY FOLDER wxbase_libs)
     set_target_properties(${target} PROPERTIES
       OUTPUT_NAME wxbase${WX_VERSION}${toolset}x_${target}
@@ -94,7 +94,7 @@ function(set_wxtarget_properties target)
       set(target_defs)
     endif()
     set_property(TARGET ${target} PROPERTY
-      COMPILE_DEFINITIONS __WXMSW__ WXBUILDING ${target_defs})
+      COMPILE_DEFINITIONS __WXMSW__ WXBUILDING UNICODE _UNICODE ${target_defs})
     set_property(TARGET ${target} PROPERTY FOLDER ${wxbasename}_libs)
     set_target_properties(${target} PROPERTIES
       OUTPUT_NAME ${wxbasename}${WX_VERSION}${toolset}x_${target}
