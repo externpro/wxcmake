@@ -19,7 +19,7 @@ set(Common_hdrs
   ${wxroot}/include/wx/richtext/richtextimagedlg.h
   ${wxroot}/include/wx/richtext/richtextindentspage.h
   ${wxroot}/include/wx/richtext/richtextliststylepage.h
-  ${wxroot}/include/wx/richtext/richtextmarginpage.h
+  ${wxroot}/include/wx/richtext/richtextmarginspage.h
   ${wxroot}/include/wx/richtext/richtextprint.h
   ${wxroot}/include/wx/richtext/richtextsizepage.h
   ${wxroot}/include/wx/richtext/richtextstyledlg.h

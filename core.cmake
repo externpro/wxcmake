@@ -34,7 +34,6 @@ set(Common_hdrs
   ${wxroot}/include/wx/busyinfo.h
   ${wxroot}/include/wx/button.h
   ${wxroot}/include/wx/ribbon/buttonbar.h
-  ${wxroot}/include/wx/cairo.h
   ${wxroot}/include/wx/calctrl.h
   ${wxroot}/include/wx/caret.h
   ${wxroot}/include/wx/checkbox.h
@@ -593,7 +592,7 @@ set(Generic_srcs
   ${wxroot}/src/generic/mdig.cpp
   ${wxroot}/src/generic/msgdlgg.cpp
   ${wxroot}/src/generic/numdlgg.cpp
-  ${wxroot}/src/generic/preferenceg.cpp
+  ${wxroot}/src/generic/preferencesg.cpp
   ${wxroot}/src/generic/printps.cpp
   ${wxroot}/src/generic/prntdlgg.cpp
   ${wxroot}/src/generic/progdlgg.cpp
@@ -705,7 +704,7 @@ set(MSW_hdrs
   ${wxroot}/include/wx/msw/popupwin.h
   ${wxroot}/include/wx/msw/printdlg.h
   ${wxroot}/include/wx/msw/printwin.h
-  ${wxroot}/include/wx/msw/propdlg.h
+  ${wxroot}/include/wx/msw/progdlg.h
   ${wxroot}/include/wx/msw/radiobox.h
   ${wxroot}/include/wx/msw/radiobut.h
   ${wxroot}/include/wx/msw/rcdefs.h
@@ -822,7 +821,7 @@ set(MSW_srcs
   ${wxroot}/src/msw/popupwin.cpp
   ${wxroot}/src/msw/printdlg.cpp
   ${wxroot}/src/msw/printwin.cpp
-  ${wxroot}/src/msw/propdlg.cpp
+  ${wxroot}/src/msw/progdlg.cpp
   ${wxroot}/src/msw/radiobox.cpp
   ${wxroot}/src/msw/radiobut.cpp
   ${wxroot}/src/msw/region.cpp
