@@ -167,6 +167,7 @@ install(DIRECTORY
   ${wxroot}/include/wx/aui
   ${wxroot}/include/wx/generic
   ${wxroot}/include/wx/html
+  ${wxroot}/include/wx/meta
   ${wxroot}/include/wx/msw
   ${wxroot}/include/wx/persist
   ${wxroot}/include/wx/propgrid
