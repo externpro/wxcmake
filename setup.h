@@ -9,22 +9,15 @@
  */
 
 #ifdef _MSC_VER
-#include <wx/version.h>
-#if wxCHECK_VERSION(2,9,0)
-# ifdef WIN64
-#  include "../../../../../lib64/msw/wx-2.9/wx/setup.h"
-# else // WIN32
-#  include "../../../../../lib32/msw/wx-2.9/wx/setup.h"
-# endif
-#else
-#  ifdef _UNICODE
-#   error "Unicode support missing in externpro/include/wx/msvc/wx/setup.h"
-#  endif
+# include <wx/version.h>
+# if wxCHECK_VERSION(2,9,0)
 #  ifdef WIN64
-#   include "../../../../../lib64/msw/wx-2.8/wx/setup.h"
+#   include "../../../../../lib64/msw/wx-2.9/wx/setup.h"
 #  else // WIN32
-#   include "../../../../../lib32/msw/wx-2.8/wx/setup.h"
+#   include "../../../../../lib32/msw/wx-2.9/wx/setup.h"
 #  endif
+# else
+#  error "This custom setup.h is specific to wx 2.9"
 # endif // wxCHECK_VERSION
 #else
 # error "This file should only be included when using Microsoft Visual C++"
@@ -42,10 +35,6 @@
 #ifndef _WINSOCKAPI_
 #define _WINSOCKAPI_
 #endif
-
-//TODO: once everyone moves >= wx2.9, we could include version.h here again,
-// instead of at the top of the file
-//#include <wx/version.h>
 
 #if wxVERSION_NUMBER >= 3000
 # define wxVersion "30"
@@ -67,15 +56,8 @@
 // versions of wxWidgets previous to 2.5 used a different naming scheme
 #endif
 
-#if wxCHECK_VERSION(2,9,0)
-# define wxUnicode "u"
-#else
-# ifdef _UNICODE
-#  define wxUnicode "u"
-# else
-#  define wxUnicode ""
-# endif
-#endif
+// wx 2.9 and later is always unicode
+#define wxUnicode "u"
 
 #if defined _DEBUG
 # define wxRuntime "d"
@@ -104,52 +86,30 @@
 #endif
 
 // Tell the linker which wx libraries to include
-#if wxCHECK_VERSION(2,9,0)
-# pragma comment(lib, "wxbase" wxVersion wxCompiler wxUnicode wxRuntime)
-# pragma comment(lib, "wxbase" wxVersion wxCompiler wxUnicode wxRuntime "_net")
-# pragma comment(lib, "wxbase" wxVersion wxCompiler wxUnicode wxRuntime "_xml")
-# pragma comment(lib, "wxexpat" "_" wxCompiler wxRuntime)
-# pragma comment(lib, "wxjpeg" "_" wxCompiler wxRuntime)
-# pragma comment(lib, "wxpng" "_" wxCompiler wxRuntime)
-# pragma comment(lib, "wxregex" "_" wxCompiler wxUnicode wxRuntime)
-# pragma comment(lib, "wxscintilla" "_" wxCompiler wxRuntime)
-# pragma comment(lib, "wxtiff" "_" wxCompiler wxRuntime)
-# pragma comment(lib, "wxzlib" "_" wxCompiler wxRuntime)
-# pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_adv")
-# pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_aui")
-# pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_core")
-# pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_gl")
-# pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_html")
-# pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_media")
-# pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_propgrid")
-# pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_qa")
-# pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_ribbon")
-# pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_richtext")
-# pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_stc")
-# pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_webview")
-# pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_xrc")
-#else
-# pragma comment(lib, "wxbase" wxVersion wxCompiler wxUnicode wxRuntime)
-# pragma comment(lib, "wxbase" wxVersion wxCompiler wxUnicode wxRuntime "_net")
-# pragma comment(lib, "wxbase" wxVersion wxCompiler wxUnicode wxRuntime "_odbc")
-# pragma comment(lib, "wxbase" wxVersion wxCompiler wxUnicode wxRuntime "_xml")
-# pragma comment(lib, "wxexpat" "_" wxCompiler wxUnicode wxRuntime)
-# pragma comment(lib, "wxjpeg" "_" wxCompiler wxUnicode wxRuntime)
-# pragma comment(lib, "wxpng" "_" wxCompiler wxUnicode wxRuntime)
-# pragma comment(lib, "wxregex" "_" wxCompiler wxUnicode wxRuntime)
-# pragma comment(lib, "wxtiff" "_" wxCompiler wxUnicode wxRuntime)
-# pragma comment(lib, "wxzlib" "_" wxCompiler wxUnicode wxRuntime)
-# pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_adv")
-# pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_aui")
-# pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_core")
-# pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_dbgrid")
-# pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_gl")
-# pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_html")
-# pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_media")
-# pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_qa")
-# pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_richtext")
-# pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_xrc")
-#endif // wxCHECK_VERSION
+#pragma comment(lib, "wxbase" wxVersion wxCompiler wxUnicode wxRuntime)
+#pragma comment(lib, "wxbase" wxVersion wxCompiler wxUnicode wxRuntime "_net")
+#pragma comment(lib, "wxbase" wxVersion wxCompiler wxUnicode wxRuntime "_xml")
+#pragma comment(lib, "wxexpat" wxVersion "_" wxCompiler wxRuntime)
+#pragma comment(lib, "wxjpeg" wxVersion "_" wxCompiler wxRuntime)
+#pragma comment(lib, "wxpng" wxVersion "_" wxCompiler wxRuntime)
+#pragma comment(lib, "wxregex" wxVersion "_" wxCompiler wxUnicode wxRuntime)
+#pragma comment(lib, "wxscintilla" wxVersion "_" wxCompiler wxRuntime)
+#pragma comment(lib, "wxtiff" wxVersion "_" wxCompiler wxRuntime)
+#pragma comment(lib, "wxzlib" wxVersion "_" wxCompiler wxRuntime)
+#pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_adv")
+#pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_aui")
+#pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_core")
+#pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_gl")
+#pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_html")
+#pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_media")
+#pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_propgrid")
+#pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_qa")
+#pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_ribbon")
+#pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_richtext")
+#pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_stc")
+#pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_webview")
+#pragma comment(lib, "wxmsw" wxVersion wxCompiler wxUnicode wxRuntime "_xrc")
+
 // 3rd-party wxWidgets libraries in externpro (wxx = wx-extra)
 //  not part of the main wxWidgets distribution...
 #pragma comment(lib, "wxxmsw" wxVersion wxCompiler wxRuntime "_ifm") // wxIFM
