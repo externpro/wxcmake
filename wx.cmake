@@ -89,10 +89,10 @@ function(set_wxtarget_properties target)
       set(unicode "")
     endif()
     set_target_properties(${target} PROPERTIES
-      OUTPUT_NAME ${target}_${toolset}${unicode}x
-      DEBUG_OUTPUT_NAME ${target}_${toolset}${unicode}d
-      RELEASEMT_OUTPUT_NAME ${target}_${toolset}${unicode}s
-      RELEASE_OUTPUT_NAME ${target}_${toolset}${unicode}
+      OUTPUT_NAME ${target}${WX_VERSION}_${toolset}${unicode}x
+      DEBUG_OUTPUT_NAME ${target}${WX_VERSION}_${toolset}${unicode}d
+      RELEASEMT_OUTPUT_NAME ${target}${WX_VERSION}_${toolset}${unicode}s
+      RELEASE_OUTPUT_NAME ${target}${WX_VERSION}_${toolset}${unicode}
       COMPILE_FLAGS /W1
       )
   else()
