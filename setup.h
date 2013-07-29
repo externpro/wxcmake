@@ -9,10 +9,10 @@
  */
 
 #ifdef _MSC_VER
-#include <wx/version.h>
-#if wxCHECK_VERSION(2,9,0)
-# error "This custom setup.h is specific to wx 2.8"
-#else
+# include <wx/version.h>
+# if wxCHECK_VERSION(2,9,0)
+#  error "This custom setup.h is specific to wx 2.8"
+# else
 #  ifdef _UNICODE
 #   error "Unicode support missing in externpro/include/wx/msvc/wx/setup.h"
 #  endif
