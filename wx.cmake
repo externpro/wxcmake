@@ -82,10 +82,10 @@ function(set_wxtarget_properties target)
   elseif(${target} MATCHES "^wx") # any target that starts with "wx"
     set_property(TARGET ${target} PROPERTY FOLDER wxthirdparty_libs)
     set_target_properties(${target} PROPERTIES
-      OUTPUT_NAME ${target}_${toolset}x
-      DEBUG_OUTPUT_NAME ${target}_${toolset}d
-      RELEASEMT_OUTPUT_NAME ${target}_${toolset}s
-      RELEASE_OUTPUT_NAME ${target}_${toolset}
+      OUTPUT_NAME ${target}${WX_VERSION}_${toolset}x
+      DEBUG_OUTPUT_NAME ${target}${WX_VERSION}_${toolset}d
+      RELEASEMT_OUTPUT_NAME ${target}${WX_VERSION}_${toolset}s
+      RELEASE_OUTPUT_NAME ${target}${WX_VERSION}_${toolset}
       COMPILE_FLAGS /W1
       )
   else()
