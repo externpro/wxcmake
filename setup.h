@@ -10,14 +10,14 @@
 
 #ifdef _MSC_VER
 # include <wx/version.h>
-# if wxCHECK_VERSION(2,9,0)
+# if wxCHECK_VERSION(3,0,0)
 #  ifdef WIN64
-#   include "../../../../../lib64/msw/wx-2.9/wx/setup.h"
+#   include "../../../../../lib64/msw/wx-3.0/wx/setup.h"
 #  else // WIN32
-#   include "../../../../../lib32/msw/wx-2.9/wx/setup.h"
+#   include "../../../../../lib32/msw/wx-3.0/wx/setup.h"
 #  endif
 # else
-#  error "This custom setup.h is specific to wx 2.9"
+#  error "This custom setup.h is specific to wx 3.0"
 # endif // wxCHECK_VERSION
 #else
 # error "This file should only be included when using Microsoft Visual C++"
@@ -36,7 +36,9 @@
 #define _WINSOCKAPI_
 #endif
 
-#if wxVERSION_NUMBER >= 3000
+#if wxVERSION_NUMBER >= 3100
+# define wxVersion "31"
+#elif wxVERSION_NUMBER >= 3000
 # define wxVersion "30"
 #elif wxVERSION_NUMBER >= 2900
 # define wxVersion "29"
