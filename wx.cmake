@@ -30,7 +30,9 @@ execute_process(COMMAND ${CMAKE_COMMAND} -E copy_if_different
 function(set_wxtarget_properties target)
   if(MSVC)
     # toolset
-    if(MSVC11)
+    if(MSVC12)
+      set(toolset vc120)
+    elseif(MSVC11)
       set(toolset vc110)
     elseif(MSVC10)
       set(toolset vc100)

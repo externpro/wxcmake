@@ -83,6 +83,8 @@
 # define wxCompiler "vc100"
 #elif _MSC_VER == 1700
 # define wxCompiler "vc110" // VC 11.0 (aka VS2012)
+#elif _MSC_VER == 1800
+# define wxCompiler "vc120" // VC 12.0 (aka VS2013)
 #else
 # error "include/wx/msvc/wx/setup.h: unsupported MSVC compiler version"
 #endif
