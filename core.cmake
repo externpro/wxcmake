@@ -279,6 +279,7 @@ set(Common_hdrs
   ${wxroot}/include/wx/persist/window.h
   ${wxroot}/include/wx/window.h
   ${wxroot}/include/wx/windowid.h
+  ${wxroot}/include/wx/windowptr.h
   ${wxroot}/include/wx/withimages.h
   ${wxroot}/include/wx/wizard.h
   ${wxroot}/include/wx/wrapsizer.h
@@ -861,7 +862,6 @@ list(APPEND ${lib_name}_libsrcs ${MSW_srcs})
 # Setup Headers
 set(Setup_hdrs
   ${wxroot}/include/wx/msw/setup.h
-  ${wxroot}/include/wx/univ/setup.h
   )
 source_group("Setup Headers" FILES ${Setup_hdrs})
 list(APPEND ${lib_name}_libsrcs ${Setup_hdrs})
@@ -887,101 +887,6 @@ set(wxHTML_hdrs
   )
 source_group("wxHTML Headers" FILES ${wxHTML_hdrs})
 list(APPEND ${lib_name}_libsrcs ${wxHTML_hdrs})
-########################
-# wxUniv Headers
-set(wxUniv_hdrs
-  ${wxroot}/include/wx/univ/anybutton.h
-  ${wxroot}/include/wx/univ/app.h
-  ${wxroot}/include/wx/univ/bmpbuttn.h
-  ${wxroot}/include/wx/univ/button.h
-  ${wxroot}/include/wx/univ/checkbox.h
-  ${wxroot}/include/wx/univ/checklst.h
-  ${wxroot}/include/wx/univ/chkconf.h
-  ${wxroot}/include/wx/univ/choice.h
-  ${wxroot}/include/wx/univ/colschem.h
-  ${wxroot}/include/wx/univ/combobox.h
-  ${wxroot}/include/wx/univ/control.h
-  ${wxroot}/include/wx/univ/custombgwin.h
-  ${wxroot}/include/wx/univ/dialog.h
-  ${wxroot}/include/wx/univ/frame.h
-  ${wxroot}/include/wx/univ/gauge.h
-  ${wxroot}/include/wx/univ/inpcons.h
-  ${wxroot}/include/wx/univ/inphand.h
-  ${wxroot}/include/wx/univ/listbox.h
-  ${wxroot}/include/wx/univ/menu.h
-  ${wxroot}/include/wx/univ/menuitem.h
-  ${wxroot}/include/wx/univ/notebook.h
-  ${wxroot}/include/wx/univ/panel.h
-  ${wxroot}/include/wx/univ/radiobox.h
-  ${wxroot}/include/wx/univ/radiobut.h
-  ${wxroot}/include/wx/univ/renderer.h
-  ${wxroot}/include/wx/univ/scrarrow.h
-  ${wxroot}/include/wx/univ/scrolbar.h
-  ${wxroot}/include/wx/univ/scrthumb.h
-  ${wxroot}/include/wx/univ/scrtimer.h
-  ${wxroot}/include/wx/univ/slider.h
-  ${wxroot}/include/wx/univ/spinbutt.h
-  ${wxroot}/include/wx/univ/statbmp.h
-  ${wxroot}/include/wx/univ/statbox.h
-  ${wxroot}/include/wx/univ/statline.h
-  ${wxroot}/include/wx/univ/stattext.h
-  ${wxroot}/include/wx/univ/statusbr.h
-  ${wxroot}/include/wx/univ/stdrend.h
-  ${wxroot}/include/wx/univ/textctrl.h
-  ${wxroot}/include/wx/univ/tglbtn.h
-  ${wxroot}/include/wx/univ/theme.h
-  ${wxroot}/include/wx/univ/toolbar.h
-  ${wxroot}/include/wx/univ/toplevel.h
-  ${wxroot}/include/wx/univ/window.h
-  )
-source_group("wxUniv Headers" FILES ${wxUniv_hdrs})
-list(APPEND ${lib_name}_libsrcs ${wxUniv_hdrs})
-########################
-# wxUniv Sources
-set(wxUniv_srcs
-  #${wxroot}/src/univ/bmpbuttn.cpp
-  #${wxroot}/src/univ/button.cpp
-  #${wxroot}/src/univ/checkbox.cpp
-  #${wxroot}/src/univ/checklst.cpp
-  #${wxroot}/src/univ/choice.cpp
-  #${wxroot}/src/univ/combobox.cpp
-  #${wxroot}/src/univ/control.cpp
-  #${wxroot}/src/univ/ctrlrend.cpp
-  #${wxroot}/src/univ/dialog.cpp
-  #${wxroot}/src/univ/framuniv.cpp
-  #${wxroot}/src/univ/gauge.cpp
-  #${wxroot}/src/univ/themes/gtk.cpp
-  #${wxroot}/src/univ/inpcons.cpp
-  #${wxroot}/src/univ/inphand.cpp
-  #${wxroot}/src/univ/listbox.cpp
-  #${wxroot}/src/univ/menu.cpp
-  #${wxroot}/src/univ/themes/metal.cpp
-  #${wxroot}/src/univ/themes/mono.cpp
-  #${wxroot}/src/univ/notebook.cpp
-  #${wxroot}/src/univ/radiobox.cpp
-  #${wxroot}/src/univ/radiobut.cpp
-  #${wxroot}/src/univ/scrarrow.cpp
-  #${wxroot}/src/univ/scrolbar.cpp
-  #${wxroot}/src/univ/scrthumb.cpp
-  #${wxroot}/src/univ/settingsuniv.cpp
-  #${wxroot}/src/univ/slider.cpp
-  #${wxroot}/src/univ/spinbutt.cpp
-  #${wxroot}/src/univ/statbmp.cpp
-  #${wxroot}/src/univ/statbox.cpp
-  #${wxroot}/src/univ/statline.cpp
-  #${wxroot}/src/univ/stattext.cpp
-  #${wxroot}/src/univ/statusbr.cpp
-  #${wxroot}/src/univ/stdrend.cpp
-  #${wxroot}/src/univ/textctrl.cpp
-  #${wxroot}/src/univ/tglbtn.cpp
-  #${wxroot}/src/univ/theme.cpp
-  #${wxroot}/src/univ/toolbar.cpp
-  #${wxroot}/src/univ/topluniv.cpp
-  #${wxroot}/src/univ/themes/win32.cpp
-  #${wxroot}/src/univ/winuniv.cpp
-  )
-source_group("wxUniv Sources" FILES ${wxUniv_srcs})
-list(APPEND ${lib_name}_libsrcs ${wxUniv_srcs})
 #######################################
 # library
 add_library(${lib_name} STATIC ${${lib_name}_libsrcs})

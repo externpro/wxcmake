@@ -11,7 +11,10 @@ set(Source_srcs
   ${wxroot}/src/zlib/compress.c
   ${wxroot}/src/zlib/crc32.c
   ${wxroot}/src/zlib/deflate.c
-  ${wxroot}/src/zlib/gzio.c
+  ${wxroot}/src/zlib/gzclose.c
+  ${wxroot}/src/zlib/gzlib.c
+  ${wxroot}/src/zlib/gzread.c
+  ${wxroot}/src/zlib/gzwrite.c
   ${wxroot}/src/zlib/infback.c
   ${wxroot}/src/zlib/inffast.c
   ${wxroot}/src/zlib/inflate.c

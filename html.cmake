@@ -46,7 +46,6 @@ list(APPEND ${lib_name}_libsrcs ${MSW_srcs})
 # Setup Headers
 set(Setup_hdrs
   ${wxroot}/include/wx/msw/setup.h
-  ${wxroot}/include/wx/univ/setup.h
   )
 source_group("Setup Headers" FILES ${Setup_hdrs})
 list(APPEND ${lib_name}_libsrcs ${Setup_hdrs})

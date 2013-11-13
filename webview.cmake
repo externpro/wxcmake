@@ -9,6 +9,7 @@ list(APPEND ${lib_name}_libsrcs ${thisfile})
 set(Common_hdrs
   ${wxroot}/include/wx/webview.h
   ${wxroot}/include/wx/webviewarchivehandler.h
+  ${wxroot}/include/wx/webviewfshandler.h
   )
 source_group("Common Headers" FILES ${Common_hdrs})
 list(APPEND ${lib_name}_libsrcs ${Common_hdrs})
@@ -18,6 +19,7 @@ set(Common_srcs
   ${wxroot}/src/common/dummy.cpp
   ${wxroot}/src/common/webview.cpp
   ${wxroot}/src/common/webviewarchivehandler.cpp
+  ${wxroot}/src/common/webviewfshandler.cpp
   )
 source_group("Common Sources" FILES ${Common_srcs})
 list(APPEND ${lib_name}_libsrcs ${Common_srcs})
@@ -42,7 +44,6 @@ list(APPEND ${lib_name}_libsrcs ${MSW_srcs})
 # Setup Headers
 set(Setup_hdrs
   ${wxroot}/include/wx/msw/setup.h
-  ${wxroot}/include/wx/univ/setup.h
   )
 source_group("Setup Headers" FILES ${Setup_hdrs})
 list(APPEND ${lib_name}_libsrcs ${Setup_hdrs})

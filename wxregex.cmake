@@ -9,7 +9,6 @@ list(APPEND ${lib_name}_libsrcs ${thisfile})
 set(Header_srcs
   ${wxroot}/include/wx/msw/genrcdefs.h
   ${wxroot}/include/wx/msw/setup.h
-  ${wxroot}/include/wx/univ/setup.h
   )
 source_group("Header Files" FILES ${Header_srcs})
 list(APPEND ${lib_name}_libsrcs ${Header_srcs})

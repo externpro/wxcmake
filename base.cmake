@@ -243,6 +243,7 @@ set(Common_srcs
   ${wxroot}/src/common/tarstrm.cpp
   ${wxroot}/src/common/textbuf.cpp
   ${wxroot}/src/common/textfile.cpp
+  ${wxroot}/src/common/threadinfo.cpp
   ${wxroot}/src/common/time.cpp
   ${wxroot}/src/common/timercmn.cpp
   ${wxroot}/src/common/timerimpl.cpp
@@ -341,7 +342,6 @@ list(APPEND ${lib_name}_libsrcs ${MSW_srcs})
 # Setup Headers
 set(Setup_hdrs
   ${wxroot}/include/wx/msw/setup.h
-  ${wxroot}/include/wx/univ/setup.h
   )
 source_group("Setup Headers" FILES ${Setup_hdrs})
 list(APPEND ${lib_name}_libsrcs ${Setup_hdrs})
