@@ -887,6 +887,13 @@ set(wxHTML_hdrs
   )
 source_group("wxHTML Headers" FILES ${wxHTML_hdrs})
 list(APPEND ${lib_name}_libsrcs ${wxHTML_hdrs})
+########################
+# xrc Source
+set(xrc_srcs
+  ${wxroot}/src/xrc/xmlreshandler.cpp
+  )
+source_group("" FILES ${xrc_srcs})
+list(APPEND ${lib_name}_libsrcs ${xrc_srcs})
 #######################################
 # library
 add_library(${lib_name} STATIC ${${lib_name}_libsrcs})

@@ -122,6 +122,7 @@ set(MSW_hdrs
   ${wxroot}/include/wx/msw/commandlinkbutton.h
   ${wxroot}/include/wx/msw/datectrl.h
   ${wxroot}/include/wx/msw/datetimectrl.h
+  ${wxroot}/include/wx/msw/genrcdefs.h
   ${wxroot}/include/wx/msw/hyperlink.h
   ${wxroot}/include/wx/msw/joystick.h
   ${wxroot}/include/wx/msw/notifmsg.h
