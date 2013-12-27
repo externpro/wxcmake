@@ -12,7 +12,6 @@ if(NOT DEFINED WX_VERSION)
   set(WX_VERSION 00)
 endif()
 string(REGEX REPLACE "^([0-9])\([0-9]*)$" "wx-\\1.\\2" wxver ${WX_VERSION})
-
 #######################################
 # setup.h
 # NOTE: include_directories above will find setup.h from ${LIBRARY_OUTPUT_PATH}
@@ -23,14 +22,15 @@ if(NOT EXISTS ${LIBRARY_OUTPUT_PATH}/wx)
 endif()
 execute_process(COMMAND ${CMAKE_COMMAND} -E copy_if_different
   ${wxsetup} ${LIBRARY_OUTPUT_PATH}/wx)
-
 #######################################
 # set_wx_target_properties function
 # @param[in] target : cmake target
 function(set_wxtarget_properties target)
   if(MSVC)
     # toolset
-    if(MSVC11)
+    if(MSVC12)
+      set(toolset vc120)
+    elseif(MSVC11)
       set(toolset vc110)
     elseif(MSVC10)
       set(toolset vc100)
@@ -114,7 +114,6 @@ function(set_wxtarget_properties target)
   endif()
   install(TARGETS ${lib_name} DESTINATION lib${NUMBITS})
 endfunction()
-
 #######################################
 # wx libraries
 # NOTE: ordered by library dependencies
@@ -144,7 +143,6 @@ set(wxlibs
 foreach(lib ${wxlibs})
   include(${lib})
 endforeach()
-
 #######################################
 # wx headers
 file(GLOB wxhdrs ${wxroot}/include/wx/*.h)
