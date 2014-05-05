@@ -116,9 +116,7 @@
 
 // 3rd-party wxWidgets libraries in externpro (wxx = wx-extra)
 //  not part of the main wxWidgets distribution...
-#pragma comment(lib, "wxxmsw" wxVersion wxCompiler wxRuntime "_ifm") // wxIFM
 #pragma comment(lib, "wxxmsw" wxVersion wxCompiler wxRuntime "_tlc") // wxTreeListCtrl
-#pragma comment(lib, "wxxmsw" wxVersion wxCompiler wxRuntime "_tmc") // wxTreeMultiCtrl
 #pragma comment(lib, "wxxmsw" wxVersion wxCompiler wxRuntime "_things") // wxthings
 #pragma comment(lib, "wxxmsw" wxVersion wxCompiler wxRuntime "_plotctrl") // wxplotctrl
 
