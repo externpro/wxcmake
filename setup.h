@@ -26,16 +26,6 @@
 #ifndef WXLIBS_DEFINED
 #define WXLIBS_DEFINED
 
-// wxWidgets includes <windows.h> in their wx/msw/wrapwin.h header - and they
-// do a good job of defining some things (like NOMINMAX) in wrapwin.h, but
-// there is one thing we've found that we need to define that they don't --
-// windows.h includes winsock.h (WinSock 1.1). This conflicts with includes of
-// winsock2.h. Define _WINSOCKAPI_ here so the preprocessor thinks winsock.h
-// is already included.
-#ifndef _WINSOCKAPI_
-#define _WINSOCKAPI_
-#endif
-
 #if wxVERSION_NUMBER >= 3100
 # define wxVersion "31"
 #elif wxVERSION_NUMBER >= 3000
