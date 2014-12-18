@@ -288,7 +288,6 @@ set(Common_hdrs
   ${wxroot}/include/wx/xrc/xh_all.h
   ${wxroot}/include/wx/xrc/xh_animatctrl.h
   ${wxroot}/include/wx/xrc/xh_auinotbk.h
-  ${wxroot}/include/wx/xrc/xh_auitoolb.h
   ${wxroot}/include/wx/xrc/xh_bannerwindow.h
   ${wxroot}/include/wx/xrc/xh_bmp.h
   ${wxroot}/include/wx/xrc/xh_bmpbt.h
