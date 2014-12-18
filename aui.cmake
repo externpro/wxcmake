@@ -15,6 +15,7 @@ set(Common_hdrs
   ${wxroot}/include/wx/aui/framemanager.h
   ${wxroot}/include/wx/aui/tabart.h
   ${wxroot}/include/wx/aui/tabmdi.h
+  ${wxroot}/include/wx/xrc/xh_auinotbk.h
   )
 source_group("Common Headers" FILES ${Common_hdrs})
 list(APPEND ${lib_name}_libsrcs ${Common_hdrs})
@@ -56,6 +57,7 @@ set(Source_srcs
   ${wxroot}/src/aui/framemanager.cpp
   ${wxroot}/src/aui/tabart.cpp
   ${wxroot}/src/aui/tabmdi.cpp
+  ${wxroot}/src/xrc/xh_auinotbk.cpp
   )
 source_group("Source Files" FILES ${Source_srcs})
 list(APPEND ${lib_name}_libsrcs ${Source_srcs})

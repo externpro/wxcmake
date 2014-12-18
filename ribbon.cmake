@@ -16,6 +16,7 @@ set(Common_hdrs
   ${wxroot}/include/wx/ribbon/page.h
   ${wxroot}/include/wx/ribbon/panel.h
   ${wxroot}/include/wx/ribbon/toolbar.h
+  ${wxroot}/include/wx/xrc/xh_ribbon.h
   )
 source_group("Common Headers" FILES ${Common_hdrs})
 list(APPEND ${lib_name}_libsrcs ${Common_hdrs})
@@ -60,6 +61,7 @@ set(Source_srcs
   ${wxroot}/src/ribbon/page.cpp
   ${wxroot}/src/ribbon/panel.cpp
   ${wxroot}/src/ribbon/toolbar.cpp
+  ${wxroot}/src/xrc/xh_ribbon.cpp
   )
 source_group("Source Files" FILES ${Source_srcs})
 list(APPEND ${lib_name}_libsrcs ${Source_srcs})

@@ -51,6 +51,7 @@ set(Common_hdrs
   ${wxroot}/include/wx/xrc/xh_radbx.h
   ${wxroot}/include/wx/xrc/xh_scrol.h
   ${wxroot}/include/wx/xrc/xh_scwin.h
+  ${wxroot}/include/wx/xrc/xh_simplebook.h
   ${wxroot}/include/wx/xrc/xh_sizer.h
   ${wxroot}/include/wx/xrc/xh_slidr.h
   ${wxroot}/include/wx/xrc/xh_spin.h
@@ -148,6 +149,7 @@ set(Source_srcs
   ${wxroot}/src/xrc/xh_radbx.cpp
   ${wxroot}/src/xrc/xh_scrol.cpp
   ${wxroot}/src/xrc/xh_scwin.cpp
+  ${wxroot}/src/xrc/xh_simplebook.cpp
   ${wxroot}/src/xrc/xh_sizer.cpp
   ${wxroot}/src/xrc/xh_slidr.cpp
   ${wxroot}/src/xrc/xh_spin.cpp

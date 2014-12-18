@@ -287,6 +287,8 @@ set(Common_hdrs
   ${wxroot}/include/wx/wxhtml.h
   ${wxroot}/include/wx/xrc/xh_all.h
   ${wxroot}/include/wx/xrc/xh_animatctrl.h
+  ${wxroot}/include/wx/xrc/xh_auinotbk.h
+  ${wxroot}/include/wx/xrc/xh_auitoolb.h
   ${wxroot}/include/wx/xrc/xh_bannerwindow.h
   ${wxroot}/include/wx/xrc/xh_bmp.h
   ${wxroot}/include/wx/xrc/xh_bmpbt.h
@@ -327,6 +329,8 @@ set(Common_hdrs
   ${wxroot}/include/wx/xrc/xh_propdlg.h
   ${wxroot}/include/wx/xrc/xh_radbt.h
   ${wxroot}/include/wx/xrc/xh_radbx.h
+  ${wxroot}/include/wx/xrc/xh_ribbon.h
+  ${wxroot}/include/wx/xrc/xh_richtext.h
   ${wxroot}/include/wx/xrc/xh_scrol.h
   ${wxroot}/include/wx/xrc/xh_scwin.h
   ${wxroot}/include/wx/xrc/xh_sizer.h
