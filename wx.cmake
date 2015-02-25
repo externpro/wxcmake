@@ -185,5 +185,5 @@ install(DIRECTORY
 install(FILES ${wxhdrs} ${wxcpps} DESTINATION include/${wxver}/wx)
 set(customsetuph ${wxroot}/build/cmake/setup.h)
 install(FILES ${customsetuph} DESTINATION include/${wxver}/wx/msvc/wx)
-install(FILES usexp-${PROJECT_NAME}-config.cmake DESTINATION share/cmake)
+install(FILES ${wxroot}/build/cmake/usexp-${PROJECT_NAME}-config.cmake DESTINATION share/cmake)
 install(EXPORT ${PROJECT_NAME}-targets DESTINATION lib${NUMBITS}/cmake)
