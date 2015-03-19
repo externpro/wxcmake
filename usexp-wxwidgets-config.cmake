@@ -2,9 +2,9 @@
 # WXWIDGETS_INCLUDE_DIR - the wxwidgets include directory
 # WXWIDGETS_LIBRARIES - the wxwidgets libraries
 set(prj wxwidgets)
-# this file (-config) installed to share/cmake (see top-level CMakeLists.txt)
-get_filename_component(SELF_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
-get_filename_component(XP_ROOTDIR "${SELF_DIR}/../.." ABSOLUTE)
+# this file (-config) installed to share/cmake
+get_filename_component(XP_ROOTDIR ${CMAKE_CURRENT_LIST_DIR}/../.. ABSOLUTE)
+get_filename_component(XP_ROOTDIR ${XP_ROOTDIR} ABSOLUTE) # remove relative parts
 string(TOUPPER ${prj} PRJ)
 set(XP_USE_LATEST_WX ON)
 #option(XP_USE_LATEST_WX "build with wxWidgets 3.0 instead of 2.8" ON)
@@ -71,6 +71,7 @@ if(UNIX)
     # NOTE: building wx also depends on libSM
     # [rhel6] sudo yum install libSM-devel.x86_64
   endif()
+  set(reqVars ${PRJ}_INCLUDE_DIR ${PRJ}_LIBRARIES)
 elseif(MSVC)
   add_definitions(-DwxUSE_NO_MANIFEST)
   list(APPEND ${PRJ}_INCLUDE_DIR
@@ -79,14 +80,11 @@ elseif(MSVC)
     )
   # targets file (-targets) installed to lib${NUMBITS}/cmake
   include(${XP_ROOTDIR}/lib${NUMBITS}/cmake/${prj}-targets.cmake)
-  set(${PRJ}_LIBRARIES wx${wxVersion})
+  set(reqVars ${PRJ}_INCLUDE_DIR)
 endif()
 # NOTE: geotiff needs to find tiff, and we use the tiff bundled with wx
 list(APPEND ${PRJ}_INCLUDE_DIR ${XP_ROOTDIR}/include/wx-${wxVersion}/wx/tiff)
+include_directories(SYSTEM ${${PRJ}_INCLUDE_DIR})
 include(FindPackageHandleStandardArgs)
-find_package_handle_standard_args(${prj}
-  REQUIRED_VARS
-    ${PRJ}_INCLUDE_DIR
-    ${PRJ}_LIBRARIES
-  )
-mark_as_advanced(${PRJ}_INCLUDE_DIR ${PRJ}_LIBRARIES)
+find_package_handle_standard_args(${prj} REQUIRED_VARS ${reqVars})
+mark_as_advanced(${reqVars})
