@@ -11,11 +11,7 @@
 #ifdef _MSC_VER
 # include <wx/version.h>
 # if wxCHECK_VERSION(3,0,0)
-#  ifdef WIN64
-#   include "../../../../../lib64/msw/wx-3.0/wx/setup.h"
-#  else // WIN32
-#   include "../../../../../lib32/msw/wx-3.0/wx/setup.h"
-#  endif
+#  include "../../../../../lib/msw/wx-3.0/wx/setup.h"
 # else
 #  error "This custom setup.h is specific to wx 3.0"
 # endif // wxCHECK_VERSION
