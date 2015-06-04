@@ -6,7 +6,7 @@ add_definitions(-D_LIB)
 set(CMAKE_DEBUG_POSTFIX)
 set(CMAKE_RELEASEMT_POSTFIX)
 set(CMAKE_RELEASE_POSTFIX)
-set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib${NUMBITS})
+set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib)
 include_directories(${wxroot}/include ${LIBRARY_OUTPUT_PATH})
 if(NOT DEFINED WX_VERSION)
   set(WX_VERSION 00)
@@ -67,7 +67,7 @@ function(set_wxtarget_properties target)
       RELEASE_OUTPUT_NAME wxbase${WX_VERSION}${toolset}u
       COMPILE_FLAGS /W4
       )
-    install(FILES ${wxsetup} DESTINATION lib${NUMBITS}/msw/${wxver}/wx)
+    install(FILES ${wxsetup} DESTINATION lib/msw/${wxver}/wx)
   elseif(${target} MATCHES "net" OR ${target} MATCHES "xml")
     set_property(TARGET ${target} PROPERTY
       COMPILE_DEFINITIONS __WXMSW__ WXBUILDING wxUSE_GUI=0 UNICODE _UNICODE)
@@ -120,9 +120,9 @@ function(set_wxtarget_properties target)
     set_target_properties(${target} PROPERTIES STATIC_LIBRARY_FLAGS "/MACHINE:X86")
   endif()
   install(TARGETS ${lib_name} EXPORT ${PROJECT_NAME}-targets
-    RUNTIME DESTINATION bin${NUMBITS}
-    LIBRARY DESTINATION lib${NUMBITS}
-    ARCHIVE DESTINATION lib${NUMBITS}
+    RUNTIME DESTINATION bin
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
     )
 endfunction()
 #######################################
@@ -185,4 +185,4 @@ install(DIRECTORY
 install(FILES ${wxhdrs} ${wxcpps} DESTINATION include/${wxver}/wx)
 set(customsetuph ${wxroot}/build/cmake/setup.h)
 install(FILES ${customsetuph} DESTINATION include/${wxver}/wx/msvc/wx)
-install(EXPORT ${PROJECT_NAME}-targets DESTINATION lib${NUMBITS}/cmake)
+install(EXPORT ${PROJECT_NAME}-targets DESTINATION lib/cmake)
