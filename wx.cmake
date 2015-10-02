@@ -3,8 +3,8 @@ set(CMAKE_MODULE_PATH ${wxroot}/build/cmake ${CMAKE_MODULE_PATH})
 include(flags OPTIONAL)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON) # enables MSVC Solution Folders
 add_definitions(-D_LIB)
+# reset any postfix setting done previously
 set(CMAKE_DEBUG_POSTFIX)
-set(CMAKE_RELEASEMT_POSTFIX)
 set(CMAKE_RELEASE_POSTFIX)
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib)
 include_directories(${wxroot}/include ${LIBRARY_OUTPUT_PATH})
@@ -53,6 +53,9 @@ function(set_wxtarget_properties target)
   else()
     set(wxbasename wxX)
   endif()
+  if(XP_BUILD_STATIC_RT) # from flags.cmake include, xpCommonFlags, xpopts.cmake
+    set(static s)
+  endif()
   if(${target} MATCHES "base")
     get_directory_property(global_includes INCLUDE_DIRECTORIES)
     set_property(TARGET ${target} PROPERTY
@@ -63,8 +66,7 @@ function(set_wxtarget_properties target)
     set_target_properties(${target} PROPERTIES
       OUTPUT_NAME wxbase${WX_VERSION}${toolset}ux
       DEBUG_OUTPUT_NAME wxbase${WX_VERSION}${toolset}ud
-      RELEASEMT_OUTPUT_NAME wxbase${WX_VERSION}${toolset}us
-      RELEASE_OUTPUT_NAME wxbase${WX_VERSION}${toolset}u
+      RELEASE_OUTPUT_NAME wxbase${WX_VERSION}${toolset}u${static}
       COMPILE_FLAGS /W4
       )
     install(FILES ${wxsetup} DESTINATION lib/msw/${wxver}/wx)
@@ -75,8 +77,7 @@ function(set_wxtarget_properties target)
     set_target_properties(${target} PROPERTIES
       OUTPUT_NAME wxbase${WX_VERSION}${toolset}ux_${target}
       DEBUG_OUTPUT_NAME wxbase${WX_VERSION}${toolset}ud_${target}
-      RELEASEMT_OUTPUT_NAME wxbase${WX_VERSION}${toolset}us_${target}
-      RELEASE_OUTPUT_NAME wxbase${WX_VERSION}${toolset}u_${target}
+      RELEASE_OUTPUT_NAME wxbase${WX_VERSION}${toolset}u${static}_${target}
       COMPILE_FLAGS /W4
       )
   elseif(${target} MATCHES "^wx") # any target that starts with "wx"
@@ -91,8 +92,7 @@ function(set_wxtarget_properties target)
     set_target_properties(${target} PROPERTIES
       OUTPUT_NAME ${target}${WX_VERSION}_${toolset}${unicode}x
       DEBUG_OUTPUT_NAME ${target}${WX_VERSION}_${toolset}${unicode}d
-      RELEASEMT_OUTPUT_NAME ${target}${WX_VERSION}_${toolset}${unicode}s
-      RELEASE_OUTPUT_NAME ${target}${WX_VERSION}_${toolset}${unicode}
+      RELEASE_OUTPUT_NAME ${target}${WX_VERSION}_${toolset}${unicode}${static}
       COMPILE_FLAGS /W1
       )
   else()
@@ -106,8 +106,7 @@ function(set_wxtarget_properties target)
     set_target_properties(${target} PROPERTIES
       OUTPUT_NAME ${wxbasename}${WX_VERSION}${toolset}ux_${target}
       DEBUG_OUTPUT_NAME ${wxbasename}${WX_VERSION}${toolset}ud_${target}
-      RELEASEMT_OUTPUT_NAME ${wxbasename}${WX_VERSION}${toolset}us_${target}
-      RELEASE_OUTPUT_NAME ${wxbasename}${WX_VERSION}${toolset}u_${target}
+      RELEASE_OUTPUT_NAME ${wxbasename}${WX_VERSION}${toolset}u${static}_${target}
       COMPILE_FLAGS /W4
       )
   endif()
