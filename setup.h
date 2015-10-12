@@ -1,5 +1,5 @@
 /*  Filename: setup.h
- *  Description: This header is included by wxWidgets source code (SDL code
+ *  Description: This header is included by wxWidgets source code (your code
  *    shouldn't need to explicitly include this header). It includes the
  *    appropriate setup.h in the lib directory.
  *  Author: Scott M Anderson (aka smanders)
