@@ -64,8 +64,8 @@ function(set_wxtarget_properties target)
       COMPILE_DEFINITIONS __WXMSW__ WXBUILDING wxUSE_GUI=0 wxUSE_BASE=1 UNICODE _UNICODE)
     set_property(TARGET ${target} PROPERTY FOLDER wxbase_libs)
     set_target_properties(${target} PROPERTIES
-      OUTPUT_NAME wxbase${WX_VERSION}${toolset}ux${static}
-      DEBUG_OUTPUT_NAME wxbase${WX_VERSION}${toolset}ud${static}
+      OUTPUT_NAME wxbase${WX_VERSION}${toolset}u${static}x
+      DEBUG_OUTPUT_NAME wxbase${WX_VERSION}${toolset}u${static}d
       RELEASE_OUTPUT_NAME wxbase${WX_VERSION}${toolset}u${static}
       COMPILE_FLAGS /W4
       )
@@ -75,8 +75,8 @@ function(set_wxtarget_properties target)
       COMPILE_DEFINITIONS __WXMSW__ WXBUILDING wxUSE_GUI=0 UNICODE _UNICODE)
     set_property(TARGET ${target} PROPERTY FOLDER wxbase_libs)
     set_target_properties(${target} PROPERTIES
-      OUTPUT_NAME wxbase${WX_VERSION}${toolset}ux${static}_${target}
-      DEBUG_OUTPUT_NAME wxbase${WX_VERSION}${toolset}ud${static}_${target}
+      OUTPUT_NAME wxbase${WX_VERSION}${toolset}u${static}x_${target}
+      DEBUG_OUTPUT_NAME wxbase${WX_VERSION}${toolset}u${static}d_${target}
       RELEASE_OUTPUT_NAME wxbase${WX_VERSION}${toolset}u${static}_${target}
       COMPILE_FLAGS /W4
       )
@@ -90,8 +90,8 @@ function(set_wxtarget_properties target)
       set(unicode "")
     endif()
     set_target_properties(${target} PROPERTIES
-      OUTPUT_NAME ${target}${WX_VERSION}_${toolset}${unicode}x${static}
-      DEBUG_OUTPUT_NAME ${target}${WX_VERSION}_${toolset}${unicode}d${static}
+      OUTPUT_NAME ${target}${WX_VERSION}_${toolset}${unicode}${static}x
+      DEBUG_OUTPUT_NAME ${target}${WX_VERSION}_${toolset}${unicode}${static}d
       RELEASE_OUTPUT_NAME ${target}${WX_VERSION}_${toolset}${unicode}${static}
       COMPILE_FLAGS /W1
       )
@@ -104,8 +104,8 @@ function(set_wxtarget_properties target)
       COMPILE_DEFINITIONS __WXMSW__ WXBUILDING UNICODE _UNICODE ${target_defs})
     set_property(TARGET ${target} PROPERTY FOLDER ${wxbasename}_libs)
     set_target_properties(${target} PROPERTIES
-      OUTPUT_NAME ${wxbasename}${WX_VERSION}${toolset}ux${static}_${target}
-      DEBUG_OUTPUT_NAME ${wxbasename}${WX_VERSION}${toolset}ud${static}_${target}
+      OUTPUT_NAME ${wxbasename}${WX_VERSION}${toolset}u${static}x_${target}
+      DEBUG_OUTPUT_NAME ${wxbasename}${WX_VERSION}${toolset}u${static}d_${target}
       RELEASE_OUTPUT_NAME ${wxbasename}${WX_VERSION}${toolset}u${static}_${target}
       COMPILE_FLAGS /W4
       )
