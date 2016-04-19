@@ -7,10 +7,10 @@
 
 #ifdef _MSC_VER
 # include <wx/version.h>
-# if wxCHECK_VERSION(3,0,0)
-#  include "../../../../../lib/msw/wx-3.0/wx/setup.h"
+# if wxCHECK_VERSION(3,1,0)
+#  include "../../../../../lib/msw/wx-3.1/wx/setup.h"
 # else
-#  error "This custom setup.h is specific to wx 3.0"
+#  error "This custom setup.h is specific to wx 3.1"
 # endif // wxCHECK_VERSION
 #else
 # error "This file should only be included when using Microsoft Visual C++"
