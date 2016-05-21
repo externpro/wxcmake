@@ -8,6 +8,8 @@ list(APPEND ${lib_name}_libsrcs ${thisfile})
 # Common Headers
 set(Common_hdrs
   ${wxroot}/include/wx/aboutdlg.h
+  ${wxroot}/include/wx/activityindicator.h
+  ${wxroot}/include/wx/addremovectrl.h
   ${wxroot}/include/wx/animate.h
   ${wxroot}/include/wx/bannerwindow.h
   ${wxroot}/include/wx/bmpcbox.h
@@ -42,6 +44,7 @@ list(APPEND ${lib_name}_libsrcs ${Common_hdrs})
 ########################
 # Common Sources
 set(Common_srcs
+  ${wxroot}/src/common/addremovectrl.cpp
   ${wxroot}/src/common/animatecmn.cpp
   ${wxroot}/src/common/bmpcboxcmn.cpp
   ${wxroot}/src/common/calctrlcmn.cpp
@@ -49,6 +52,7 @@ set(Common_srcs
   ${wxroot}/src/common/dummy.cpp
   ${wxroot}/src/common/gridcmn.cpp
   ${wxroot}/src/common/hyperlnkcmn.cpp
+  ${wxroot}/src/common/notifmsgcmn.cpp
   ${wxroot}/src/common/odcombocmn.cpp
   ${wxroot}/src/common/richtooltipcmn.cpp
   ${wxroot}/src/common/taskbarcmn.cpp
@@ -59,6 +63,7 @@ list(APPEND ${lib_name}_libsrcs ${Common_srcs})
 # Generic Headers
 set(Generic_hdrs
   ${wxroot}/include/wx/generic/aboutdlgg.h
+  ${wxroot}/include/wx/generic/activityindicator.h
   ${wxroot}/include/wx/generic/animate.h
   ${wxroot}/include/wx/generic/bmpcbox.h
   ${wxroot}/include/wx/generic/calctrlg.h
@@ -86,6 +91,7 @@ list(APPEND ${lib_name}_libsrcs ${Generic_hdrs})
 # Generic Sources
 set(Generic_srcs
   ${wxroot}/src/generic/aboutdlgg.cpp
+  ${wxroot}/src/generic/activityindicator.cpp
   ${wxroot}/src/generic/animateg.cpp
   ${wxroot}/src/generic/bannerwindow.cpp
   ${wxroot}/src/generic/bmpcboxg.cpp
@@ -125,7 +131,6 @@ set(MSW_hdrs
   ${wxroot}/include/wx/msw/genrcdefs.h
   ${wxroot}/include/wx/msw/hyperlink.h
   ${wxroot}/include/wx/msw/joystick.h
-  ${wxroot}/include/wx/msw/notifmsg.h
   ${wxroot}/include/wx/msw/sound.h
   ${wxroot}/include/wx/msw/taskbar.h
   ${wxroot}/include/wx/msw/timectrl.h
@@ -145,6 +150,7 @@ set(MSW_srcs
   ${wxroot}/src/msw/hyperlink.cpp
   ${wxroot}/src/msw/joystick.cpp
   ${wxroot}/src/msw/notifmsg.cpp
+  ${wxroot}/src/msw/rt/notifmsgrt.cpp
   ${wxroot}/src/msw/richtooltip.cpp
   ${wxroot}/src/msw/sound.cpp
   ${wxroot}/src/msw/taskbar.cpp

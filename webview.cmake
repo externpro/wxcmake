@@ -28,6 +28,7 @@ list(APPEND ${lib_name}_libsrcs ${Common_srcs})
 set(MSW_hdrs
   ${wxroot}/include/wx/msw/genrcdefs.h
   ${wxroot}/include/wx/msw/webview_ie.h
+  ${wxroot}/include/wx/msw/webview_missing.h
   ${wxroot}/include/wx/msw/webviewhistoryitem_ie.h
   )
 source_group("MSW Headers" FILES ${MSW_hdrs})

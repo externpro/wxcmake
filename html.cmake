@@ -52,6 +52,7 @@ list(APPEND ${lib_name}_libsrcs ${Setup_hdrs})
 ########################
 # wxHTML Headers
 set(wxHTML_hdrs
+  ${wxroot}/include/wx/html/forcelnk.h
   ${wxroot}/include/wx/html/helpctrl.h
   ${wxroot}/include/wx/html/helpdata.h
   ${wxroot}/include/wx/html/helpdlg.h
@@ -74,6 +75,7 @@ list(APPEND ${lib_name}_libsrcs ${wxHTML_hdrs})
 ########################
 # wxHTML Sources
 set(wxHTML_srcs
+  ${wxroot}/src/html/chm.cpp
   ${wxroot}/src/html/helpctrl.cpp
   ${wxroot}/src/html/helpdata.cpp
   ${wxroot}/src/html/helpdlg.cpp

@@ -7,34 +7,22 @@ list(APPEND ${lib_name}_libsrcs ${thisfile})
 ########################
 # Common Headers
 set(Common_hdrs
-  ${wxroot}/include/wx/aboutdlg.h
   ${wxroot}/include/wx/accel.h
   ${wxroot}/include/wx/access.h
-  ${wxroot}/include/wx/propgrid/advprops.h
   ${wxroot}/include/wx/affinematrix2d.h
   ${wxroot}/include/wx/affinematrix2dbase.h
   ${wxroot}/include/wx/anidecod.h
-  ${wxroot}/include/wx/animate.h
   ${wxroot}/include/wx/animdecod.h
   ${wxroot}/include/wx/anybutton.h
-  ${wxroot}/include/wx/ribbon/art.h
-  ${wxroot}/include/wx/ribbon/art_internal.h
+  ${wxroot}/include/wx/appprogress.h
   ${wxroot}/include/wx/artprov.h
-  ${wxroot}/include/wx/aui/aui.h
-  ${wxroot}/include/wx/aui/auibar.h
-  ${wxroot}/include/wx/aui/auibook.h
-  ${wxroot}/include/wx/bannerwindow.h
-  ${wxroot}/include/wx/ribbon/bar.h
   ${wxroot}/include/wx/bitmap.h
   ${wxroot}/include/wx/bmpbuttn.h
-  ${wxroot}/include/wx/bmpcbox.h
   ${wxroot}/include/wx/bookctrl.h
   ${wxroot}/include/wx/persist/bookctrl.h
   ${wxroot}/include/wx/brush.h
   ${wxroot}/include/wx/busyinfo.h
   ${wxroot}/include/wx/button.h
-  ${wxroot}/include/wx/ribbon/buttonbar.h
-  ${wxroot}/include/wx/calctrl.h
   ${wxroot}/include/wx/caret.h
   ${wxroot}/include/wx/checkbox.h
   ${wxroot}/include/wx/checklst.h
@@ -45,27 +33,21 @@ set(Common_hdrs
   ${wxroot}/include/wx/clrpicker.h
   ${wxroot}/include/wx/cmdproc.h
   ${wxroot}/include/wx/cmndata.h
+  ${wxroot}/include/wx/collheaderctrl.h
   ${wxroot}/include/wx/collpane.h
   ${wxroot}/include/wx/colordlg.h
   ${wxroot}/include/wx/colour.h
   ${wxroot}/include/wx/colourdata.h
   ${wxroot}/include/wx/combo.h
   ${wxroot}/include/wx/combobox.h
-  ${wxroot}/include/wx/commandlinkbutton.h
   ${wxroot}/include/wx/compositewin.h
   ${wxroot}/include/wx/control.h
-  ${wxroot}/include/wx/ribbon/control.h
   ${wxroot}/include/wx/cshelp.h
   ${wxroot}/include/wx/ctrlsub.h
   ${wxroot}/include/wx/cursor.h
   ${wxroot}/include/wx/custombgwin.h
   ${wxroot}/include/wx/dataobj.h
-  ${wxroot}/include/wx/dataview.h
-  ${wxroot}/include/wx/datectrl.h
-  ${wxroot}/include/wx/dateevt.h
-  ${wxroot}/include/wx/datetimectrl.h
   ${wxroot}/include/wx/dc.h
-  ${wxroot}/include/wx/dcbuffer.h
   ${wxroot}/include/wx/dcclient.h
   ${wxroot}/include/wx/dcgraph.h
   ${wxroot}/include/wx/dcmemory.h
@@ -74,7 +56,6 @@ set(Common_hdrs
   ${wxroot}/include/wx/dcps.h
   ${wxroot}/include/wx/dcscreen.h
   ${wxroot}/include/wx/dcsvg.h
-  ${wxroot}/include/wx/debugrpt.h
   ${wxroot}/include/wx/dialog.h
   ${wxroot}/include/wx/dialup.h
   ${wxroot}/include/wx/dirctrl.h
@@ -82,13 +63,9 @@ set(Common_hdrs
   ${wxroot}/include/wx/display.h
   ${wxroot}/include/wx/display_impl.h
   ${wxroot}/include/wx/dnd.h
-  ${wxroot}/include/wx/aui/dockart.h
   ${wxroot}/include/wx/docmdi.h
   ${wxroot}/include/wx/docview.h
   ${wxroot}/include/wx/dragimag.h
-  ${wxroot}/include/wx/dvrenderers.h
-  ${wxroot}/include/wx/editlbox.h
-  ${wxroot}/include/wx/propgrid/editors.h
   ${wxroot}/include/wx/effects.h
   ${wxroot}/include/wx/encinfo.h
   ${wxroot}/include/wx/evtloopsrc.h
@@ -97,7 +74,6 @@ set(Common_hdrs
   ${wxroot}/include/wx/filedlg.h
   ${wxroot}/include/wx/filehistory.h
   ${wxroot}/include/wx/filepicker.h
-  ${wxroot}/include/wx/aui/floatpane.h
   ${wxroot}/include/wx/fmappriv.h
   ${wxroot}/include/wx/font.h
   ${wxroot}/include/wx/fontdata.h
@@ -106,25 +82,19 @@ set(Common_hdrs
   ${wxroot}/include/wx/fontpicker.h
   ${wxroot}/include/wx/fontutil.h
   ${wxroot}/include/wx/frame.h
-  ${wxroot}/include/wx/aui/framemanager.h
-  ${wxroot}/include/wx/ribbon/gallery.h
   ${wxroot}/include/wx/gauge.h
   ${wxroot}/include/wx/gbsizer.h
   ${wxroot}/include/wx/gdicmn.h
   ${wxroot}/include/wx/gdiobj.h
   ${wxroot}/include/wx/geometry.h
   ${wxroot}/include/wx/gifdecod.h
-  ${wxroot}/include/wx/glcanvas.h
   ${wxroot}/include/wx/graphics.h
-  ${wxroot}/include/wx/grid.h
   ${wxroot}/include/wx/headercol.h
   ${wxroot}/include/wx/headerctrl.h
   ${wxroot}/include/wx/help.h
   ${wxroot}/include/wx/helpbase.h
   ${wxroot}/include/wx/helphtml.h
   ${wxroot}/include/wx/helpwin.h
-  ${wxroot}/include/wx/htmllbox.h
-  ${wxroot}/include/wx/hyperlink.h
   ${wxroot}/include/wx/icon.h
   ${wxroot}/include/wx/iconbndl.h
   ${wxroot}/include/wx/imagbmp.h
@@ -141,17 +111,13 @@ set(Common_hdrs
   ${wxroot}/include/wx/imagxpm.h
   ${wxroot}/include/wx/infobar.h
   ${wxroot}/include/wx/itemid.h
-  ${wxroot}/include/wx/joystick.h
   ${wxroot}/include/wx/layout.h
-  ${wxroot}/include/wx/laywin.h
   ${wxroot}/include/wx/listbase.h
   ${wxroot}/include/wx/listbook.h
   ${wxroot}/include/wx/listbox.h
   ${wxroot}/include/wx/listctrl.h
-  ${wxroot}/include/wx/propgrid/manager.h
   ${wxroot}/include/wx/matrix.h
   ${wxroot}/include/wx/mdi.h
-  ${wxroot}/include/wx/mediactrl.h
   ${wxroot}/include/wx/menu.h
   ${wxroot}/include/wx/menuitem.h
   ${wxroot}/include/wx/metafile.h
@@ -162,32 +128,22 @@ set(Common_hdrs
   ${wxroot}/include/wx/nativewin.h
   ${wxroot}/include/wx/nonownedwnd.h
   ${wxroot}/include/wx/notebook.h
-  ${wxroot}/include/wx/notifmsg.h
   ${wxroot}/include/wx/numdlg.h
-  ${wxroot}/include/wx/odcombo.h
   ${wxroot}/include/wx/overlay.h
   ${wxroot}/include/wx/ownerdrw.h
-  ${wxroot}/include/wx/ribbon/page.h
   ${wxroot}/include/wx/palette.h
   ${wxroot}/include/wx/panel.h
-  ${wxroot}/include/wx/ribbon/panel.h
   ${wxroot}/include/wx/paper.h
   ${wxroot}/include/wx/pen.h
   ${wxroot}/include/wx/persist.h
   ${wxroot}/include/wx/pickerbase.h
   ${wxroot}/include/wx/popupwin.h
   ${wxroot}/include/wx/position.h
+  ${wxroot}/include/wx/preferences.h
   ${wxroot}/include/wx/print.h
   ${wxroot}/include/wx/printdlg.h
   ${wxroot}/include/wx/prntbase.h
   ${wxroot}/include/wx/progdlg.h
-  ${wxroot}/include/wx/propdlg.h
-  ${wxroot}/include/wx/propgrid/property.h
-  ${wxroot}/include/wx/propgrid/propgrid.h
-  ${wxroot}/include/wx/propgrid/propgriddefs.h
-  ${wxroot}/include/wx/propgrid/propgridiface.h
-  ${wxroot}/include/wx/propgrid/propgridpagestate.h
-  ${wxroot}/include/wx/propgrid/props.h
   ${wxroot}/include/wx/quantize.h
   ${wxroot}/include/wx/radiobox.h
   ${wxroot}/include/wx/radiobut.h
@@ -197,29 +153,6 @@ set(Common_hdrs
   ${wxroot}/include/wx/region.h
   ${wxroot}/include/wx/renderer.h
   ${wxroot}/include/wx/richmsgdlg.h
-  ${wxroot}/include/wx/richtext/richtextbackgroundpage.h
-  ${wxroot}/include/wx/richtext/richtextborderspage.h
-  ${wxroot}/include/wx/richtext/richtextbuffer.h
-  ${wxroot}/include/wx/richtext/richtextbulletspage.h
-  ${wxroot}/include/wx/richtext/richtextctrl.h
-  ${wxroot}/include/wx/richtext/richtextdialogpage.h
-  ${wxroot}/include/wx/richtext/richtextfontpage.h
-  ${wxroot}/include/wx/richtext/richtextformatdlg.h
-  ${wxroot}/include/wx/richtext/richtexthtml.h
-  ${wxroot}/include/wx/richtext/richtextimagedlg.h
-  ${wxroot}/include/wx/richtext/richtextindentspage.h
-  ${wxroot}/include/wx/richtext/richtextliststylepage.h
-  ${wxroot}/include/wx/richtext/richtextmarginspage.h
-  ${wxroot}/include/wx/richtext/richtextprint.h
-  ${wxroot}/include/wx/richtext/richtextsizepage.h
-  ${wxroot}/include/wx/richtext/richtextstyledlg.h
-  ${wxroot}/include/wx/richtext/richtextstylepage.h
-  ${wxroot}/include/wx/richtext/richtextstyles.h
-  ${wxroot}/include/wx/richtext/richtextsymboldlg.h
-  ${wxroot}/include/wx/richtext/richtextuicustomization.h
-  ${wxroot}/include/wx/richtext/richtextxml.h
-  ${wxroot}/include/wx/richtooltip.h
-  ${wxroot}/include/wx/sashwin.h
   ${wxroot}/include/wx/scopeguard.h
   ${wxroot}/include/wx/scrolbar.h
   ${wxroot}/include/wx/scrolwin.h
@@ -228,10 +161,8 @@ set(Common_hdrs
   ${wxroot}/include/wx/simplebook.h
   ${wxroot}/include/wx/sizer.h
   ${wxroot}/include/wx/slider.h
-  ${wxroot}/include/wx/sound.h
   ${wxroot}/include/wx/spinbutt.h
   ${wxroot}/include/wx/spinctrl.h
-  ${wxroot}/include/wx/splash.h
   ${wxroot}/include/wx/persist/splitter.h
   ${wxroot}/include/wx/splitter.h
   ${wxroot}/include/wx/srchctrl.h
@@ -240,21 +171,17 @@ set(Common_hdrs
   ${wxroot}/include/wx/statline.h
   ${wxroot}/include/wx/stattext.h
   ${wxroot}/include/wx/statusbr.h
-  ${wxroot}/include/wx/stc/stc.h
-  ${wxroot}/include/wx/aui/tabart.h
-  ${wxroot}/include/wx/aui/tabmdi.h
-  ${wxroot}/include/wx/taskbar.h
+  ${wxroot}/include/wx/systhemectrl.h
+  ${wxroot}/include/wx/taskbarbutton.h
   ${wxroot}/include/wx/tbarbase.h
+  ${wxroot}/include/wx/testing.h
   ${wxroot}/include/wx/textcompleter.h
   ${wxroot}/include/wx/textctrl.h
   ${wxroot}/include/wx/textdlg.h
   ${wxroot}/include/wx/textentry.h
   ${wxroot}/include/wx/textwrapper.h
   ${wxroot}/include/wx/tglbtn.h
-  ${wxroot}/include/wx/timectrl.h
-  ${wxroot}/include/wx/tipdlg.h
   ${wxroot}/include/wx/tipwin.h
-  ${wxroot}/include/wx/ribbon/toolbar.h
   ${wxroot}/include/wx/toolbar.h
   ${wxroot}/include/wx/toolbook.h
   ${wxroot}/include/wx/tooltip.h
@@ -264,7 +191,6 @@ set(Common_hdrs
   ${wxroot}/include/wx/persist/treebook.h
   ${wxroot}/include/wx/treebook.h
   ${wxroot}/include/wx/treectrl.h
-  ${wxroot}/include/wx/treelist.h
   ${wxroot}/include/wx/uiaction.h
   ${wxroot}/include/wx/valgen.h
   ${wxroot}/include/wx/validate.h
@@ -274,84 +200,14 @@ set(Common_hdrs
   ${wxroot}/include/wx/vlbox.h
   ${wxroot}/include/wx/vms_x_fix.h
   ${wxroot}/include/wx/vscroll.h
-  ${wxroot}/include/wx/webview.h
-  ${wxroot}/include/wx/webviewarchivehandler.h
   ${wxroot}/include/wx/persist/window.h
   ${wxroot}/include/wx/window.h
   ${wxroot}/include/wx/windowid.h
   ${wxroot}/include/wx/windowptr.h
   ${wxroot}/include/wx/withimages.h
-  ${wxroot}/include/wx/wizard.h
   ${wxroot}/include/wx/wrapsizer.h
   ${wxroot}/include/wx/wupdlock.h
-  ${wxroot}/include/wx/wxhtml.h
-  ${wxroot}/include/wx/xrc/xh_all.h
-  ${wxroot}/include/wx/xrc/xh_animatctrl.h
-  ${wxroot}/include/wx/xrc/xh_auinotbk.h
-  ${wxroot}/include/wx/xrc/xh_bannerwindow.h
-  ${wxroot}/include/wx/xrc/xh_bmp.h
-  ${wxroot}/include/wx/xrc/xh_bmpbt.h
-  ${wxroot}/include/wx/xrc/xh_bmpcbox.h
-  ${wxroot}/include/wx/xrc/xh_bttn.h
-  ${wxroot}/include/wx/xrc/xh_cald.h
-  ${wxroot}/include/wx/xrc/xh_chckb.h
-  ${wxroot}/include/wx/xrc/xh_chckl.h
-  ${wxroot}/include/wx/xrc/xh_choic.h
-  ${wxroot}/include/wx/xrc/xh_choicbk.h
-  ${wxroot}/include/wx/xrc/xh_clrpicker.h
-  ${wxroot}/include/wx/xrc/xh_cmdlinkbn.h
-  ${wxroot}/include/wx/xrc/xh_collpane.h
-  ${wxroot}/include/wx/xrc/xh_combo.h
-  ${wxroot}/include/wx/xrc/xh_comboctrl.h
-  ${wxroot}/include/wx/xrc/xh_datectrl.h
-  ${wxroot}/include/wx/xrc/xh_dirpicker.h
-  ${wxroot}/include/wx/xrc/xh_dlg.h
-  ${wxroot}/include/wx/xrc/xh_editlbox.h
-  ${wxroot}/include/wx/xrc/xh_filectrl.h
-  ${wxroot}/include/wx/xrc/xh_filepicker.h
-  ${wxroot}/include/wx/xrc/xh_fontpicker.h
-  ${wxroot}/include/wx/xrc/xh_frame.h
-  ${wxroot}/include/wx/xrc/xh_gauge.h
-  ${wxroot}/include/wx/xrc/xh_gdctl.h
-  ${wxroot}/include/wx/xrc/xh_grid.h
-  ${wxroot}/include/wx/xrc/xh_html.h
-  ${wxroot}/include/wx/xrc/xh_htmllbox.h
-  ${wxroot}/include/wx/xrc/xh_hyperlink.h
-  ${wxroot}/include/wx/xrc/xh_listb.h
-  ${wxroot}/include/wx/xrc/xh_listbk.h
-  ${wxroot}/include/wx/xrc/xh_listc.h
-  ${wxroot}/include/wx/xrc/xh_mdi.h
-  ${wxroot}/include/wx/xrc/xh_menu.h
-  ${wxroot}/include/wx/xrc/xh_notbk.h
-  ${wxroot}/include/wx/xrc/xh_odcombo.h
-  ${wxroot}/include/wx/xrc/xh_panel.h
-  ${wxroot}/include/wx/xrc/xh_propdlg.h
-  ${wxroot}/include/wx/xrc/xh_radbt.h
-  ${wxroot}/include/wx/xrc/xh_radbx.h
-  ${wxroot}/include/wx/xrc/xh_ribbon.h
-  ${wxroot}/include/wx/xrc/xh_richtext.h
-  ${wxroot}/include/wx/xrc/xh_scrol.h
-  ${wxroot}/include/wx/xrc/xh_scwin.h
-  ${wxroot}/include/wx/xrc/xh_sizer.h
-  ${wxroot}/include/wx/xrc/xh_slidr.h
-  ${wxroot}/include/wx/xrc/xh_spin.h
-  ${wxroot}/include/wx/xrc/xh_split.h
-  ${wxroot}/include/wx/xrc/xh_srchctrl.h
-  ${wxroot}/include/wx/xrc/xh_statbar.h
-  ${wxroot}/include/wx/xrc/xh_stbmp.h
-  ${wxroot}/include/wx/xrc/xh_stbox.h
-  ${wxroot}/include/wx/xrc/xh_stlin.h
-  ${wxroot}/include/wx/xrc/xh_sttxt.h
-  ${wxroot}/include/wx/xrc/xh_text.h
-  ${wxroot}/include/wx/xrc/xh_tglbtn.h
-  ${wxroot}/include/wx/xrc/xh_timectrl.h
-  ${wxroot}/include/wx/xrc/xh_toolb.h
-  ${wxroot}/include/wx/xrc/xh_toolbk.h
-  ${wxroot}/include/wx/xrc/xh_tree.h
-  ${wxroot}/include/wx/xrc/xh_treebk.h
-  ${wxroot}/include/wx/xrc/xh_unkwn.h
-  ${wxroot}/include/wx/xrc/xh_wizrd.h
-  ${wxroot}/include/wx/xrc/xmlres.h
+  ${wxroot}/include/wx/xrc/xmlreshandler.h
   ${wxroot}/include/wx/xpmdecod.h
   ${wxroot}/include/wx/xpmhand.h
   )
@@ -491,6 +347,7 @@ set(Common_srcs
   ${wxroot}/src/common/wincmn.cpp
   ${wxroot}/src/common/windowid.cpp
   ${wxroot}/src/common/wrapsizer.cpp
+  ${wxroot}/src/xrc/xmlreshandler.cpp
   ${wxroot}/src/common/xpmdecod.cpp
   )
 source_group("Common Sources" FILES ${Common_srcs})
@@ -498,102 +355,66 @@ list(APPEND ${lib_name}_libsrcs ${Common_srcs})
 ########################
 # Generic Headers
 set(Generic_hdrs
-  ${wxroot}/include/wx/generic/aboutdlgg.h
   ${wxroot}/include/wx/generic/accel.h
-  ${wxroot}/include/wx/generic/animate.h
-  ${wxroot}/include/wx/generic/bmpcbox.h
   ${wxroot}/include/wx/generic/busyinfo.h
   ${wxroot}/include/wx/generic/buttonbar.h
-  ${wxroot}/include/wx/generic/calctrlg.h
   ${wxroot}/include/wx/generic/choicdgg.h
   ${wxroot}/include/wx/generic/clrpickerg.h
+  ${wxroot}/include/wx/generic/collheaderctrl.h
   ${wxroot}/include/wx/generic/collpaneg.h
-  ${wxroot}/include/wx/generic/colrdlgg.h
   ${wxroot}/include/wx/generic/combo.h
-  ${wxroot}/include/wx/generic/ctrlsub.h
   ${wxroot}/include/wx/generic/custombgwin.h
-  ${wxroot}/include/wx/generic/dataview.h
-  ${wxroot}/include/wx/generic/datectrl.h
   ${wxroot}/include/wx/generic/dcpsg.h
   ${wxroot}/include/wx/generic/dirctrlg.h
-  ${wxroot}/include/wx/generic/dirdlgg.h
   ${wxroot}/include/wx/generic/dragimgg.h
-  ${wxroot}/include/wx/generic/dvrenderer.h
-  ${wxroot}/include/wx/generic/dvrenderers.h
-  ${wxroot}/include/wx/generic/fdrepdlg.h
   ${wxroot}/include/wx/generic/filectrlg.h
-  ${wxroot}/include/wx/generic/filedlgg.h
   ${wxroot}/include/wx/generic/filepickerg.h
-  ${wxroot}/include/wx/generic/fontdlgg.h
   ${wxroot}/include/wx/generic/fontpickerg.h
-  ${wxroot}/include/wx/generic/grid.h
-  ${wxroot}/include/wx/generic/gridctrl.h
-  ${wxroot}/include/wx/generic/grideditors.h
-  ${wxroot}/include/wx/generic/gridsel.h
   ${wxroot}/include/wx/generic/headerctrlg.h
-  ${wxroot}/include/wx/generic/helpext.h
-  ${wxroot}/include/wx/generic/hyperlink.h
   ${wxroot}/include/wx/generic/infobar.h
-  ${wxroot}/include/wx/generic/laywin.h
-  ${wxroot}/include/wx/generic/listctrl.h
   ${wxroot}/include/wx/generic/logg.h
-  ${wxroot}/include/wx/generic/mdig.h
   ${wxroot}/include/wx/generic/msgdlgg.h
   ${wxroot}/include/wx/generic/notebook.h
-  ${wxroot}/include/wx/generic/notifmsg.h
   ${wxroot}/include/wx/generic/numdlgg.h
   ${wxroot}/include/wx/generic/panelg.h
   ${wxroot}/include/wx/generic/printps.h
   ${wxroot}/include/wx/generic/prntdlgg.h
   ${wxroot}/include/wx/generic/progdlgg.h
-  ${wxroot}/include/wx/generic/propdlg.h
   ${wxroot}/include/wx/generic/richmsgdlgg.h
-  ${wxroot}/include/wx/generic/sashwin.h
   ${wxroot}/include/wx/generic/scrolwin.h
   ${wxroot}/include/wx/generic/spinctlg.h
-  ${wxroot}/include/wx/generic/splash.h
   ${wxroot}/include/wx/generic/splitter.h
   ${wxroot}/include/wx/generic/srchctlg.h
   ${wxroot}/include/wx/generic/statbmpg.h
   ${wxroot}/include/wx/generic/stattextg.h
-  ${wxroot}/include/wx/generic/statusbr.h
   ${wxroot}/include/wx/generic/textdlgg.h
-  ${wxroot}/include/wx/generic/timectrl.h
   ${wxroot}/include/wx/generic/treectlg.h
-  ${wxroot}/include/wx/generic/wizard.h
   )
 source_group("Generic Headers" FILES ${Generic_hdrs})
 list(APPEND ${lib_name}_libsrcs ${Generic_hdrs})
 ########################
 # Generic Sources
 set(Generic_srcs
-  #${wxroot}/src/generic/accel.cpp
   ${wxroot}/src/generic/busyinfo.cpp
   ${wxroot}/src/generic/buttonbar.cpp
   ${wxroot}/src/generic/choicbkg.cpp
   ${wxroot}/src/generic/choicdgg.cpp
   ${wxroot}/src/generic/clrpickerg.cpp
+  ${wxroot}/src/generic/collheaderctrlg.cpp
   ${wxroot}/src/generic/collpaneg.cpp
-  ${wxroot}/src/generic/colrdlgg.cpp
   ${wxroot}/src/generic/combog.cpp
   ${wxroot}/src/generic/dcpsg.cpp
   ${wxroot}/src/generic/dirctrlg.cpp
-  ${wxroot}/src/generic/dirdlgg.cpp
   ${wxroot}/src/generic/dragimgg.cpp
-  #${wxroot}/src/generic/fdrepdlg.cpp
   ${wxroot}/src/generic/filectrlg.cpp
-  ${wxroot}/src/generic/filedlgg.cpp
   ${wxroot}/src/generic/filepickerg.cpp
-  ${wxroot}/src/generic/fontdlgg.cpp
   ${wxroot}/src/generic/fontpickerg.cpp
   ${wxroot}/src/generic/graphicc.cpp
   ${wxroot}/src/generic/headerctrlg.cpp
   ${wxroot}/src/generic/infobar.cpp
   ${wxroot}/src/generic/listbkg.cpp
-  #${wxroot}/src/generic/listctrl.cpp
   ${wxroot}/src/generic/logg.cpp
   ${wxroot}/src/generic/markuptext.cpp
-  ${wxroot}/src/generic/mdig.cpp
   ${wxroot}/src/generic/msgdlgg.cpp
   ${wxroot}/src/generic/numdlgg.cpp
   ${wxroot}/src/generic/preferencesg.cpp
@@ -628,13 +449,12 @@ set(MSW_hdrs
   ${wxroot}/include/wx/msw/ole/activex.h
   ${wxroot}/include/wx/msw/anybutton.h
   ${wxroot}/include/wx/msw/app.h
+  ${wxroot}/include/wx/msw/appprogress.h
   ${wxroot}/include/wx/msw/ole/automtn.h
   ${wxroot}/include/wx/msw/bitmap.h
   ${wxroot}/include/wx/msw/bmpbuttn.h
-  ${wxroot}/include/wx/msw/bmpcbox.h
   ${wxroot}/include/wx/msw/brush.h
   ${wxroot}/include/wx/msw/button.h
-  ${wxroot}/include/wx/msw/calctrl.h
   ${wxroot}/include/wx/msw/caret.h
   ${wxroot}/include/wx/msw/checkbox.h
   ${wxroot}/include/wx/msw/checklst.h
@@ -644,7 +464,6 @@ set(MSW_hdrs
   ${wxroot}/include/wx/msw/colour.h
   ${wxroot}/include/wx/msw/combo.h
   ${wxroot}/include/wx/msw/combobox.h
-  ${wxroot}/include/wx/msw/commandlinkbutton.h
   ${wxroot}/include/wx/msw/control.h
   ${wxroot}/include/wx/msw/ctrlsub.h
   ${wxroot}/include/wx/msw/cursor.h
@@ -652,8 +471,6 @@ set(MSW_hdrs
   ${wxroot}/include/wx/msw/ole/dataform.h
   ${wxroot}/include/wx/msw/ole/dataobj.h
   ${wxroot}/include/wx/msw/ole/dataobj2.h
-  ${wxroot}/include/wx/msw/datectrl.h
-  ${wxroot}/include/wx/msw/datetimectrl.h
   ${wxroot}/include/wx/msw/dc.h
   ${wxroot}/include/wx/msw/dcclient.h
   ${wxroot}/include/wx/msw/dcmemory.h
@@ -675,18 +492,14 @@ set(MSW_hdrs
   ${wxroot}/include/wx/msw/gauge.h
   ${wxroot}/include/wx/msw/gdiimage.h
   ${wxroot}/include/wx/msw/genrcdefs.h
-  ${wxroot}/include/wx/msw/glcanvas.h
   ${wxroot}/include/wx/msw/headerctrl.h
-  ${wxroot}/include/wx/msw/helpbest.h
   ${wxroot}/include/wx/msw/helpchm.h
   ${wxroot}/include/wx/msw/helpwin.h
   ${wxroot}/include/wx/msw/htmlhelp.h
-  ${wxroot}/include/wx/msw/hyperlink.h
   ${wxroot}/include/wx/msw/icon.h
   ${wxroot}/include/wx/msw/imaglist.h
   ${wxroot}/include/wx/msw/iniconf.h
   ${wxroot}/include/wx/msw/init.h
-  ${wxroot}/include/wx/msw/joystick.h
   ${wxroot}/include/wx/msw/listbox.h
   ${wxroot}/include/wx/msw/listctrl.h
   ${wxroot}/include/wx/msw/mdi.h
@@ -699,8 +512,8 @@ set(MSW_hdrs
   ${wxroot}/include/wx/msw/msvcrt.h
   ${wxroot}/include/wx/msw/nonownedwnd.h
   ${wxroot}/include/wx/msw/notebook.h
-  ${wxroot}/include/wx/msw/notifmsg.h
   ${wxroot}/include/wx/msw/ole/oleutils.h
+  ${wxroot}/include/wx/msw/ownerdrawnbutton.h
   ${wxroot}/include/wx/msw/ownerdrw.h
   ${wxroot}/include/wx/msw/palette.h
   ${wxroot}/include/wx/msw/panel.h
@@ -714,10 +527,9 @@ set(MSW_hdrs
   ${wxroot}/include/wx/msw/rcdefs.h
   ${wxroot}/include/wx/msw/region.h
   ${wxroot}/include/wx/msw/richmsgdlg.h
+  ${wxroot}/include/wx/msw/ole/safearray.h
   ${wxroot}/include/wx/msw/scrolbar.h
-  #${wxroot}/include/wx/msw/setup0.h
   ${wxroot}/include/wx/msw/slider.h
-  ${wxroot}/include/wx/msw/sound.h
   ${wxroot}/include/wx/msw/spinbutt.h
   ${wxroot}/include/wx/msw/spinctrl.h
   ${wxroot}/include/wx/msw/statbmp.h
@@ -725,20 +537,18 @@ set(MSW_hdrs
   ${wxroot}/include/wx/msw/statline.h
   ${wxroot}/include/wx/msw/stattext.h
   ${wxroot}/include/wx/msw/statusbar.h
-  ${wxroot}/include/wx/msw/taskbar.h
+  ${wxroot}/include/wx/msw/taskbarbutton.h
   ${wxroot}/include/wx/msw/textctrl.h
   ${wxroot}/include/wx/msw/textentry.h
   ${wxroot}/include/wx/msw/tglbtn.h
-  ${wxroot}/include/wx/msw/timectrl.h
   ${wxroot}/include/wx/msw/toolbar.h
   ${wxroot}/include/wx/msw/tooltip.h
   ${wxroot}/include/wx/msw/toplevel.h
   ${wxroot}/include/wx/msw/treectrl.h
+  ${wxroot}/include/wx/msw/rt/utils.h
   ${wxroot}/include/wx/msw/ole/uuid.h
   ${wxroot}/include/wx/msw/uxtheme.h
   ${wxroot}/include/wx/msw/uxthemep.h
-  ${wxroot}/include/wx/msw/webview_ie.h
-  ${wxroot}/include/wx/msw/webviewhistoryitem_ie.h
   ${wxroot}/include/wx/msw/window.h
   )
 source_group("MSW Headers" FILES ${MSW_hdrs})
@@ -751,6 +561,7 @@ set(MSW_srcs
   ${wxroot}/src/msw/ole/activex.cpp
   ${wxroot}/src/msw/anybutton.cpp
   ${wxroot}/src/msw/app.cpp
+  ${wxroot}/src/msw/appprogress.cpp
   ${wxroot}/src/msw/artmsw.cpp
   ${wxroot}/src/msw/ole/automtn.cpp
   ${wxroot}/src/msw/bitmap.cpp
@@ -797,6 +608,7 @@ set(MSW_srcs
   ${wxroot}/src/msw/gdiobj.cpp
   ${wxroot}/src/msw/gdiplus.cpp
   ${wxroot}/src/msw/graphics.cpp
+  ${wxroot}/src/msw/graphicsd2d.cpp
   ${wxroot}/src/msw/headerctrl.cpp
   ${wxroot}/src/msw/helpchm.cpp
   ${wxroot}/src/msw/helpwin.cpp
@@ -812,7 +624,6 @@ set(MSW_srcs
   ${wxroot}/src/msw/metafile.cpp
   ${wxroot}/src/msw/minifram.cpp
   ${wxroot}/src/msw/msgdlg.cpp
-  ${wxroot}/src/msw/mslu.cpp
   ${wxroot}/src/msw/nativdlg.cpp
   ${wxroot}/src/msw/nativewin.cpp
   ${wxroot}/src/msw/nonownedwnd.cpp
@@ -842,6 +653,8 @@ set(MSW_srcs
   ${wxroot}/src/msw/statline.cpp
   ${wxroot}/src/msw/stattext.cpp
   ${wxroot}/src/msw/statusbar.cpp
+  ${wxroot}/src/msw/systhemectrl.cpp
+  ${wxroot}/src/msw/taskbarbutton.cpp
   ${wxroot}/src/msw/textctrl.cpp
   ${wxroot}/src/msw/textentry.cpp
   ${wxroot}/src/msw/textmeasure.cpp
@@ -852,6 +665,7 @@ set(MSW_srcs
   ${wxroot}/src/msw/treectrl.cpp
   ${wxroot}/src/msw/uiaction.cpp
   ${wxroot}/src/msw/utilsgui.cpp
+  ${wxroot}/src/msw/rt/utilsrt.cpp
   ${wxroot}/src/msw/utilswin.cpp
   ${wxroot}/src/msw/ole/uuid.cpp
   ${wxroot}/src/msw/uxtheme.cpp
@@ -868,35 +682,6 @@ set(Setup_hdrs
   )
 source_group("Setup Headers" FILES ${Setup_hdrs})
 list(APPEND ${lib_name}_libsrcs ${Setup_hdrs})
-########################
-# wxHTML Headers
-set(wxHTML_hdrs
-  ${wxroot}/include/wx/html/helpctrl.h
-  ${wxroot}/include/wx/html/helpdata.h
-  ${wxroot}/include/wx/html/helpdlg.h
-  ${wxroot}/include/wx/html/helpfrm.h
-  ${wxroot}/include/wx/html/helpwnd.h
-  ${wxroot}/include/wx/html/htmlcell.h
-  ${wxroot}/include/wx/html/htmldefs.h
-  ${wxroot}/include/wx/html/htmlfilt.h
-  ${wxroot}/include/wx/html/htmlpars.h
-  ${wxroot}/include/wx/html/htmlproc.h
-  ${wxroot}/include/wx/html/htmltag.h
-  ${wxroot}/include/wx/html/htmlwin.h
-  ${wxroot}/include/wx/html/htmprint.h
-  ${wxroot}/include/wx/html/m_templ.h
-  ${wxroot}/include/wx/html/styleparams.h
-  ${wxroot}/include/wx/html/winpars.h
-  )
-source_group("wxHTML Headers" FILES ${wxHTML_hdrs})
-list(APPEND ${lib_name}_libsrcs ${wxHTML_hdrs})
-########################
-# xrc Source
-set(xrc_srcs
-  ${wxroot}/src/xrc/xmlreshandler.cpp
-  )
-source_group("" FILES ${xrc_srcs})
-list(APPEND ${lib_name}_libsrcs ${xrc_srcs})
 #######################################
 # library
 add_library(${lib_name} STATIC ${${lib_name}_libsrcs})

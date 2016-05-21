@@ -7,6 +7,7 @@ list(APPEND ${lib_name}_libsrcs ${thisfile})
 ########################
 # Common Headers
 set(Common_hdrs
+  ${wxroot}/include/wx/xrc/xh_activityindicator.h
   ${wxroot}/include/wx/xrc/xh_all.h
   ${wxroot}/include/wx/xrc/xh_animatctrl.h
   ${wxroot}/include/wx/xrc/xh_bannerwindow.h
@@ -106,6 +107,7 @@ list(APPEND ${lib_name}_libsrcs ${Setup_hdrs})
 ########################
 # Source Files
 set(Source_srcs
+  ${wxroot}/src/xrc/xh_activityindicator.cpp
   ${wxroot}/src/xrc/xh_animatctrl.cpp
   ${wxroot}/src/xrc/xh_bannerwindow.cpp
   ${wxroot}/src/xrc/xh_bmp.cpp

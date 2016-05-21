@@ -26,8 +26,10 @@ set(Common_hdrs
   ${wxroot}/include/wx/richtext/richtextstylepage.h
   ${wxroot}/include/wx/richtext/richtextstyles.h
   ${wxroot}/include/wx/richtext/richtextsymboldlg.h
+  ${wxroot}/include/wx/richtext/richtexttabspage.h
   ${wxroot}/include/wx/richtext/richtextuicustomization.h
   ${wxroot}/include/wx/richtext/richtextxml.h
+  ${wxroot}/include/wx/xrc/xh_richtext.h
   )
 source_group("Common Headers" FILES ${Common_hdrs})
 list(APPEND ${lib_name}_libsrcs ${Common_hdrs})
@@ -72,6 +74,7 @@ set(Source_srcs
   ${wxroot}/src/richtext/richtextstyles.cpp
   ${wxroot}/src/richtext/richtextsymboldlg.cpp
   ${wxroot}/src/richtext/richtextxml.cpp
+  ${wxroot}/src/xrc/xh_richtext.cpp
   )
 source_group("Source Files" FILES ${Source_srcs})
 list(APPEND ${lib_name}_libsrcs ${Source_srcs})

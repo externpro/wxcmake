@@ -10,12 +10,15 @@ set(Common_hdrs
   ${wxroot}/include/wx/aui/aui.h
   ${wxroot}/include/wx/aui/auibar.h
   ${wxroot}/include/wx/aui/auibook.h
+  ${wxroot}/include/wx/aui/barartmsw.h
   ${wxroot}/include/wx/aui/dockart.h
   ${wxroot}/include/wx/aui/floatpane.h
   ${wxroot}/include/wx/aui/framemanager.h
   ${wxroot}/include/wx/aui/tabart.h
+  ${wxroot}/include/wx/aui/tabartmsw.h
   ${wxroot}/include/wx/aui/tabmdi.h
   ${wxroot}/include/wx/xrc/xh_auinotbk.h
+  ${wxroot}/include/wx/xrc/xh_auitoolb.h
   )
 source_group("Common Headers" FILES ${Common_hdrs})
 list(APPEND ${lib_name}_libsrcs ${Common_hdrs})
@@ -52,12 +55,15 @@ list(APPEND ${lib_name}_libsrcs ${Setup_hdrs})
 set(Source_srcs
   ${wxroot}/src/aui/auibar.cpp
   ${wxroot}/src/aui/auibook.cpp
+  ${wxroot}/src/aui/barartmsw.cpp
   ${wxroot}/src/aui/dockart.cpp
   ${wxroot}/src/aui/floatpane.cpp
   ${wxroot}/src/aui/framemanager.cpp
   ${wxroot}/src/aui/tabart.cpp
+  ${wxroot}/src/aui/tabartmsw.cpp
   ${wxroot}/src/aui/tabmdi.cpp
   ${wxroot}/src/xrc/xh_auinotbk.cpp
+  ${wxroot}/src/xrc/xh_auitoolb.cpp
   )
 source_group("Source Files" FILES ${Source_srcs})
 list(APPEND ${lib_name}_libsrcs ${Source_srcs})

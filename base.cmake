@@ -15,6 +15,7 @@ set(Common_hdrs
   ${wxroot}/include/wx/app.h
   ${wxroot}/include/wx/apptrait.h
   ${wxroot}/include/wx/archive.h
+  ${wxroot}/include/wx/arrimpl.cpp
   ${wxroot}/include/wx/arrstr.h
   ${wxroot}/include/wx/atomic.h
   ${wxroot}/include/wx/base64.h
@@ -27,6 +28,7 @@ set(Common_hdrs
   ${wxroot}/include/wx/clntdata.h
   ${wxroot}/include/wx/cmdargs.h
   ${wxroot}/include/wx/cmdline.h
+  ${wxroot}/include/wx/compiler.h
   ${wxroot}/include/wx/confbase.h
   ${wxroot}/include/wx/config.h
   ${wxroot}/include/wx/containr.h
@@ -82,6 +84,7 @@ set(Common_hdrs
   ${wxroot}/include/wx/language.h
   ${wxroot}/include/wx/link.h
   ${wxroot}/include/wx/list.h
+  ${wxroot}/include/wx/listimpl.cpp
   ${wxroot}/include/wx/log.h
   ${wxroot}/include/wx/longlong.h
   ${wxroot}/include/wx/math.h
@@ -106,6 +109,7 @@ set(Common_hdrs
   ${wxroot}/include/wx/ptr_shrd.h
   ${wxroot}/include/wx/recguard.h
   ${wxroot}/include/wx/regex.h
+  ${wxroot}/include/wx/meta/removeref.h
   ${wxroot}/include/wx/rtti.h
   ${wxroot}/include/wx/scopedarray.h
   ${wxroot}/include/wx/scopedptr.h
@@ -130,6 +134,7 @@ set(Common_hdrs
   ${wxroot}/include/wx/textbuf.h
   ${wxroot}/include/wx/textfile.h
   ${wxroot}/include/wx/thread.h
+  ${wxroot}/include/wx/thrimpl.cpp
   ${wxroot}/include/wx/time.h
   ${wxroot}/include/wx/timer.h
   ${wxroot}/include/wx/tls.h
@@ -295,7 +300,6 @@ set(MSW_hdrs
   ${wxroot}/include/wx/msw/genrcdefs.h
   ${wxroot}/include/wx/msw/libraries.h
   ${wxroot}/include/wx/msw/mimetype.h
-  ${wxroot}/include/wx/msw/mslu.h
   ${wxroot}/include/wx/msw/private.h
   ${wxroot}/include/wx/msw/regconf.h
   ${wxroot}/include/wx/msw/registry.h
@@ -322,7 +326,6 @@ set(MSW_srcs
   ${wxroot}/src/msw/fswatcher.cpp
   ${wxroot}/src/msw/main.cpp
   ${wxroot}/src/msw/mimetype.cpp
-  ${wxroot}/src/msw/mslu.cpp
   ${wxroot}/src/msw/power.cpp
   ${wxroot}/src/msw/regconf.cpp
   ${wxroot}/src/msw/registry.cpp
@@ -345,13 +348,6 @@ set(Setup_hdrs
   )
 source_group("Setup Headers" FILES ${Setup_hdrs})
 list(APPEND ${lib_name}_libsrcs ${Setup_hdrs})
-########################
-# wxHTML Headers
-set(wxHTML_hdrs
-  ${wxroot}/include/wx/html/forcelnk.h
-  )
-source_group("wxHTML Headers" FILES ${wxHTML_hdrs})
-list(APPEND ${lib_name}_libsrcs ${wxHTML_hdrs})
 #######################################
 # library
 add_library(${lib_name} STATIC ${${lib_name}_libsrcs})
