@@ -172,6 +172,12 @@ set(Common_hdrs
   ${wxroot}/include/wx/zipstrm.h
   ${wxroot}/include/wx/zstream.h
   )
+set_source_files_properties(
+  ${wxroot}/include/wx/arrimpl.cpp
+  ${wxroot}/include/wx/listimpl.cpp
+  ${wxroot}/include/wx/thrimpl.cpp
+  PROPERTIES HEADER_FILE_ONLY TRUE
+  )
 source_group("Common Headers" FILES ${Common_hdrs})
 list(APPEND ${lib_name}_libsrcs ${Common_hdrs})
 ########################
