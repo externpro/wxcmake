@@ -120,7 +120,7 @@ function(set_wxtarget_properties target)
     # MSVC defaults to X86, but specifying it here avoids a link warning (LNK4068)
     set_target_properties(${target} PROPERTIES STATIC_LIBRARY_FLAGS "/MACHINE:X86")
   endif()
-  install(TARGETS ${lib_name} EXPORT ${PROJECT_NAME}-targets
+  install(TARGETS ${lib_name} EXPORT ${PROJECT_NAME}${WX_VERSION}-targets
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib
@@ -186,4 +186,4 @@ install(DIRECTORY
 install(FILES ${wxhdrs} ${wxcpps} DESTINATION include/${wxver}/wx)
 set(customsetuph ${wxroot}/build/cmake/setup.h)
 install(FILES ${customsetuph} DESTINATION include/${wxver}/wx/msvc/wx)
-install(EXPORT ${PROJECT_NAME}-targets DESTINATION lib/cmake)
+install(EXPORT ${PROJECT_NAME}${WX_VERSION}-targets DESTINATION lib/cmake)
