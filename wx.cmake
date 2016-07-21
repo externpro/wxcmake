@@ -113,7 +113,7 @@ function(set_wxtarget_properties target)
       )
   endif()
   # NOTE: It appears /MACHINE needs to be specified if target has an .rc
-  if(${CMAKE_GENERATOR} MATCHES "Win64$")
+  if(MSVC AND CMAKE_SIZEOF_VOID_P EQUAL 8) # 64-bit
     # http://public.kitware.com/Bug/view.php?id=11240
     set_target_properties(${target} PROPERTIES STATIC_LIBRARY_FLAGS "/MACHINE:X64")
   elseif(MSVC)
