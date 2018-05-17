@@ -28,24 +28,18 @@ execute_process(COMMAND ${CMAKE_COMMAND} -E copy_if_different
 function(set_wxtarget_properties target)
   if(MSVC)
     # toolset
-    if(MSVC14)
+    if(MSVC_VERSION GREATER 1910 AND MSVC_VERSION LESS 1919) # VS 15.0 2017
+      set(toolset vc141)
+    elseif(MSVC_VERSION EQUAL 1900) # VS 14.0 2015
       set(toolset vc140)
-    elseif(MSVC12)
+    elseif(MSVC_VERSION EQUAL 1800) # VS 12.0 2013
       set(toolset vc120)
-    elseif(MSVC11)
+    elseif(MSVC_VERSION EQUAL 1700) # VS 11.0 2012
       set(toolset vc110)
-    elseif(MSVC10)
+    elseif(MSVC_VERSION EQUAL 1600) # VS 10.0 2010
       set(toolset vc100)
-    elseif(MSVC90)
+    elseif(MSVC_VERSION EQUAL 1500) # VS 9.0 2008
       set(toolset vc90)
-    elseif(MSVC80)
-      set(toolset vc80)
-    elseif(MSVC71)
-      set(toolset vc71)
-    elseif(MSVC70)
-      set(toolset vc70)
-    elseif(MSVC60)
-      set(toolset vc60)
     else()
       set(toolset vcXX)
       message(SEND_ERROR "wx.cmake: MSVC compiler support lacking")
