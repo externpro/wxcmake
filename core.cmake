@@ -685,15 +685,6 @@ list(APPEND ${lib_name}_libsrcs ${Setup_hdrs})
 #######################################
 # library
 add_library(${lib_name} STATIC ${${lib_name}_libsrcs})
-get_directory_property(global_includes INCLUDE_DIRECTORIES)
-set_property(TARGET ${lib_name} PROPERTY
-  INCLUDE_DIRECTORIES ${global_includes}
-    ${wxroot}/src/jpeg
-    ${wxroot}/src/tiff/libtiff
-    ${wxroot}/src/png
-    ${wxroot}/src/zlib
-  )
-set_property(TARGET ${lib_name} PROPERTY
-  COMPILE_DEFINITIONS wxUSE_BASE=0
-  )
+target_compile_definitions(${lib_name} PRIVATE wxUSE_BASE=0)
+target_link_libraries(${lib_name} PUBLIC base PRIVATE wxjpeg wxpng wxtiff)
 set_wxtarget_properties(${lib_name})

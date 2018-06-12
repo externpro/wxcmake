@@ -7,84 +7,61 @@ add_definitions(-D_LIB)
 set(CMAKE_DEBUG_POSTFIX)
 set(CMAKE_RELEASE_POSTFIX)
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib)
-include_directories(${wxroot}/include ${LIBRARY_OUTPUT_PATH})
-if(NOT DEFINED WX_VERSION)
+if(NOT DEFINED WX_VERSION) # passed in
   set(WX_VERSION 00)
 endif()
 string(REGEX REPLACE "^([0-9])\([0-9]*)$" "wx-\\1.\\2" wxver ${WX_VERSION})
 #######################################
 # setup.h
-# NOTE: include_directories above will find setup.h from ${LIBRARY_OUTPUT_PATH}
 set(wxsetup ${wxroot}/include/wx/msw/setup.h)
 if(NOT EXISTS ${LIBRARY_OUTPUT_PATH}/wx)
-  execute_process(COMMAND ${CMAKE_COMMAND} -E make_directory
-    ${LIBRARY_OUTPUT_PATH}/wx)
+  execute_process(COMMAND ${CMAKE_COMMAND} -E make_directory ${LIBRARY_OUTPUT_PATH}/wx)
 endif()
-execute_process(COMMAND ${CMAKE_COMMAND} -E copy_if_different
-  ${wxsetup} ${LIBRARY_OUTPUT_PATH}/wx)
+execute_process(COMMAND ${CMAKE_COMMAND} -E copy_if_different ${wxsetup} ${LIBRARY_OUTPUT_PATH}/wx)
 #######################################
 # set_wx_target_properties function
 # @param[in] target : cmake target
 function(set_wxtarget_properties target)
   if(MSVC)
-    # toolset
-    if(MSVC_VERSION GREATER 1910 AND MSVC_VERSION LESS 1919) # VS 15.0 2017
-      set(toolset vc141)
-    elseif(MSVC_VERSION EQUAL 1900) # VS 14.0 2015
-      set(toolset vc140)
-    elseif(MSVC_VERSION EQUAL 1800) # VS 12.0 2013
-      set(toolset vc120)
-    elseif(MSVC_VERSION EQUAL 1700) # VS 11.0 2012
-      set(toolset vc110)
-    elseif(MSVC_VERSION EQUAL 1600) # VS 10.0 2010
-      set(toolset vc100)
-    elseif(MSVC_VERSION EQUAL 1500) # VS 9.0 2008
-      set(toolset vc90)
-    else()
-      set(toolset vcXX)
-      message(SEND_ERROR "wx.cmake: MSVC compiler support lacking")
-    endif()
-    # wxbasename
+    set(toolset vc)
     set(wxbasename wxmsw)
   else()
-    set(wxbasename wxX)
+    set(toolset cc)
+    set(wxbasename wxcc)
   endif()
+  if(COMMAND xpGetCompilerPrefix)
+    xpGetCompilerPrefix(toolset)
+  endif()
+  set(unicode u)
   if(XP_BUILD_STATIC_RT) # from flags.cmake include, xpCommonFlags, xpopts.cmake
     set(static s)
   endif()
   if(${target} MATCHES "base")
-    get_directory_property(global_includes INCLUDE_DIRECTORIES)
-    set_property(TARGET ${target} PROPERTY
-      INCLUDE_DIRECTORIES ${global_includes} ${wxroot}/src/regex ${wxroot}/src/zlib)
-    set_property(TARGET ${target} PROPERTY
-      COMPILE_DEFINITIONS __WXMSW__ WXBUILDING wxUSE_GUI=0 wxUSE_BASE=1 UNICODE _UNICODE)
     set_property(TARGET ${target} PROPERTY FOLDER wxbase_libs)
     set_target_properties(${target} PROPERTIES
-      OUTPUT_NAME wxbase${WX_VERSION}${toolset}u${static}x
-      DEBUG_OUTPUT_NAME wxbase${WX_VERSION}${toolset}u${static}d
-      RELEASE_OUTPUT_NAME wxbase${WX_VERSION}${toolset}u${static}
+      OUTPUT_NAME wxbase${WX_VERSION}${toolset}${unicode}${static}x
+      DEBUG_OUTPUT_NAME wxbase${WX_VERSION}${toolset}${unicode}${static}d
+      RELEASE_OUTPUT_NAME wxbase${WX_VERSION}${toolset}${unicode}${static}
       COMPILE_FLAGS /W4
       )
     install(FILES ${wxsetup} DESTINATION lib/msw/${wxver}/wx)
   elseif(${target} MATCHES "net" OR ${target} MATCHES "xml")
-    set_property(TARGET ${target} PROPERTY
-      COMPILE_DEFINITIONS __WXMSW__ WXBUILDING wxUSE_GUI=0 UNICODE _UNICODE)
     set_property(TARGET ${target} PROPERTY FOLDER wxbase_libs)
     set_target_properties(${target} PROPERTIES
-      OUTPUT_NAME wxbase${WX_VERSION}${toolset}u${static}x_${target}
-      DEBUG_OUTPUT_NAME wxbase${WX_VERSION}${toolset}u${static}d_${target}
-      RELEASE_OUTPUT_NAME wxbase${WX_VERSION}${toolset}u${static}_${target}
+      OUTPUT_NAME wxbase${WX_VERSION}${toolset}${unicode}${static}x_${target}
+      DEBUG_OUTPUT_NAME wxbase${WX_VERSION}${toolset}${unicode}${static}d_${target}
+      RELEASE_OUTPUT_NAME wxbase${WX_VERSION}${toolset}${unicode}${static}_${target}
       COMPILE_FLAGS /W4
       )
   elseif(${target} MATCHES "^wx") # any target that starts with "wx"
-    set_property(TARGET ${target} PROPERTY FOLDER wxthirdparty_libs)
-    get_property(_defs TARGET ${target} PROPERTY COMPILE_DEFINITIONS)
+    get_target_property(_defs ${target} COMPILE_DEFINITIONS)
     list(FIND _defs UNICODE isUnicode)
     if(NOT isUnicode EQUAL -1)
       set(unicode u)
     else()
       set(unicode "")
     endif()
+    set_property(TARGET ${target} PROPERTY FOLDER wxthirdparty_libs)
     set_target_properties(${target} PROPERTIES
       OUTPUT_NAME ${target}${WX_VERSION}_${toolset}${unicode}${static}x
       DEBUG_OUTPUT_NAME ${target}${WX_VERSION}_${toolset}${unicode}${static}d
@@ -92,17 +69,11 @@ function(set_wxtarget_properties target)
       COMPILE_FLAGS /W1
       )
   else()
-    get_target_property(target_defs ${target} COMPILE_DEFINITIONS)
-    if(NOT target_defs)
-      set(target_defs)
-    endif()
-    set_property(TARGET ${target} PROPERTY
-      COMPILE_DEFINITIONS __WXMSW__ WXBUILDING UNICODE _UNICODE ${target_defs})
     set_property(TARGET ${target} PROPERTY FOLDER ${wxbasename}_libs)
     set_target_properties(${target} PROPERTIES
-      OUTPUT_NAME ${wxbasename}${WX_VERSION}${toolset}u${static}x_${target}
-      DEBUG_OUTPUT_NAME ${wxbasename}${WX_VERSION}${toolset}u${static}d_${target}
-      RELEASE_OUTPUT_NAME ${wxbasename}${WX_VERSION}${toolset}u${static}_${target}
+      OUTPUT_NAME ${wxbasename}${WX_VERSION}${toolset}${unicode}${static}x_${target}
+      DEBUG_OUTPUT_NAME ${wxbasename}${WX_VERSION}${toolset}${unicode}${static}d_${target}
+      RELEASE_OUTPUT_NAME ${wxbasename}${WX_VERSION}${toolset}${unicode}${static}_${target}
       COMPILE_FLAGS /W4
       )
   endif()
@@ -180,4 +151,4 @@ install(DIRECTORY
 install(FILES ${wxhdrs} ${wxcpps} DESTINATION include/${wxver}/wx)
 set(customsetuph ${wxroot}/build/cmake/setup.h)
 install(FILES ${customsetuph} DESTINATION include/${wxver}/wx/msvc/wx)
-install(EXPORT ${PROJECT_NAME}${WX_VERSION}-targets DESTINATION lib/cmake)
+install(EXPORT ${PROJECT_NAME}${WX_VERSION}-targets DESTINATION lib/cmake NAMESPACE wx::)

@@ -28,4 +28,5 @@ list(APPEND ${lib_name}_libsrcs ${Source_srcs})
 #######################################
 # library
 add_library(${lib_name} STATIC ${${lib_name}_libsrcs})
+target_include_directories(${lib_name} PUBLIC $<BUILD_INTERFACE:${wxroot}/src/zlib>)
 set_wxtarget_properties(${lib_name})

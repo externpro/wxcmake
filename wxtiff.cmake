@@ -49,11 +49,6 @@ list(APPEND ${lib_name}_libsrcs ${Source_srcs})
 #######################################
 # library
 add_library(${lib_name} STATIC ${${lib_name}_libsrcs})
-get_directory_property(global_includes INCLUDE_DIRECTORIES)
-set_property(TARGET ${lib_name} PROPERTY
-  INCLUDE_DIRECTORIES ${global_includes}
-    ${wxroot}/src/tiff/libtiff
-    ${wxroot}/src/jpeg
-    ${wxroot}/src/zlib
-  )
+target_include_directories(${lib_name} PUBLIC $<BUILD_INTERFACE:${wxroot}/src/tiff/libtiff>)
+target_link_libraries(${lib_name} PRIVATE wxjpeg wxzlib)
 set_wxtarget_properties(${lib_name})

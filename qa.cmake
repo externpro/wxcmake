@@ -50,4 +50,5 @@ list(APPEND ${lib_name}_libsrcs ${Setup_hdrs})
 #######################################
 # library
 add_library(${lib_name} STATIC ${${lib_name}_libsrcs})
+target_link_libraries(${lib_name} PUBLIC core xml)
 set_wxtarget_properties(${lib_name})

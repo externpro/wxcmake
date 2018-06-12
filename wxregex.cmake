@@ -25,7 +25,9 @@ list(APPEND ${lib_name}_libsrcs ${Source_srcs})
 #######################################
 # library
 add_library(${lib_name} STATIC ${${lib_name}_libsrcs})
-set_property(TARGET ${lib_name} PROPERTY
-  COMPILE_DEFINITIONS __WXMSW__ UNICODE _UNICODE
+target_compile_definitions(${lib_name} PRIVATE __WXMSW__ UNICODE _UNICODE)
+target_include_directories(${lib_name} PUBLIC $<BUILD_INTERFACE:${wxroot}/src/regex>
+  PRIVATE $<BUILD_INTERFACE:${wxroot}/include>
+  $<BUILD_INTERFACE:${LIBRARY_OUTPUT_PATH}> # find setup.h
   )
 set_wxtarget_properties(${lib_name})

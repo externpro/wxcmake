@@ -64,4 +64,5 @@ list(APPEND ${lib_name}_libsrcs ${Source_srcs})
 #######################################
 # library
 add_library(${lib_name} STATIC ${${lib_name}_libsrcs})
+target_link_libraries(${lib_name} PUBLIC adv)
 set_wxtarget_properties(${lib_name})

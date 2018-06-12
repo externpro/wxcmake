@@ -357,4 +357,11 @@ list(APPEND ${lib_name}_libsrcs ${Setup_hdrs})
 #######################################
 # library
 add_library(${lib_name} STATIC ${${lib_name}_libsrcs})
+target_compile_definitions(${lib_name} PUBLIC WXBUILDING __WXMSW__ UNICODE _UNICODE
+  PRIVATE wxUSE_GUI=0 wxUSE_BASE=1
+  )
+target_include_directories(${lib_name} PUBLIC $<BUILD_INTERFACE:${wxroot}/include>
+  $<BUILD_INTERFACE:${LIBRARY_OUTPUT_PATH}> # find setup.h
+  )
+target_link_libraries(${lib_name} PRIVATE wxregex wxzlib)
 set_wxtarget_properties(${lib_name})

@@ -156,14 +156,10 @@ list(APPEND ${lib_name}_libsrcs ${Source_srcs})
 #######################################
 # library
 add_library(${lib_name} STATIC ${${lib_name}_libsrcs})
-get_directory_property(global_includes INCLUDE_DIRECTORIES)
-set_property(TARGET ${lib_name} PROPERTY
-  INCLUDE_DIRECTORIES ${global_includes}
-    ${wxroot}/src/stc/scintilla/include
-    ${wxroot}/src/stc/scintilla/lexlib
-    ${wxroot}/src/stc/scintilla/src
-  )
-set_property(TARGET ${lib_name} PROPERTY
-  COMPILE_DEFINITIONS SCI_LEXER LINK_LEXERS __WXMSW__
+target_compile_definitions(${lib_name} PRIVATE SCI_LEXER LINK_LEXERS __WXMSW__)
+target_include_directories(${lib_name} PUBLIC
+  $<BUILD_INTERFACE:${wxroot}/src/stc/scintilla/include>
+  $<BUILD_INTERFACE:${wxroot}/src/stc/scintilla/lexlib>
+  $<BUILD_INTERFACE:${wxroot}/src/stc/scintilla/src>
   )
 set_wxtarget_properties(${lib_name})

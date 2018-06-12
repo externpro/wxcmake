@@ -51,8 +51,6 @@ list(APPEND ${lib_name}_libsrcs ${Source_srcs})
 #######################################
 # library
 add_library(${lib_name} STATIC ${${lib_name}_libsrcs})
-get_directory_property(global_includes INCLUDE_DIRECTORIES)
-set_property(TARGET ${lib_name} PROPERTY
-  INCLUDE_DIRECTORIES ${global_includes} ${wxroot}/src/expat/lib
-  )
+target_compile_definitions(${lib_name} PRIVATE wxUSE_GUI=0)
+target_link_libraries(${lib_name} PUBLIC base PRIVATE wxexpat)
 set_wxtarget_properties(${lib_name})
