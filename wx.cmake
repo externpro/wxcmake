@@ -85,6 +85,17 @@ function(set_wxtarget_properties target)
     # MSVC defaults to X86, but specifying it here avoids a link warning (LNK4068)
     set_target_properties(${target} PROPERTIES STATIC_LIBRARY_FLAGS "/MACHINE:X86")
   endif()
+  target_include_directories(${target} PUBLIC
+    $<INSTALL_INTERFACE:$<INSTALL_PREFIX>/include/${wxver}>
+    )
+  if(MSVC)
+    target_include_directories(${target} PUBLIC
+      $<INSTALL_INTERFACE:$<INSTALL_PREFIX>/include/${wxver}/wx/msvc>
+      )
+    target_compile_definitions(${target} PUBLIC
+      $<INSTALL_INTERFACE:wxUSE_NO_MANIFEST>
+      )
+  endif()
   install(TARGETS ${lib_name} EXPORT ${PROJECT_NAME}${WX_VERSION}-targets
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION lib
@@ -94,7 +105,7 @@ endfunction()
 #######################################
 # wx libraries
 # NOTE: ordered by library dependencies
-# see http://docs.wxwidgets.org/trunk/page_libs.html
+# see http://docs.wxwidgets.org/3.1.1/page_libs.html
 set(wxlibs
   wxexpat
   wxjpeg
