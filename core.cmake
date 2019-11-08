@@ -687,4 +687,10 @@ list(APPEND ${lib_name}_libsrcs ${Setup_hdrs})
 add_library(${lib_name} STATIC ${${lib_name}_libsrcs})
 target_compile_definitions(${lib_name} PRIVATE wxUSE_BASE=0)
 target_link_libraries(${lib_name} PUBLIC base PRIVATE wxjpeg wxpng wxtiff)
+if(MSVC)
+  target_link_libraries(${lib_name} INTERFACE
+    rpcrt4 comctl32 # system libraries required by wxCore
+    gdiplus # wxUSE_GRAPHICS_CONTEXT set to 1 in setup.h
+    )
+endif()
 set_wxtarget_properties(${lib_name})
