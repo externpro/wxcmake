@@ -25,6 +25,14 @@ set(Source_srcs
   )
 source_group("Source Files" FILES ${Source_srcs})
 list(APPEND ${lib_name}_libsrcs ${Source_srcs})
+########################
+set(arm_srcs
+  ${wxroot}/src/png/arm/arm_init.c
+  ${wxroot}/src/png/arm/filter_neon_intrinsics.c
+  ${wxroot}/src/png/arm/filter_neon.S
+  )
+source_group("Arm Source Files" FILES ${arm_srcs})
+list(APPEND ${lib_name}_libsrcs ${arm_srcs})
 #######################################
 # library
 add_library(${lib_name} STATIC ${${lib_name}_libsrcs})
