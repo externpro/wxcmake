@@ -1,16 +1,18 @@
 set(wxroot ${CMAKE_SOURCE_DIR})
 set(CMAKE_MODULE_PATH ${wxroot}/build/cmake ${CMAKE_MODULE_PATH})
+include(GNUInstallDirs)
 include(flags OPTIONAL)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON) # enables MSVC Solution Folders
 add_definitions(-D_LIB)
 # reset any postfix setting done previously
 set(CMAKE_DEBUG_POSTFIX)
 set(CMAKE_RELEASE_POSTFIX)
-set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib)
-if(NOT DEFINED WX_VERSION) # passed in
-  set(WX_VERSION 00)
+set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
+string(REGEX REPLACE "include/wx-([0-9]*).([0-9]*)$" "\\1.\\2" wxDotVer ${CMAKE_INSTALL_INCLUDEDIR})
+if(wxDotVer STREQUAL CMAKE_INSTALL_INCLUDEDIR)
+  set(wxDotVer 0.0) # default CMAKE_INSTALL_INCLUDEDIR, not passed in, or doesn't include wx-X.X
 endif()
-string(REGEX REPLACE "^([0-9])\([0-9]*)$" "wx-\\1.\\2" wxver ${WX_VERSION})
+string(REGEX REPLACE "([0-9])\\.([0-9])?" "\\1\\2" wxVer ${wxDotVer})
 #######################################
 # setup.h
 set(wxsetup ${wxroot}/include/wx/msw/setup.h)
@@ -39,18 +41,18 @@ function(set_wxtarget_properties target)
   if(${target} MATCHES "base")
     set_property(TARGET ${target} PROPERTY FOLDER wxbase_libs)
     set_target_properties(${target} PROPERTIES
-      OUTPUT_NAME wxbase${WX_VERSION}${toolset}${unicode}${static}x
-      DEBUG_OUTPUT_NAME wxbase${WX_VERSION}${toolset}${unicode}${static}d
-      RELEASE_OUTPUT_NAME wxbase${WX_VERSION}${toolset}${unicode}${static}
+      OUTPUT_NAME wxbase${wxVer}${toolset}${unicode}${static}x
+      DEBUG_OUTPUT_NAME wxbase${wxVer}${toolset}${unicode}${static}d
+      RELEASE_OUTPUT_NAME wxbase${wxVer}${toolset}${unicode}${static}
       COMPILE_FLAGS /W4
       )
-    install(FILES ${wxsetup} DESTINATION lib/msw/${wxver}/wx)
+    install(FILES ${wxsetup} DESTINATION ${CMAKE_INSTALL_LIBDIR}/msw/wx-${wxDotVer}/wx)
   elseif(${target} MATCHES "net" OR ${target} MATCHES "xml")
     set_property(TARGET ${target} PROPERTY FOLDER wxbase_libs)
     set_target_properties(${target} PROPERTIES
-      OUTPUT_NAME wxbase${WX_VERSION}${toolset}${unicode}${static}x_${target}
-      DEBUG_OUTPUT_NAME wxbase${WX_VERSION}${toolset}${unicode}${static}d_${target}
-      RELEASE_OUTPUT_NAME wxbase${WX_VERSION}${toolset}${unicode}${static}_${target}
+      OUTPUT_NAME wxbase${wxVer}${toolset}${unicode}${static}x_${target}
+      DEBUG_OUTPUT_NAME wxbase${wxVer}${toolset}${unicode}${static}d_${target}
+      RELEASE_OUTPUT_NAME wxbase${wxVer}${toolset}${unicode}${static}_${target}
       COMPILE_FLAGS /W4
       )
   elseif(${target} MATCHES "^wx") # any target that starts with "wx"
@@ -63,17 +65,17 @@ function(set_wxtarget_properties target)
     endif()
     set_property(TARGET ${target} PROPERTY FOLDER wxthirdparty_libs)
     set_target_properties(${target} PROPERTIES
-      OUTPUT_NAME ${target}${WX_VERSION}_${toolset}${unicode}${static}x
-      DEBUG_OUTPUT_NAME ${target}${WX_VERSION}_${toolset}${unicode}${static}d
-      RELEASE_OUTPUT_NAME ${target}${WX_VERSION}_${toolset}${unicode}${static}
+      OUTPUT_NAME ${target}${wxVer}_${toolset}${unicode}${static}x
+      DEBUG_OUTPUT_NAME ${target}${wxVer}_${toolset}${unicode}${static}d
+      RELEASE_OUTPUT_NAME ${target}${wxVer}_${toolset}${unicode}${static}
       COMPILE_FLAGS /W1
       )
   else()
     set_property(TARGET ${target} PROPERTY FOLDER ${wxbasename}_libs)
     set_target_properties(${target} PROPERTIES
-      OUTPUT_NAME ${wxbasename}${WX_VERSION}${toolset}${unicode}${static}x_${target}
-      DEBUG_OUTPUT_NAME ${wxbasename}${WX_VERSION}${toolset}${unicode}${static}d_${target}
-      RELEASE_OUTPUT_NAME ${wxbasename}${WX_VERSION}${toolset}${unicode}${static}_${target}
+      OUTPUT_NAME ${wxbasename}${wxVer}${toolset}${unicode}${static}x_${target}
+      DEBUG_OUTPUT_NAME ${wxbasename}${wxVer}${toolset}${unicode}${static}d_${target}
+      RELEASE_OUTPUT_NAME ${wxbasename}${wxVer}${toolset}${unicode}${static}_${target}
       COMPILE_FLAGS /W4
       )
   endif()
@@ -85,21 +87,15 @@ function(set_wxtarget_properties target)
     # MSVC defaults to X86, but specifying it here avoids a link warning (LNK4068)
     set_target_properties(${target} PROPERTIES STATIC_LIBRARY_FLAGS "/MACHINE:X86")
   endif()
-  target_include_directories(${target} PUBLIC
-    $<INSTALL_INTERFACE:$<INSTALL_PREFIX>/include/${wxver}>
-    )
+  target_include_directories(${target} PUBLIC $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
   if(MSVC)
-    target_include_directories(${target} PUBLIC
-      $<INSTALL_INTERFACE:$<INSTALL_PREFIX>/include/${wxver}/wx/msvc>
-      )
-    target_compile_definitions(${target} PUBLIC
-      $<INSTALL_INTERFACE:wxUSE_NO_MANIFEST>
-      )
+    target_include_directories(${target} PUBLIC $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/wx/msvc>)
+    target_compile_definitions(${target} PUBLIC $<INSTALL_INTERFACE:wxUSE_NO_MANIFEST>)
   endif()
-  install(TARGETS ${lib_name} EXPORT ${PROJECT_NAME}${WX_VERSION}-targets
-    RUNTIME DESTINATION bin
-    LIBRARY DESTINATION lib
-    ARCHIVE DESTINATION lib
+  install(TARGETS ${lib_name} EXPORT ${PROJECT_NAME}-targets
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
     )
 endfunction()
 #######################################
@@ -156,10 +152,13 @@ install(DIRECTORY
   ${wxroot}/include/wx/stc
   ${wxroot}/include/wx/xml
   ${wxroot}/include/wx/xrc
-  DESTINATION include/${wxver}/wx
+  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/wx
   PATTERN ".cvsignore" EXCLUDE
   )
-install(FILES ${wxhdrs} ${wxcpps} DESTINATION include/${wxver}/wx)
+install(FILES ${wxhdrs} ${wxcpps} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/wx)
 set(customsetuph ${wxroot}/build/cmake/setup.h)
-install(FILES ${customsetuph} DESTINATION include/${wxver}/wx/msvc/wx)
-install(EXPORT ${PROJECT_NAME}${WX_VERSION}-targets DESTINATION lib/cmake NAMESPACE wx::)
+install(FILES ${customsetuph} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/wx/msvc/wx)
+if(NOT DEFINED XP_INSTALL_CMAKEDIR)
+  set(XP_INSTALL_CMAKEDIR ${CMAKE_INSTALL_DATADIR}/cmake)
+endif()
+install(EXPORT ${PROJECT_NAME}-targets DESTINATION ${XP_INSTALL_CMAKEDIR} NAMESPACE wx::)
