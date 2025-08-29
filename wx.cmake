@@ -1,7 +1,7 @@
 set(wxroot ${CMAKE_SOURCE_DIR})
 set(CMAKE_MODULE_PATH ${wxroot}/build/cmake ${CMAKE_MODULE_PATH})
 include(GNUInstallDirs)
-include(flags OPTIONAL)
+include(xpflags)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON) # enables MSVC Solution Folders
 add_definitions(-D_LIB)
 # reset any postfix setting done previously
@@ -35,7 +35,7 @@ function(set_wxtarget_properties target)
     xpGetCompilerPrefix(toolset)
   endif()
   set(unicode u)
-  if(XP_BUILD_STATIC_RT) # from flags.cmake include, xpCommonFlags, xpopts.cmake
+  if(XP_BUILD_STATIC_RT) # from wxflags.cmake include, xpCommonFlags, xpopts.cmake
     set(static s)
   endif()
   if(${target} MATCHES "base")
