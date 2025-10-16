@@ -1,14 +1,7 @@
-file(READ "${CMAKE_SOURCE_DIR}/include/wx/version.h" _version_h)
-string(REGEX MATCH "#define wxMAJOR_VERSION[ \\t]+([0-9]+)" _ ${_version_h})
-set(wxMAJOR_VERSION ${CMAKE_MATCH_1})
-string(REGEX MATCH "#define wxMINOR_VERSION[ \\t]+([0-9]+)" _ ${_version_h})
-set(wxMINOR_VERSION ${CMAKE_MATCH_1})
-set(wxIncDir "${CMAKE_INSTALL_INCLUDEDIR}/wx-${wxMAJOR_VERSION}.${wxMINOR_VERSION}")
-unset(_version_h)
 install(FILES ${CMAKE_SOURCE_DIR}/include/wx/msw/winundef.h DESTINATION ${wxIncDir}/externpro)
 set(tiffHdrs "src/tiff/libtiff/*.h")
 file(GLOB srcTiffHdrs "${CMAKE_SOURCE_DIR}/${tiffHdrs}")
 install(FILES ${srcTiffHdrs} DESTINATION ${wxIncDir}/wx/tiff)
-ExternalProject_Get_Property(${CMAKE_PROJECT_NAME} BINARY_DIR)
-file(GLOB binTiffHdrs "${BINARY_DIR}/${tiffHdrs}")
+# TRICKY: install tiff .h files from BINARY_DIR on non-msw, configure-built platforms
+file(GLOB binTiffHdrs "${BINARY_DIR}/${tiffHdrs}") # BINARY_DIR set in configure.cmake
 install(FILES ${binTiffHdrs} DESTINATION ${wxIncDir}/wx/tiff)

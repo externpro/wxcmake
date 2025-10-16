@@ -87,3 +87,6 @@ install(DIRECTORY ${INSTALL_DIR}/${CMAKE_INSTALL_INCLUDEDIR}/ DESTINATION ${CMAK
 install(DIRECTORY ${INSTALL_DIR}/${CMAKE_INSTALL_LIBDIR}/ DESTINATION ${CMAKE_INSTALL_LIBDIR})
 install(PROGRAMS ${INSTALL_DIR}/${CMAKE_INSTALL_BINDIR}/wx-config DESTINATION ${CMAKE_INSTALL_BINDIR})
 install(FILES ${CMAKE_CURRENT_LIST_DIR}/${targetsFile}.cmake DESTINATION ${XP_INSTALL_CMAKEDIR})
+# TRICKY: BINARY_DIR is needed for copyheaders, but ExternalProject is only in configure.cmake
+# and not in msw-only wx.cmake (only need tiff .h files from BINARY_DIR for not-msw)
+ExternalProject_Get_Property(${CMAKE_PROJECT_NAME} BINARY_DIR)
