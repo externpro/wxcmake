@@ -1,13 +1,11 @@
 set(wxroot ${CMAKE_SOURCE_DIR})
-set(CMAKE_MODULE_PATH ${wxroot}/build/cmake ${CMAKE_MODULE_PATH})
-include(GNUInstallDirs)
-include(xpflags)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON) # enables MSVC Solution Folders
 add_definitions(-D_LIB)
 # reset any postfix setting done previously
 set(CMAKE_DEBUG_POSTFIX)
 set(CMAKE_RELEASE_POSTFIX)
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
+set(CMAKE_INSTALL_INCLUDEDIR ${wxIncDir})
 string(REGEX REPLACE "include/wx-([0-9]*).([0-9]*)$" "\\1.\\2" wxDotVer ${CMAKE_INSTALL_INCLUDEDIR})
 if(wxDotVer STREQUAL CMAKE_INSTALL_INCLUDEDIR)
   set(wxDotVer 0.0) # default CMAKE_INSTALL_INCLUDEDIR, not passed in, or doesn't include wx-X.X
@@ -92,7 +90,7 @@ function(set_wxtarget_properties target)
     target_include_directories(${target} PUBLIC $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/wx/msvc>)
     target_compile_definitions(${target} PUBLIC $<INSTALL_INTERFACE:wxUSE_NO_MANIFEST>)
   endif()
-  install(TARGETS ${lib_name} EXPORT ${PROJECT_NAME}-targets
+  install(TARGETS ${lib_name} EXPORT ${targetsFile}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
@@ -158,7 +156,4 @@ install(DIRECTORY
 install(FILES ${wxhdrs} ${wxcpps} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/wx)
 set(customsetuph ${wxroot}/build/cmake/setup.h)
 install(FILES ${customsetuph} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/wx/msvc/wx)
-if(NOT DEFINED XP_INSTALL_CMAKEDIR)
-  set(XP_INSTALL_CMAKEDIR ${CMAKE_INSTALL_DATADIR}/cmake)
-endif()
-install(EXPORT ${PROJECT_NAME}-targets DESTINATION ${XP_INSTALL_CMAKEDIR} NAMESPACE wx::)
+install(EXPORT ${targetsFile} DESTINATION ${XP_INSTALL_CMAKEDIR} NAMESPACE ${WX_NAMESPACE})
