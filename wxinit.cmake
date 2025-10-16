@@ -14,6 +14,7 @@ function(callPackageDevel)
     "# http://docs.wxwidgets.org/trunk/page_libs.html"
     "# TRICKY: reverse dependency order (base should be last)"
     "set(wx_all_libs aui propgrid richtext adv gl html core net xml base)"
+    ""
     )
   string(JOIN "\n" EXT2
     "if(NOT DEFINED wx_libs)"
