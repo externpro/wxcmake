@@ -1,3 +1,49 @@
+include(GNUInstallDirs)
+include(xpflags)
+if(NOT DEFINED XP_INSTALL_CMAKEDIR)
+  set(XP_INSTALL_CMAKEDIR ${CMAKE_INSTALL_DATADIR}/cmake)
+endif()
+set(WX_NAMESPACE "wx::") # NOTE: hard-coded in wxwidgets-targets.cmake
+set(targetsFile ${PROJECT_NAME}-targets)
+function(callPackageDevel)
+  # TRICKY: why a function?
+  # variable scope only needed for xpPackageDevel call
+  # especially set(CMAKE_PROJECT_NAME...
+  string(TOUPPER ${PROJECT_NAME} PRJ)
+  string(JOIN "\n" EXT1 # TRICKY: set wx_all_libs before targets file include
+    "# http://docs.wxwidgets.org/trunk/page_libs.html"
+    "# TRICKY: reverse dependency order (base should be last)"
+    "set(wx_all_libs aui propgrid richtext adv gl html core net xml base)"
+    )
+  string(JOIN "\n" EXT2
+    "if(NOT DEFINED wx_libs)"
+    "  set(wx_libs \${wx_all_libs})"
+    "endif()"
+    "set(${PRJ}_LIBRARIES \${wx_libs})"
+    "list(TRANSFORM ${PRJ}_LIBRARIES PREPEND ${WX_NAMESPACE})"
+    "list(APPEND reqVars ${PRJ}_LIBRARIES)"
+    ""
+    )
+  if(DEFINED GTK_VER AND DEFINED GTK_VERSION)
+    string(JOIN "\n" EXT3
+      "set(wxGTK_VER ${GTK_VER})"
+      "set(wxGTK${GTK_VER}_VERSION ${GTK_VERSION})"
+      "list(APPEND reqVars wxGTK_VER wxGTK${GTK_VER}_VERSION)"
+      ""
+      )
+  endif()
+  set(CMAKE_PROJECT_NAME wxWidgets) # match name of repo
+  xpPackageDevel(TARGETS_FILE ${targetsFile})
+endfunction()
+callPackageDevel()
+set(CMAKE_INSTALL_DEFAULT_COMPONENT_NAME devel)
+file(READ "${CMAKE_SOURCE_DIR}/include/wx/version.h" _version_h)
+string(REGEX MATCH "#define wxMAJOR_VERSION[ \\t]+([0-9]+)" _ ${_version_h})
+set(wxMAJOR_VERSION ${CMAKE_MATCH_1})
+string(REGEX MATCH "#define wxMINOR_VERSION[ \\t]+([0-9]+)" _ ${_version_h})
+set(wxMINOR_VERSION ${CMAKE_MATCH_1})
+set(wxIncDir "${CMAKE_INSTALL_INCLUDEDIR}/wx-${wxMAJOR_VERSION}.${wxMINOR_VERSION}")
+unset(_version_h)
 if(UNIX AND NOT ${CMAKE_SYSTEM_NAME} STREQUAL Darwin)
   # TODO: detect package required to build on rhel:
   #   dnf install libSM-devel.x86_64
@@ -36,28 +82,3 @@ if(UNIX AND NOT ${CMAKE_SYSTEM_NAME} STREQUAL Darwin)
       )
   endif()
 endif()
-function(callPackageDevel)
-  string(TOUPPER ${PROJECT_NAME} PRJ)
-  string(JOIN "\n" EXT2
-    "# http://docs.wxwidgets.org/trunk/page_libs.html"
-    "# TRICKY: reverse dependency order (base should be last)"
-    "set(wx_all_libs aui propgrid richtext adv gl html core net xml base)"
-    "if(NOT DEFINED wx_libs)"
-    "  set(wx_libs \${wx_all_libs})"
-    "endif()"
-    "set(${PRJ}_LIBRARIES \${wx_libs})"
-    "list(TRANSFORM ${PRJ}_LIBRARIES PREPEND ${WX_NAMESPACE})"
-    "list(APPEND reqVars ${PRJ}_LIBRARIES)"
-    ""
-    )
-  if(DEFINED GTK_VER AND DEFINED GTK_VERSION)
-    string(JOIN "\n" EXT3
-      "set(wxGTK_VER ${GTK_VER})"
-      "set(wxGTK${GTK_VER}_VERSION ${GTK_VERSION})"
-      "list(APPEND reqVars wxGTK_VER wxGTK${GTK_VER}_VERSION)"
-      ""
-      )
-  endif()
-  set(CMAKE_PROJECT_NAME wxWidgets) # match name of repo
-  xpPackageDevel(TARGETS_FILE ${targetsFile})
-endfunction()
