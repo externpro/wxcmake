@@ -1,0 +1,108 @@
+digraph GG {
+  node [fontsize=12];
+  # https://docs.wxwidgets.org/3.1.0/page_libs.html
+  ##########
+  # all lightblue libraries depend on base: non-gui libraries
+  "base" [shape=oval, style=filled, fillcolor=lightgrey];
+  "core" [shape=oval, style=filled, fillcolor=lightblue];
+  "net" [shape=oval, style=filled, fillcolor=lightblue];
+  "xml" [shape=oval, style=filled, fillcolor=lightblue];
+  ##########
+  # all palegreen libraries depend on core: gui libraries
+  "adv" [shape=oval, style=filled, fillcolor=palegreen];
+  "aui" [shape=oval, style=filled, fillcolor=palegreen];
+  "gl" [shape=oval, style=filled, fillcolor=palegreen];
+  "html" [shape=oval, style=filled, fillcolor=palegreen];
+  "media" [shape=oval, style=filled, fillcolor=palegreen];
+  "propgrid" [shape=oval, style=filled, fillcolor=palegreen];
+  "qa" [shape=oval, style=filled, fillcolor=palegreen];
+  "ribbon" [shape=oval, style=filled, fillcolor=palegreen];
+  "richtext" [shape=oval, style=filled, fillcolor=palegreen];
+  "stc" [shape=oval, style=filled, fillcolor=palegreen];
+  "webview" [shape=oval, style=filled, fillcolor=palegreen];
+  "xrc" [shape=oval, style=filled, fillcolor=palegreen];
+  ##########
+  # burlywood: wx-external libraries
+  "wxexpat" [shape=diamond, style=filled, fillcolor=burlywood];
+  "wxjpeg" [shape=diamond, style=filled, fillcolor=burlywood];
+  "wxpng" [shape=diamond, style=filled, fillcolor=burlywood];
+  "wxregex" [shape=diamond, style=filled, fillcolor=burlywood];
+  "wxscintilla" [shape=diamond, style=filled, fillcolor=burlywood];
+  "wxtiff" [shape=diamond, style=filled, fillcolor=burlywood];
+  "wxzlib" [shape=diamond, style=filled, fillcolor=burlywood];
+  ##########
+  # mistyrose: linux system libraries
+  "dl" [shape=box, style=filled, fillcolor=mistyrose];
+  "m" [shape=box, style=filled, fillcolor=mistyrose];
+  "gtk" [shape=box, style=filled, fillcolor=mistyrose];
+  "X11" [shape=box, style=filled, fillcolor=mistyrose];
+  "Xxf86vm" [shape=box, style=filled, fillcolor=mistyrose];
+  "SM" [shape=box, style=filled, fillcolor=mistyrose];
+  ##########
+  # cornsilk: darwin system libraries
+  "Iconv::Iconv" [shape=box, style=filled, fillcolor=cornsilk];
+  "Carbon" [shape=box, style=filled, fillcolor=cornsilk];
+  "Cocoa" [shape=box, style=filled, fillcolor=cornsilk];
+  "IOKit" [shape=box, style=filled, fillcolor=cornsilk];
+  "System" [shape=box, style=filled, fillcolor=cornsilk];
+  "AudioToolbox" [shape=box, style=filled, fillcolor=cornsilk];
+  "OpenGL" [shape=box, style=filled, fillcolor=cornsilk];
+  ##########
+  # peachpuff: linux/darwin system libraries
+  "Threads::Threads" [shape=box, style=filled, fillcolor=peachpuff];
+  ##########
+  # thistle: msw system libraries
+  "rpcrt4" [shape=box, style=filled, fillcolor=thistle];
+  "comctl32" [shape=box, style=filled, fillcolor=thistle];
+  "gdiplus" [shape=box, style=filled, fillcolor=thistle];
+  ##########
+  # dashed lines: private/link dependency
+  "adv" -> "core";
+  "aui" -> "adv";
+  "aui" -> "html";
+  "base" -> "wxregex" [style=dashed];
+  "base" -> "wxzlib" [style=dashed];
+  "base" -> "Threads::Threads" [style=dashed];
+  "base" -> "dl" [style=dashed];
+  "base" -> "m" [style=dashed];
+  "base" -> "Iconv::Iconv" [style=dashed];
+  "base" -> "System" [style=dashed];
+  "core" -> "base";
+  "core" -> "wxjpeg" [style=dashed];
+  "core" -> "wxpng" [style=dashed];
+  "core" -> "wxtiff" [style=dashed];
+  "core" -> "gtk" [style=dashed];
+  "core" -> "X11" [style=dashed];
+  "core" -> "Xxf86vm" [style=dashed];
+  "core" -> "SM" [style=dashed];
+  "core" -> "Carbon" [style=dashed];
+  "core" -> "Cocoa" [style=dashed];
+  "core" -> "IOKit" [style=dashed];
+  "core" -> "rpcrt4" [style=dotted];
+  "core" -> "comctl32" [style=dotted];
+  "core" -> "gdiplus" [style=dotted];
+  "gl" -> "core";
+  "gl" -> "OpenGL" [style=dashed];
+  "html" -> "core";
+  "media" -> "core";
+  "media" -> "AudioToolbox" [style=dashed];
+  "net" -> "base";
+  "propgrid" -> "adv";
+  "qa" -> "core";
+  "qa" -> "xml";
+  "ribbon" -> "core";
+  "richtext" -> "adv";
+  "richtext" -> "html";
+  "richtext" -> "xml";
+  "stc" -> "core";
+  "stc" -> "wxscintilla" [style=dashed];
+  "webview" -> "core";
+  "xml" -> "base";
+  "xml" -> "wxexpat" [style=dashed];
+  "xrc" -> "adv";
+  "xrc" -> "html";
+  "xrc" -> "xml";
+  "wxpng" -> "wxzlib" [style=dashed];
+  "wxtiff" -> "wxjpeg" [style=dashed];
+  "wxtiff" -> "wxzlib" [style=dashed];
+}
