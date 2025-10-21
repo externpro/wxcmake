@@ -9,7 +9,8 @@ function(callPackageDevel)
   # TRICKY: why a function?
   # variable scope only needed for xpPackageDevel call
   # especially set(CMAKE_PROJECT_NAME...
-  string(TOUPPER ${PROJECT_NAME} PRJ)
+  set(CMAKE_PROJECT_NAME wxWidgets) # match name of repo, CONFIG_EXECUTABLE
+  string(TOUPPER ${CMAKE_PROJECT_NAME} PRJ)
   string(JOIN "\n" EXT1 # TRICKY: set wx_all_libs before targets file include
     "# http://docs.wxwidgets.org/trunk/page_libs.html"
     "# TRICKY: reverse dependency order (base should be last)"
@@ -33,7 +34,12 @@ function(callPackageDevel)
       ""
       )
   endif()
-  set(CMAKE_PROJECT_NAME wxWidgets) # match name of repo
+  if(UNIX)
+    string(JOIN "\n" EXT4
+      "list(APPEND reqVars ${CMAKE_PROJECT_NAME}_CONFIG_EXECUTABLE)"
+      ""
+      )
+  endif()
   xpPackageDevel(TARGETS_FILE ${targetsFile})
 endfunction()
 callPackageDevel()
