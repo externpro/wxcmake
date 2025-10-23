@@ -51,6 +51,8 @@ string(REGEX MATCH "#define wxMINOR_VERSION[ \\t]+([0-9]+)" _ ${_version_h})
 set(wxMINOR_VERSION ${CMAKE_MATCH_1})
 set(wxIncDir "${CMAKE_INSTALL_INCLUDEDIR}/wx-${wxMAJOR_VERSION}.${wxMINOR_VERSION}")
 unset(_version_h)
+option(XP_EXPOSE_WXTIFF "expose wxtiff library" OFF)
+install(FILES ${CMAKE_SOURCE_DIR}/include/wx/msw/winundef.h DESTINATION ${wxIncDir}/externpro)
 if(UNIX AND NOT ${CMAKE_SYSTEM_NAME} STREQUAL Darwin)
   # TODO: detect package required to build on rhel:
   #   dnf install libSM-devel.x86_64

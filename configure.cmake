@@ -74,19 +74,46 @@ string(JOIN "\n" wxconfigScriptContent
   )
 set(wxconfigScript "${CMAKE_CURRENT_BINARY_DIR}/wxconfig.cmake")
 file(WRITE ${wxconfigScript} "${wxconfigScriptContent}")
+if(XP_EXPOSE_WXTIFF)
+  string(JOIN "\n" wxtiffScriptContent
+    "file(READ \${srcDir}/src/tiff/libtiff/tiff.h tiff_content)"
+    "string(REPLACE"
+    "  \"#ifdef __APPLE__\""
+    "  \"#if defined(__unix__) || defined(__APPLE__)\""
+    "  modified_content"
+    "  \"\${tiff_content}\""
+    "  )"
+    "file(WRITE \${binDir}/src/tiff/libtiff/tiff.h \"\${modified_content}\")"
+    ""
+    )
+  set(wxtiffScript "${CMAKE_CURRENT_BINARY_DIR}/wxtiff.cmake")
+  file(WRITE ${wxtiffScript} "${wxtiffScriptContent}")
+  ExternalProject_Get_Property(${CMAKE_PROJECT_NAME} BINARY_DIR)
+  set(installCmd ${CMAKE_COMMAND} -DsrcDir=${CMAKE_SOURCE_DIR} -DbinDir=${BINARY_DIR} -P ${wxtiffScript})
+else()
+  set(installCmd ${CMAKE_COMMAND} -E echo "wxtiff not exposed")
+endif()
 if(NOT TARGET wxconfig)
   ExternalProject_Add(wxconfig DEPENDS ${CMAKE_PROJECT_NAME}
     DOWNLOAD_COMMAND "" SOURCE_DIR ${CMAKE_SOURCE_DIR}
     CONFIGURE_COMMAND ${XP_CONFIGURE} # TRICKY: not XP_CONFIGURE_INSTALL
     BUILD_COMMAND ${CMAKE_COMMAND} -DcfgDir:STRING=<BINARY_DIR>/lib/wx/config
       -DinstallDir:STRING=${INSTALL_DIR} -P ${wxconfigScript}
-    INSTALL_COMMAND ""
+    INSTALL_COMMAND ${installCmd}
     )
 endif()
 install(DIRECTORY ${INSTALL_DIR}/${CMAKE_INSTALL_INCLUDEDIR}/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 install(DIRECTORY ${INSTALL_DIR}/${CMAKE_INSTALL_LIBDIR}/ DESTINATION ${CMAKE_INSTALL_LIBDIR})
 install(PROGRAMS ${INSTALL_DIR}/${CMAKE_INSTALL_BINDIR}/wx-config DESTINATION ${CMAKE_INSTALL_BINDIR})
 install(FILES ${CMAKE_CURRENT_LIST_DIR}/${targetsFile}.cmake DESTINATION ${XP_INSTALL_CMAKEDIR})
-# TRICKY: BINARY_DIR is needed for copyheaders, but ExternalProject is only in configure.cmake
-# and not in msw-only wx.cmake (only need tiff .h files from BINARY_DIR for not-msw)
-ExternalProject_Get_Property(${CMAKE_PROJECT_NAME} BINARY_DIR)
+if(XP_EXPOSE_WXTIFF)
+  ExternalProject_Get_Property(${CMAKE_PROJECT_NAME} BINARY_DIR)
+  set(tiffHdrs
+    ${CMAKE_SOURCE_DIR}/src/tiff/libtiff/tiffio.h
+    ${CMAKE_SOURCE_DIR}/src/tiff/libtiff/tiffvers.h
+    ${BINARY_DIR}/src/tiff/libtiff/tiff.h # modified by wxtiff.cmake
+    ${BINARY_DIR}/src/tiff/libtiff/tif_config.h
+    ${BINARY_DIR}/src/tiff/libtiff/tiffconf.h
+    )
+  install(FILES ${tiffHdrs} DESTINATION ${wxIncDir}/wx/tiff)
+endif()

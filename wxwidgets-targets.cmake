@@ -143,6 +143,12 @@ if(UNIX)
   endif()
   # standard way is to get these _wx_link libs from 'wx-config --libs'
   set(_wx_link wxexpat wxjpeg wxpng wxregex wxscintilla wxtiff wxzlib)
+  if(TRUE) # XP_EXPOSE_WXTIFF
+    set(wxIncDirs ${wxWidgets_INCLUDE_DIRS})
+    list(FILTER wxIncDirs INCLUDE REGEX "include/wx-")
+    list(GET wxIncDirs 0 wxIncDir)
+    set(wxtiff_INCLUDE_DIRS ${wxIncDir}/wx/tiff)
+  endif()
   foreach(lib ${wx_all_libs} ${_wx_link})
     if(NOT TARGET wx::${lib})
       add_library(wx::${lib} STATIC IMPORTED)
@@ -150,11 +156,12 @@ if(UNIX)
       set(${lib}_RELEASE ${_IMPORT_PREFIX}/lib/lib${${lib}filename}.a)
       if(EXISTS "${${lib}_RELEASE}")
         set_property(TARGET wx::${lib} APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
+        list(APPEND ${lib}_INCLUDE_DIRS ${wxWidgets_INCLUDE_DIRS})
         set_target_properties(wx::${lib} PROPERTIES
           IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "C;CXX"
           IMPORTED_LOCATION_RELEASE "${${lib}_RELEASE}"
           INTERFACE_COMPILE_DEFINITIONS "${wxWidgets_DEFINITIONS}"
-          INTERFACE_INCLUDE_DIRECTORIES "${wxWidgets_INCLUDE_DIRS}"
+          INTERFACE_INCLUDE_DIRECTORIES "${${lib}_INCLUDE_DIRS}"
           )
         if(_wx_${lib}_deps OR _wx_${lib}_link OR _wx_${lib}_libs)
           unset(linkLibs)

@@ -46,9 +46,26 @@ set(Source_srcs
   )
 source_group("Source Files" FILES ${Source_srcs})
 list(APPEND ${lib_name}_libsrcs ${Source_srcs})
+########################
+# Public Interface Headers
+if(XP_EXPOSE_WXTIFF)
+  set(Headers_srcs
+    ${wxroot}/src/tiff/libtiff/tiff.h
+    ${wxroot}/src/tiff/libtiff/tiffio.h
+    ${wxroot}/src/tiff/libtiff/tiffvers.h
+    ${wxroot}/src/tiff/libtiff/tif_config.h
+    ${wxroot}/src/tiff/libtiff/tiffconf.h
+    )
+  source_group("Headers" FILES ${Headers_srcs})
+  list(APPEND ${lib_name}_libsrcs ${Headers_srcs})
+endif()
 #######################################
 # library
 add_library(${lib_name} STATIC ${${lib_name}_libsrcs})
 target_include_directories(${lib_name} PUBLIC $<BUILD_INTERFACE:${wxroot}/src/tiff/libtiff>)
+if(XP_EXPOSE_WXTIFF)
+  target_include_directories(${lib_name} PUBLIC $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/wx/tiff>)
+  install(FILES ${Headers_srcs} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/wx/tiff)
+endif()
 target_link_libraries(${lib_name} PRIVATE wxjpeg wxzlib)
 set_wxtarget_properties(${lib_name})
