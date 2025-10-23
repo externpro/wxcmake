@@ -154,6 +154,6 @@ install(DIRECTORY
   PATTERN ".cvsignore" EXCLUDE
   )
 install(FILES ${wxhdrs} ${wxcpps} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/wx)
-set(customsetuph ${wxroot}/build/cmake/setup.h)
+set(customsetuph ${wxroot}/build/wxcmake/setup.h)
 install(FILES ${customsetuph} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/wx/msvc/wx)
 install(EXPORT ${targetsFile} DESTINATION ${XP_INSTALL_CMAKEDIR} NAMESPACE ${WX_NAMESPACE})

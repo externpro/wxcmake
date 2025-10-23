@@ -2,8 +2,8 @@ set(lib_name base)
 #######################################
 # library sources
 ########################
-set(thisfile ${wxroot}/build/cmake/${lib_name}.cmake)
-set(wxfile ${wxroot}/build/cmake/wx.cmake)
+set(thisfile ${wxroot}/build/wxcmake/${lib_name}.cmake)
+set(wxfile ${wxroot}/build/wxcmake/wx.cmake)
 source_group("" FILES ${thisfile} ${wxfile})
 list(APPEND ${lib_name}_libsrcs ${thisfile} ${wxfile})
 ########################

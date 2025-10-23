@@ -1,7 +1,7 @@
 set(lib_name richtext)
 #######################################
 # library sources
-set(thisfile ${wxroot}/build/cmake/${lib_name}.cmake)
+set(thisfile ${wxroot}/build/wxcmake/${lib_name}.cmake)
 source_group("" FILES ${thisfile})
 list(APPEND ${lib_name}_libsrcs ${thisfile})
 ########################
