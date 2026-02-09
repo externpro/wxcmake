@@ -2,7 +2,7 @@ wxcmake
 =======
 
 build wxWidgets via cmake
-https://github.com/externpro/wxcmake/compare/wx0...dev
+https://github.com/externpro/wxcmake/compare/wx0...xpro
 
 https://docs.wxwidgets.org/3.1.0/page_libs.html
 ![graph](graph.png 'dependency graph')
