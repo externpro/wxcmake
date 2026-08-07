@@ -75,11 +75,11 @@ if(UNIX AND NOT ${CMAKE_SYSTEM_NAME} STREQUAL Darwin)
   ########
   # OpenGL
   find_package(OpenGL)
-  if(NOT OPENGL_FOUND OR NOT OPENGL_GLU_FOUND)
+  if(NOT OpenGL_FOUND)
     message(FATAL_ERROR "\n"
-      "OpenGL or GLU not found -- wxWidgets can't be built. install on linux:\n"
+      "OpenGL not found -- wxWidgets can't be built. install on linux:\n"
       "  apt install libglu1-mesa-dev\n"
-      "  dnf install mesa-libGL-devel.x86_64 mesa-libGLU-devel.x86_64\n"
+      "  dnf install mesa-libGL-devel mesa-libGLU-devel\n"
       )
   endif()
 endif()
