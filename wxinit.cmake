@@ -31,7 +31,7 @@ if(UNIX)
     )
 endif()
 xpExternPackage(REPO_NAME wxWidgets TARGETS_FILE ${targetsFile}
-  BASE v3.1.0 XPDIFF "intro(msw), native(unix)"
+  BASE v3.1.0 XPDIFF "intro(msw), native(unix)" NO_EXPORT
   WEB "http://wxwidgets.org/" UPSTREAM "github.com/wxWidgets/wxWidgets"
   DESC "Cross-Platform C++ GUI Library"
   LICENSE "[wxWindows](https://wxwidgets.org/about/licence/ 'essentially LGPL with an exception')"
