@@ -34,6 +34,7 @@ digraph GG {
   # mistyrose: linux system libraries
   "dl" [shape=box, style=filled, fillcolor=mistyrose];
   "m" [shape=box, style=filled, fillcolor=mistyrose];
+  "GL" [shape=box, style=filled, fillcolor=mistyrose];
   "gtk" [shape=box, style=filled, fillcolor=mistyrose];
   "X11" [shape=box, style=filled, fillcolor=mistyrose];
   "Xxf86vm" [shape=box, style=filled, fillcolor=mistyrose];
@@ -83,6 +84,7 @@ digraph GG {
   "core" -> "gdiplus" [style=dotted];
   "gl" -> "core";
   "gl" -> "OpenGL" [style=dashed];
+  "gl" -> "GL" [style=dashed];
   "html" -> "core";
   "media" -> "core";
   "media" -> "AudioToolbox" [style=dashed];
