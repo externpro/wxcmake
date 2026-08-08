@@ -1,4 +1,3 @@
-set(WX_NAMESPACE "wx::") # NOTE: hard-coded in wxwidgets-targets.cmake
 set(targetsFile ${PROJECT_NAME}-targets)
 string(TOUPPER ${CMAKE_PROJECT_NAME} PRJ)
 string(JOIN "\n" EXT1 # TRICKY: set wx_all_libs before targets file include

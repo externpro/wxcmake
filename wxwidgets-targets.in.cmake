@@ -155,14 +155,14 @@ if(UNIX)
     set(wxtiff_INCLUDE_DIRS ${wxIncDir}/wx/tiff)
   endif()
   foreach(lib ${wx_all_libs} ${_wx_link})
-    if(NOT TARGET wx::${lib})
-      add_library(wx::${lib} STATIC IMPORTED)
+    if(NOT TARGET @WX_NAMESPACE@${lib})
+      add_library(@WX_NAMESPACE@${lib} STATIC IMPORTED)
       getLibname(${lib} ${lib}filename)
       set(${lib}_RELEASE ${_IMPORT_PREFIX}/lib/lib${${lib}filename}.a)
       if(EXISTS "${${lib}_RELEASE}")
-        set_property(TARGET wx::${lib} APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
+        set_property(TARGET @WX_NAMESPACE@${lib} APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
         list(APPEND ${lib}_INCLUDE_DIRS ${wxWidgets_INCLUDE_DIRS})
-        set_target_properties(wx::${lib} PROPERTIES
+        set_target_properties(@WX_NAMESPACE@${lib} PROPERTIES
           IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "C;CXX"
           IMPORTED_LOCATION_RELEASE "${${lib}_RELEASE}"
           INTERFACE_COMPILE_DEFINITIONS "${wxWidgets_DEFINITIONS}"
@@ -171,15 +171,15 @@ if(UNIX)
         if(_wx_${lib}_deps OR _wx_${lib}_link OR _wx_${lib}_libs)
           unset(linkLibs)
           foreach(dep ${_wx_${lib}_deps})
-            list(APPEND linkLibs wx::${dep})
+            list(APPEND linkLibs @WX_NAMESPACE@${dep})
           endforeach()
           foreach(dep ${_wx_${lib}_link})
-            list(APPEND linkLibs \$<LINK_ONLY:wx::${dep}>)
+            list(APPEND linkLibs \$<LINK_ONLY:@WX_NAMESPACE@${dep}>)
           endforeach()
           foreach(dep ${_wx_${lib}_libs})
             list(APPEND linkLibs \$<LINK_ONLY:${dep}>)
           endforeach()
-          set_target_properties(wx::${lib} PROPERTIES
+          set_target_properties(@WX_NAMESPACE@${lib} PROPERTIES
             INTERFACE_LINK_LIBRARIES "${linkLibs}"
             )
         endif()
