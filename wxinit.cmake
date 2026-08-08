@@ -15,6 +15,17 @@ string(JOIN "\n" EXT2
   "list(APPEND reqVars ${PRJ}_LIBRARIES)"
   ""
   )
+if(DEFINED WX_ALIAS_NAMESPACE)
+  string(JOIN "\n" ALIASES
+    "# ALIAS targets for ${WX_ALIAS_NAMESPACE}"
+    "foreach(lib IN LISTS wx_libs)"
+    "  if(NOT TARGET ${WX_ALIAS_NAMESPACE}\${lib} AND TARGET ${WX_NAMESPACE}\${lib})"
+    "    add_library(${WX_ALIAS_NAMESPACE}\${lib} ALIAS ${WX_NAMESPACE}\${lib})"
+    "  endif()"
+    "endforeach()"
+    ""
+    )
+endif()
 if(DEFINED GTK_VER AND DEFINED GTK_VERSION)
   string(JOIN "\n" EXT3
     "set(wxGTK_VER ${GTK_VER})"
@@ -30,7 +41,7 @@ if(UNIX)
     )
 endif()
 xpExternPackage(REPO_NAME wxWidgets TARGETS_FILE ${targetsFile}
-  BASE v3.1.0 XPDIFF "intro(msw), native(unix)" NO_EXPORT PVT_DEPS OpenGL
+  BASE v3.1.0 XPDIFF "intro[msw], native[unix]" NO_EXPORT PVT_DEPS OpenGL
   WEB "http://wxwidgets.org/" UPSTREAM "github.com/wxWidgets/wxWidgets"
   DESC "Cross-Platform C++ GUI Library"
   LICENSE "[wxWindows](https://wxwidgets.org/about/licence/ 'essentially LGPL with an exception')"
